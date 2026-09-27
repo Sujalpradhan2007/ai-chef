@@ -1,0 +1,2930 @@
+/* =========================================================
+   AI COOKING ASSISTANT
+   Main Website Stylesheet
+========================================================= */
+
+/* =========================================================
+   1. ROOT VARIABLES
+========================================================= */
+
+:root {
+    --primary: #ff6b35;
+    --primary-dark: #e85220;
+    --secondary: #ffb703;
+    --accent: #06a77d;
+
+    --dark: #171717;
+    --dark-soft: #252525;
+
+    --text: #222222;
+    --text-light: #666666;
+    --text-muted: #8a8a8a;
+
+    --white: #ffffff;
+    --off-white: #fafafa;
+    --light: #f5f5f5;
+    --border: #e8e8e8;
+
+    --success: #22a06b;
+    --danger: #e63946;
+
+    --shadow-sm:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+
+    --shadow-md:
+        0 10px 30px rgba(0, 0, 0, 0.10);
+
+    --shadow-lg:
+        0 20px 60px rgba(0, 0, 0, 0.14);
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-xl: 36px;
+
+    --container: 1200px;
+
+    --transition:
+        all 0.3s ease;
+
+    --transition-fast:
+        all 0.2s ease;
+}
+
+
+/* =========================================================
+   2. RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: "Poppins", "Inter", sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+
+/* =========================================================
+   3. COMMON CONTAINER
+========================================================= */
+
+.section-container,
+.footer-container,
+.navbar,
+.hero-container {
+    width: min(100% - 40px, var(--container));
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   4. PAGE LOADER
+========================================================= */
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--white);
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-spinner {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 15px;
+
+    border: 5px solid #eeeeee;
+    border-top-color: var(--primary);
+
+    border-radius: 50%;
+
+    animation: spin 0.9s linear infinite;
+}
+
+.loader-content p {
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   5. HEADER
+========================================================= */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    transition: var(--transition);
+}
+
+.main-header.scrolled {
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   6. NAVBAR
+========================================================= */
+
+.navbar {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   7. BRAND
+========================================================= */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+.brand-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #ff8c42
+        );
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 8px 20px rgba(255, 107, 53, 0.25);
+
+    font-size: 19px;
+
+    transition: var(--transition);
+}
+
+.brand:hover .brand-icon {
+    transform: rotate(-8deg) scale(1.05);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.05;
+}
+
+.brand-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.brand-subtitle {
+    font-size: 11px;
+    color: var(--primary);
+
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   8. NAVIGATION LINKS
+========================================================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 26px;
+}
+
+.nav-link {
+    position: relative;
+
+    color: #444;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    padding: 28px 0;
+
+    transition: var(--transition);
+}
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 18px;
+
+    height: 2px;
+
+    background: var(--primary);
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   9. NAV ACTIONS
+========================================================= */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.login-button,
+.signup-button {
+    min-height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 15px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: var(--transition);
+}
+
+.login-button {
+    color: var(--dark);
+}
+
+.login-button:hover {
+    color: var(--primary);
+    background: #fff4ef;
+}
+
+.signup-button {
+    color: var(--white);
+
+    background: var(--primary);
+
+    box-shadow:
+        0 7px 18px rgba(255, 107, 53, 0.22);
+}
+
+.signup-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   10. MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+    width: 42px;
+    height: 42px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--dark);
+    background: var(--light);
+
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    transition: var(--transition);
+}
+
+.mobile-menu-button:hover {
+    background: #eeeeee;
+}
+
+
+/* =========================================================
+   11. MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+    position: fixed;
+
+    top: 76px;
+    left: 0;
+    right: 0;
+
+    max-height: calc(100vh - 76px);
+
+    overflow-y: auto;
+
+    padding: 15px 20px 25px;
+
+    background: var(--white);
+
+    border-top: 1px solid var(--border);
+
+    box-shadow: var(--shadow-lg);
+
+    transform: translateY(-120%);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.mobile-menu.open {
+    transform: translateY(0);
+
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu a {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 14px 10px;
+
+    color: #333;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    transition: var(--transition);
+}
+
+.mobile-menu a:hover {
+    color: var(--primary);
+    padding-left: 16px;
+}
+
+.mobile-menu i {
+    width: 20px;
+
+    color: var(--primary);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   12. HERO
+========================================================= */
+
+.hero-section {
+    position: relative;
+
+    min-height: 760px;
+
+    display: flex;
+    align-items: center;
+
+    padding-top: 76px;
+
+    overflow: hidden;
+
+    color: var(--white);
+}
+
+.hero-background {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #32180e,
+            #6c2913 45%,
+            #20100b
+        );
+
+    z-index: -3;
+}
+
+.hero-background::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(255, 183, 3, 0.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(255, 107, 53, 0.22),
+            transparent 40%
+        );
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20, 10, 6, 0.93) 0%,
+            rgba(20, 10, 6, 0.75) 48%,
+            rgba(20, 10, 6, 0.30) 100%
+        );
+
+    z-index: -2;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    max-width: 720px;
+
+    padding: 80px 0;
+}
+
+.hero-badge {
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    margin-bottom: 22px;
+
+    color: #ffe9dd;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    backdrop-filter: blur(8px);
+
+    animation: fadeUp 0.8s ease both;
+}
+
+.hero-badge i {
+    color: var(--secondary);
+}
+
+.hero-title {
+    max-width: 700px;
+
+    margin-bottom: 20px;
+
+    font-size: clamp(44px, 6vw, 78px);
+
+    line-height: 1.03;
+
+    letter-spacing: -3px;
+
+    font-weight: 800;
+
+    animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero-title span {
+    display: block;
+
+    color: var(--secondary);
+
+    text-shadow:
+        0 8px 30px rgba(255, 183, 3, 0.18);
+}
+
+.hero-description {
+    max-width: 610px;
+
+    margin-bottom: 30px;
+
+    color: rgba(255, 255, 255, 0.80);
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    animation: fadeUp 0.8s 0.2s ease both;
+}
+
+
+/* =========================================================
+   13. HERO SEARCH
+========================================================= */
+
+.hero-search {
+    width: min(100%, 650px);
+
+    display: flex;
+    align-items: center;
+
+    padding: 6px;
+
+    margin-bottom: 22px;
+
+    background: var(--white);
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.22);
+
+    animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-search > i {
+    padding-left: 15px;
+
+    color: var(--primary);
+}
+
+.hero-search input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 14px 12px;
+
+    color: var(--dark);
+
+    background: transparent;
+
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+}
+
+.hero-search input::placeholder {
+    color: #999;
+}
+
+.hero-search button {
+    padding: 13px 22px;
+
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-radius: 11px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.hero-search button:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   14. HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.primary-button,
+.secondary-button {
+    min-height: 50px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 0 22px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.primary-button {
+    color: var(--white);
+
+    background: var(--primary);
+
+    box-shadow:
+        0 10px 25px rgba(255, 107, 53, 0.24);
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(255, 107, 53, 0.30);
+}
+
+.secondary-button {
+    color: var(--white);
+
+    background: rgba(255, 255, 255, 0.09);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(8px);
+}
+
+.secondary-button:hover {
+    background: rgba(255, 255, 255, 0.17);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   15. HERO STATS
+========================================================= */
+
+.hero-stats {
+    display: flex;
+
+    gap: 35px;
+
+    margin-top: 42px;
+
+    animation: fadeUp 0.8s 0.5s ease both;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.hero-stat strong {
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.hero-stat span {
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   16. SECTION COMMON
+========================================================= */
+
+section {
+    position: relative;
+}
+
+.ai-assistant-section,
+.states-section,
+.recipes-section,
+.festival-section,
+.cuisines-section,
+.how-section {
+    padding: 100px 0;
+}
+
+.section-heading {
+    max-width: 700px;
+
+    margin: 0 auto 55px;
+
+    text-align: center;
+}
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 12px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin-bottom: 14px;
+
+    color: var(--dark);
+
+    font-size: clamp(30px, 4vw, 46px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    font-weight: 800;
+}
+
+.section-heading h2 span {
+    color: var(--primary);
+}
+
+.section-heading p {
+    color: var(--text-light);
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   17. AI SECTION
+========================================================= */
+
+.ai-assistant-section {
+    background: var(--off-white);
+}
+
+.ai-feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.ai-feature-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    overflow: hidden;
+
+    transition: var(--transition);
+}
+
+.ai-feature-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    transition: transform 0.35s ease;
+}
+
+.ai-feature-card:hover {
+    transform: translateY(-8px);
+
+    border-color: #ffd8ca;
+
+    box-shadow: var(--shadow-md);
+}
+
+.ai-feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    color: var(--primary);
+
+    background: #fff1eb;
+
+    border-radius: 15px;
+
+    font-size: 21px;
+
+    transition: var(--transition);
+}
+
+.ai-feature-card:hover .feature-icon {
+    transform: rotate(-5deg) scale(1.08);
+
+    background: var(--primary);
+
+    color: var(--white);
+}
+
+.ai-feature-card h3 {
+    margin-bottom: 9px;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.ai-feature-card p {
+    min-height: 72px;
+
+    margin-bottom: 18px;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.feature-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.feature-link:hover {
+    gap: 12px;
+}
+
+
+/* =========================================================
+   18. INGREDIENT FINDER
+========================================================= */
+
+.ingredient-section {
+    padding: 35px 0 100px;
+
+    background: var(--off-white);
+}
+
+.ingredient-finder-box {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1.3fr 0.7fr;
+
+    align-items: center;
+
+    gap: 40px;
+
+    padding: 55px;
+
+    overflow: hidden;
+
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d2724,
+            #15201d
+        );
+
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-lg);
+}
+
+.ingredient-finder-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 107, 53, 0.18);
+
+    filter: blur(10px);
+}
+
+.ingredient-content {
+    position: relative;
+    z-index: 2;
+}
+
+.ingredient-content .section-label {
+    color: var(--secondary);
+}
+
+.ingredient-content h2 {
+    margin-bottom: 15px;
+
+    font-size: clamp(30px, 4vw, 46px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+}
+
+.ingredient-content h2 span {
+    color: var(--secondary);
+}
+
+.ingredient-content > p {
+    max-width: 650px;
+
+    margin-bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   19. INGREDIENT INPUT
+========================================================= */
+
+.ingredient-input {
+    max-width: 680px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 5px;
+
+    margin-bottom: 15px;
+
+    background: var(--white);
+
+    border-radius: 13px;
+}
+
+.ingredient-input > i {
+    padding-left: 13px;
+
+    color: var(--primary);
+}
+
+.ingredient-input input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 13px 10px;
+
+    color: var(--dark);
+
+    border: none;
+    outline: none;
+
+    font-size: 13px;
+}
+
+.ingredient-input button {
+    padding: 12px 18px;
+
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.ingredient-input button:hover {
+    background: var(--primary-dark);
+}
+
+
+/* =========================================================
+   20. INGREDIENT TAGS
+========================================================= */
+
+.ingredient-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.60);
+
+    font-size: 11px;
+}
+
+.ingredient-tag {
+    padding: 6px 11px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 50px;
+
+    font-size: 11px;
+
+    transition: var(--transition);
+}
+
+.ingredient-tag:hover {
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   21. INGREDIENT VISUAL
+========================================================= */
+
+.ingredient-visual {
+    position: relative;
+
+    min-height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredient-circle {
+    width: 210px;
+    height: 210px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--secondary);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 183, 3, 0.20),
+            rgba(255, 107, 53, 0.06)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 50%;
+
+    font-size: 75px;
+
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-food {
+    position: absolute;
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+
+    background: rgba(255, 255, 255, 0.09);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    backdrop-filter: blur(8px);
+
+    animation: float 4s ease-in-out infinite;
+}
+
+.food-one {
+    top: 25px;
+    right: 30px;
+
+    color: #ff8c42;
+
+    animation-delay: 0.4s;
+}
+
+.food-two {
+    bottom: 30px;
+    left: 25px;
+
+    color: #ef476f;
+
+    animation-delay: 0.8s;
+}
+
+.food-three {
+    bottom: 50px;
+    right: 15px;
+
+    color: #ffb703;
+
+    animation-delay: 1.2s;
+}
+
+
+/* =========================================================
+   22. STATES
+========================================================= */
+
+.state-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.state-card {
+    position: relative;
+
+    min-height: 270px;
+
+    overflow: hidden;
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    background: #ddd;
+}
+
+.state-card-image {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9b5b35,
+            #442014
+        );
+
+    transition: transform 0.6s ease;
+}
+
+.state-card:hover .state-card-image {
+    transform: scale(1.08);
+}
+
+
+/*
+    These gradients act as visual placeholders.
+    Real state images can later be loaded from:
+    assets/state-images/
+*/
+
+.state-odisha {
+    background:
+        linear-gradient(
+            135deg,
+            #774c30,
+            #b86a2f
+        );
+}
+
+.state-west-bengal {
+    background:
+        linear-gradient(
+            135deg,
+            #5d3b29,
+            #b44b31
+        );
+}
+
+.state-punjab {
+    background:
+        linear-gradient(
+            135deg,
+            #c48a25,
+            #7b3f18
+        );
+}
+
+.state-rajasthan {
+    background:
+        linear-gradient(
+            135deg,
+            #b45309,
+            #641f11
+        );
+}
+
+.state-gujarat {
+    background:
+        linear-gradient(
+            135deg,
+            #8b5e34,
+            #3b2415
+        );
+}
+
+.state-kerala {
+    background:
+        linear-gradient(
+            135deg,
+            #23613d,
+            #123d2b
+        );
+}
+
+.state-card-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.03) 70%
+        );
+
+    color: var(--white);
+}
+
+.state-card-overlay span {
+    margin-bottom: 4px;
+
+    color: rgba(255, 255, 255, 0.70);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.state-card-overlay h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   23. SECTION BUTTON
+========================================================= */
+
+.section-button-wrapper {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 40px;
+}
+
+.outline-button {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 13px 21px;
+
+    color: var(--primary);
+
+    border: 1px solid #ffc8b5;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: var(--transition);
+}
+
+.outline-button:hover {
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   24. RECIPES
+========================================================= */
+
+.recipes-section {
+    background: var(--off-white);
+}
+
+.heading-with-button {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    max-width: none;
+
+    text-align: left;
+}
+
+.heading-with-button h2 {
+    margin-bottom: 0;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: var(--transition);
+}
+
+.text-link:hover {
+    gap: 12px;
+}
+
+.recipe-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.recipe-card {
+    overflow: hidden;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition: var(--transition);
+}
+
+.recipe-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.recipe-image {
+    position: relative;
+
+    height: 210px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b451f,
+            #d27a32
+        );
+
+    overflow: hidden;
+}
+
+.recipe-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.12),
+            transparent 50%
+        );
+}
+
+.recipe-image-one {
+    background:
+        linear-gradient(
+            135deg,
+            #9c4f2c,
+            #e79a43
+        );
+}
+
+.recipe-image-two {
+    background:
+        linear-gradient(
+            135deg,
+            #b66d22,
+            #e7a63c
+        );
+}
+
+.recipe-image-three {
+    background:
+        linear-gradient(
+            135deg,
+            #733b1c,
+            #bf6a31
+        );
+}
+
+.recipe-image-four {
+    background:
+        linear-gradient(
+            135deg,
+            #8c4b22,
+            #d89b43
+        );
+}
+
+.recipe-badge {
+    position: absolute;
+
+    top: 13px;
+    left: 13px;
+
+    z-index: 2;
+
+    padding: 5px 9px;
+
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-radius: 6px;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.favorite-button {
+    position: absolute;
+
+    top: 11px;
+    right: 11px;
+
+    z-index: 2;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+
+    background: rgba(0, 0, 0, 0.25);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    border-radius: 50%;
+
+    backdrop-filter: blur(6px);
+
+    transition: var(--transition);
+}
+
+.favorite-button:hover {
+    color: var(--danger);
+
+    background: var(--white);
+
+    transform: scale(1.08);
+}
+
+.favorite-button.active {
+    color: var(--danger);
+}
+
+.recipe-info {
+    padding: 20px;
+}
+
+.recipe-cuisine {
+    display: inline-block;
+
+    margin-bottom: 6px;
+
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+.recipe-info h3 {
+    margin-bottom: 7px;
+
+    font-size: 17px;
+    line-height: 1.3;
+}
+
+.recipe-info p {
+    margin-bottom: 15px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.recipe-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.recipe-meta span {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.recipe-meta i {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   25. FESTIVALS
+========================================================= */
+
+.festival-section {
+    background: var(--white);
+}
+
+.festival-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.festival-card {
+    display: grid;
+
+    grid-template-columns: 58px 1fr auto;
+
+    align-items: center;
+
+    gap: 17px;
+
+    padding: 22px;
+
+    background: var(--off-white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    transition: var(--transition);
+}
+
+.festival-card:hover {
+    background: var(--white);
+
+    border-color: #ffd2c2;
+
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.festival-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+
+    background: #fff0e9;
+
+    border-radius: 15px;
+
+    font-size: 21px;
+
+    transition: var(--transition);
+}
+
+.festival-card:hover .festival-icon {
+    color: var(--white);
+
+    background: var(--primary);
+
+    transform: rotate(-5deg);
+}
+
+.festival-card h3 {
+    margin-bottom: 3px;
+
+    font-size: 16px;
+}
+
+.festival-card p {
+    color: var(--text-light);
+
+    font-size: 11px;
+}
+
+.festival-card > i {
+    color: var(--primary);
+
+    transition: var(--transition);
+}
+
+.festival-card:hover > i {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   26. WORLD CUISINES
+========================================================= */
+
+.cuisines-section {
+    background: var(--off-white);
+}
+
+.cuisine-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 15px;
+}
+
+.cuisine-card {
+    padding: 25px 15px;
+
+    text-align: center;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    transition: var(--transition);
+}
+
+.cuisine-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #ffd3c5;
+
+    box-shadow: var(--shadow-md);
+}
+
+.cuisine-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    background: #fff5f0;
+
+    border-radius: 50%;
+
+    font-size: 29px;
+
+    transition: var(--transition);
+}
+
+.cuisine-card:hover .cuisine-icon {
+    transform: scale(1.1) rotate(5deg);
+
+    background: #ffede5;
+}
+
+.cuisine-card h3 {
+    margin-bottom: 5px;
+
+    font-size: 14px;
+}
+
+.cuisine-card p {
+    color: var(--text-light);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   27. SUBMIT RECIPE
+========================================================= */
+
+.submit-section {
+    padding: 70px 0;
+
+    background: var(--white);
+}
+
+.submit-box {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 40px;
+
+    padding: 55px;
+
+    overflow: hidden;
+
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #e84e20
+        );
+
+    border-radius: var(--radius-xl);
+
+    box-shadow:
+        0 20px 50px rgba(255, 107, 53, 0.22);
+}
+
+.submit-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    right: -130px;
+    top: -160px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.submit-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 680px;
+}
+
+.submit-content .section-label {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.submit-content h2 {
+    margin-bottom: 12px;
+
+    font-size: clamp(28px, 4vw, 42px);
+
+    line-height: 1.15;
+}
+
+.submit-content p {
+    margin-bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.submit-content .primary-button {
+    color: var(--primary);
+
+    background: var(--white);
+
+    box-shadow: none;
+}
+
+.submit-content .primary-button:hover {
+    color: var(--primary-dark);
+
+    background: #fff7f3;
+}
+
+.submit-icon {
+    position: relative;
+    z-index: 2;
+
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: rgba(255, 255, 255, 0.90);
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+
+    font-size: 65px;
+
+    animation: float 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   28. HOW IT WORKS
+========================================================= */
+
+.how-section {
+    background: var(--off-white);
+}
+
+.steps-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.step-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    text-align: center;
+
+    transition: var(--transition);
+}
+
+.step-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-md);
+}
+
+.step-number {
+    position: absolute;
+
+    top: 15px;
+    right: 17px;
+
+    color: #eeeeee;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.step-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    color: var(--primary);
+
+    background: #fff0e9;
+
+    border-radius: 18px;
+
+    font-size: 24px;
+
+    transition: var(--transition);
+}
+
+.step-card:hover .step-icon {
+    color: var(--white);
+
+    background: var(--primary);
+
+    transform: rotate(-5deg);
+}
+
+.step-card h3 {
+    margin-bottom: 7px;
+
+    font-size: 17px;
+}
+
+.step-card p {
+    color: var(--text-light);
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   29. FOOTER
+========================================================= */
+
+.main-footer {
+    color: rgba(255, 255, 255, 0.70);
+
+    background: #151515;
+}
+
+.footer-container {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap: 50px;
+
+    padding-top: 70px;
+    padding-bottom: 55px;
+}
+
+.footer-brand > p {
+    max-width: 330px;
+
+    margin: 20px 0;
+
+    color: rgba(255, 255, 255, 0.50);
+
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer-logo .brand-name {
+    color: var(--white);
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+.footer-column h3 {
+    margin-bottom: 18px;
+
+    color: var(--white);
+
+    font-size: 14px;
+}
+
+.footer-column > a {
+    margin-bottom: 10px;
+
+    color: rgba(255, 255, 255, 0.50);
+
+    font-size: 11px;
+
+    transition: var(--transition);
+}
+
+.footer-column > a:hover {
+    color: var(--primary);
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   30. SOCIAL LINKS
+========================================================= */
+
+.social-links {
+    display: flex;
+
+    gap: 9px;
+}
+
+.social-links a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(255, 255, 255, 0.70);
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-color: var(--primary);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   31. FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+    width: min(100% - 40px, var(--container));
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin: 0 auto;
+
+    padding: 22px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 10px;
+}
+
+.footer-bottom-links {
+    display: flex;
+
+    gap: 20px;
+}
+
+.footer-bottom-links a {
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 10px;
+
+    transition: var(--transition);
+}
+
+.footer-bottom-links a:hover {
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   32. BACK TO TOP
+========================================================= */
+
+.back-to-top {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    z-index: 900;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+
+    background: var(--primary);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 25px rgba(255, 107, 53, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition: var(--transition);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   33. ANIMATIONS
+========================================================= */
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+}
+
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   34. SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   35. TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .nav-links {
+        gap: 17px;
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .ai-feature-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .recipe-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .cuisine-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .steps-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   36. TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        min-height: 70px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .hero-section {
+        min-height: 700px;
+    }
+
+    .hero-content {
+        max-width: 650px;
+    }
+
+    .ingredient-finder-box {
+        grid-template-columns: 1fr;
+
+        padding: 45px;
+    }
+
+    .ingredient-visual {
+        min-height: 240px;
+    }
+
+    .state-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .footer-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   37. MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .section-container,
+    .footer-container,
+    .navbar,
+    .hero-container {
+        width: min(100% - 28px, var(--container));
+    }
+
+    .navbar {
+        min-height: 66px;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 17px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .login-button {
+        display: none;
+    }
+
+    .signup-button {
+        display: none;
+    }
+
+    .mobile-menu {
+        top: 66px;
+
+        max-height: calc(100vh - 66px);
+    }
+
+
+    /* Hero */
+
+    .hero-section {
+        min-height: 720px;
+
+        padding-top: 66px;
+    }
+
+    .hero-content {
+        padding: 55px 0;
+    }
+
+    .hero-badge {
+        font-size: 10px;
+
+        padding: 7px 11px;
+    }
+
+    .hero-title {
+        font-size: clamp(40px, 13vw, 58px);
+
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-search {
+        flex-wrap: nowrap;
+    }
+
+    .hero-search input {
+        font-size: 12px;
+    }
+
+    .hero-search button {
+        padding: 12px 13px;
+
+        font-size: 11px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+
+    .hero-stats {
+        gap: 20px;
+
+        margin-top: 30px;
+    }
+
+    .hero-stat strong {
+        font-size: 18px;
+    }
+
+    .hero-stat span {
+        font-size: 9px;
+    }
+
+
+    /* Sections */
+
+    .ai-assistant-section,
+    .states-section,
+    .recipes-section,
+    .festival-section,
+    .cuisines-section,
+    .how-section {
+        padding: 70px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .section-heading p {
+        font-size: 13px;
+    }
+
+
+    /* AI */
+
+    .ai-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-feature-card {
+        padding: 24px;
+    }
+
+    .ai-feature-card p {
+        min-height: auto;
+    }
+
+
+    /* Ingredient */
+
+    .ingredient-section {
+        padding: 20px 0 70px;
+    }
+
+    .ingredient-finder-box {
+        padding: 30px 22px;
+
+        border-radius: 25px;
+    }
+
+    .ingredient-content h2 {
+        font-size: 30px;
+    }
+
+    .ingredient-input {
+        align-items: stretch;
+
+        flex-wrap: wrap;
+
+        background: var(--white);
+    }
+
+    .ingredient-input > i {
+        display: none;
+    }
+
+    .ingredient-input input {
+        width: 100%;
+
+        flex: 1 1 100%;
+
+        padding: 13px;
+    }
+
+    .ingredient-input button {
+        width: 100%;
+
+        margin-top: 3px;
+    }
+
+    .ingredient-visual {
+        min-height: 210px;
+    }
+
+    .ingredient-circle {
+        width: 150px;
+        height: 150px;
+
+        font-size: 55px;
+    }
+
+    .floating-food {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    /* States */
+
+    .state-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .state-card {
+        min-height: 240px;
+    }
+
+
+    /* Recipes */
+
+    .heading-with-button {
+        display: block;
+    }
+
+    .heading-with-button .text-link {
+        margin-top: 15px;
+    }
+
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recipe-image {
+        height: 230px;
+    }
+
+
+    /* Festivals */
+
+    .festival-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .festival-card {
+        grid-template-columns:
+            48px 1fr auto;
+
+        padding: 17px;
+    }
+
+    .festival-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+
+    /* Cuisines */
+
+    .cuisine-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .cuisine-card {
+        padding: 20px 10px;
+    }
+
+
+    /* Submit */
+
+    .submit-section {
+        padding: 50px 0;
+    }
+
+    .submit-box {
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 35px 25px;
+
+        border-radius: 25px;
+    }
+
+    .submit-icon {
+        width: 100px;
+        height: 100px;
+
+        align-self: center;
+
+        font-size: 42px;
+    }
+
+
+    /* Steps */
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Footer */
+
+    .footer-container {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        padding-top: 55px;
+        padding-bottom: 40px;
+    }
+
+    .footer-bottom {
+        width: min(100% - 28px, var(--container));
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .footer-bottom-links {
+        gap: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   38. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .hero-title {
+        font-size: 38px;
+    }
+
+    .hero-search button {
+        padding-inline: 10px;
+    }
+
+    .hero-search input {
+        padding-inline: 7px;
+    }
+
+    .hero-stats {
+        gap: 14px;
+    }
+
+    .hero-stat strong {
+        font-size: 16px;
+    }
+
+    .cuisine-grid {
+        gap: 10px;
+    }
+
+    .festival-card {
+        grid-template-columns:
+            43px 1fr auto;
+
+        gap: 10px;
+    }
+
+    .festival-card h3 {
+        font-size: 14px;
+    }
+
+    .festival-card p {
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================================
+   39. ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(255, 107, 53, 0.35);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   40. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}

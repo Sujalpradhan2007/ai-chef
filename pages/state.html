@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>State Recipes | AI Cooking Assistant</title>
+
+    <meta
+        name="description"
+        content="Explore famous dishes, traditional recipes and districts of Indian states with AI Cooking Assistant."
+    >
+
+    <meta name="theme-color" content="#ff6b35">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* =========================================================
+           STATE PAGE
+        ========================================================= */
+
+        .state-page {
+            min-height: 100vh;
+            padding-top: 90px;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(255, 107, 53, 0.08),
+                    transparent 30%
+                ),
+                #ffffff;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .state-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 65px 20px 75px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6b35,
+                    #ff914d,
+                    #ffbd4a
+                );
+            color: #ffffff;
+        }
+
+        .state-hero::before {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.10);
+            top: -230px;
+            left: -100px;
+        }
+
+        .state-hero::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            right: -200px;
+            bottom: -300px;
+        }
+
+        .state-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .state-breadcrumb {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .state-breadcrumb a {
+            color: rgba(255, 255, 255, 0.88);
+            text-decoration: none;
+        }
+
+        .state-breadcrumb a:hover {
+            color: #ffffff;
+        }
+
+        .state-breadcrumb i {
+            font-size: 10px;
+            opacity: 0.7;
+        }
+
+        .state-hero-main {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .state-title-area h1 {
+            margin: 0 0 15px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+        }
+
+        .state-title-area p {
+            max-width: 720px;
+            margin: 0 0 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.94;
+        }
+
+        .state-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .state-meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.17);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .state-hero-icon {
+            width: 250px;
+            height: 250px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40% 60% 55% 45%;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            animation: stateFloat 5s ease-in-out infinite;
+        }
+
+        .state-hero-icon i {
+            font-size: 95px;
+        }
+
+        @keyframes stateFloat {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        /* =========================================================
+           PAGE CONTENT
+        ========================================================= */
+
+        .state-content {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 75px 20px 100px;
+        }
+
+        .section-heading-state {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .section-heading-state h2 {
+            margin: 0 0 7px;
+            font-family: "Poppins", sans-serif;
+            font-size: 2rem;
+            color: #222222;
+        }
+
+        .section-heading-state p {
+            margin: 0;
+            color: #777777;
+            line-height: 1.6;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 15px;
+            border-radius: 30px;
+            background: #fff4ef;
+            color: #e85d2a;
+            font-size: 0.85rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* =========================================================
+           FAMOUS RECIPES
+        ========================================================= */
+
+        .famous-recipes-section {
+            margin-bottom: 85px;
+        }
+
+        .famous-recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .state-recipe-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .state-recipe-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+        }
+
+        .state-recipe-image {
+            position: relative;
+            height: 210px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6b35,
+                    #ff9f43
+                );
+        }
+
+        .state-recipe-image::before {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            top: -95px;
+            right: -40px;
+        }
+
+        .state-recipe-image i {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            font-size: 65px;
+        }
+
+        .famous-label {
+            position: absolute;
+            z-index: 3;
+            top: 15px;
+            left: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.94);
+            color: #e85d2a;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .state-recipe-body {
+            padding: 20px;
+        }
+
+        .state-recipe-body h3 {
+            margin: 0 0 8px;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.2rem;
+            color: #222222;
+        }
+
+        .state-recipe-body p {
+            margin: 0 0 15px;
+            color: #777777;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .recipe-info-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .recipe-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 10px;
+            border-radius: 9px;
+            background: #f8f8f8;
+            color: #666666;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .recipe-info i {
+            color: #ff6b35;
+        }
+
+        .recipe-open-button {
+            width: 100%;
+            margin-top: 16px;
+            padding: 11px 15px;
+            border: none;
+            border-radius: 11px;
+            background: #fff4ef;
+            color: #e85d2a;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .recipe-open-button:hover {
+            background: #ff6b35;
+            color: #ffffff;
+        }
+
+        /* =========================================================
+           DISTRICTS
+        ========================================================= */
+
+        .districts-section {
+            margin-bottom: 85px;
+        }
+
+        .districts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .district-card {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-height: 82px;
+            padding: 15px;
+            border-radius: 16px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            color: #222222;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .district-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 107, 53, 0.25);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
+        }
+
+        .district-icon {
+            flex: 0 0 45px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #fff4ef;
+            color: #ff6b35;
+        }
+
+        .district-info {
+            min-width: 0;
+        }
+
+        .district-info h3 {
+            margin: 0 0 4px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .district-info span {
+            color: #888888;
+            font-size: 0.75rem;
+        }
+
+        .district-arrow {
+            margin-left: auto;
+            color: #aaaaaa;
+        }
+
+        /* =========================================================
+           OTHER RECIPES
+        ========================================================= */
+
+        .other-recipes-section {
+            margin-bottom: 85px;
+        }
+
+        .other-recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .other-recipe-card {
+            overflow: hidden;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: 0.3s ease;
+        }
+
+        .other-recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.11);
+        }
+
+        .other-recipe-visual {
+            height: 145px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff9f43,
+                    #ffbd4a
+                );
+            color: #ffffff;
+        }
+
+        .other-recipe-visual i {
+            font-size: 48px;
+        }
+
+        .other-recipe-body {
+            padding: 17px;
+        }
+
+        .other-recipe-body h3 {
+            margin: 0 0 7px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .other-recipe-body p {
+            margin: 0 0 13px;
+            color: #777777;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .view-recipe-link {
+            color: #e85d2a;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .view-recipe-link i {
+            margin-left: 4px;
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           AI CTA
+        ========================================================= */
+
+        .state-ai-section {
+            position: relative;
+            overflow: hidden;
+            padding: 50px;
+            border-radius: 28px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #1e1e2f,
+                    #2d3047
+                );
+            color: #ffffff;
+        }
+
+        .state-ai-section::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.17);
+            top: -180px;
+            right: -80px;
+        }
+
+        .state-ai-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+        }
+
+        .state-ai-text h2 {
+            margin: 0 0 10px;
+            font-family: "Poppins", sans-serif;
+            font-size: 2rem;
+        }
+
+        .state-ai-text p {
+            max-width: 700px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+        }
+
+        .state-ai-button {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 23px;
+            border-radius: 13px;
+            background: #ff6b35;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .state-ai-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.35);
+        }
+
+        /* =========================================================
+           INVALID STATE
+        ========================================================= */
+
+        .state-not-found {
+            display: none;
+            max-width: 700px;
+            margin: 100px auto;
+            padding: 50px 25px;
+            text-align: center;
+        }
+
+        .state-not-found.show {
+            display: block;
+        }
+
+        .state-not-found-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff4ef;
+            color: #ff6b35;
+            font-size: 35px;
+        }
+
+        .state-not-found h2 {
+            margin: 0 0 10px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .state-not-found p {
+            margin: 0 0 25px;
+            color: #777777;
+        }
+
+        .back-states-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            background: #ff6b35;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .famous-recipes-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .districts-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .other-recipes-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            .state-hero-main {
+                grid-template-columns: 1fr;
+            }
+
+            .state-hero-icon {
+                width: 180px;
+                height: 180px;
+            }
+
+            .state-hero-icon i {
+                font-size: 70px;
+            }
+
+            .districts-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .other-recipes-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .state-ai-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .state-page {
+                padding-top: 75px;
+            }
+
+            .state-hero {
+                padding: 45px 18px 60px;
+            }
+
+            .state-title-area h1 {
+                font-size: 2.5rem;
+            }
+
+            .state-content {
+                padding: 55px 15px 70px;
+            }
+
+            .section-heading-state {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .famous-recipes-grid,
+            .districts-grid,
+            .other-recipes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .state-ai-section {
+                padding: 30px 22px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .state-hero-icon {
+                animation: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         PAGE LOADER
+    ========================================================== -->
+
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+    </div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="main-header" id="mainHeader">
+
+        <div class="container">
+
+            <nav class="navbar">
+
+                <a href="../index.html" class="brand-logo">
+
+                    <span class="brand-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </span>
+
+                    <span class="brand-text">
+                        <strong>AI Cooking</strong>
+                        <small>Assistant</small>
+                    </span>
+
+                </a>
+
+
+                <div class="nav-links">
+
+                    <a href="../index.html">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+
+                    <a href="ai-chat.html">
+                        <i class="fa-solid fa-robot"></i>
+                        AI Assistant
+                    </a>
+
+                    <a href="states.html" class="active">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        India
+                    </a>
+
+                    <a href="festivals.html">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Festivals
+                    </a>
+
+                    <a href="cuisines.html">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        <i class="fa-solid fa-carrot"></i>
+                        Ingredients
+                    </a>
+
+                </div>
+
+
+                <div class="nav-actions">
+
+                    <a href="login.html" class="nav-login">
+                        <i class="fa-regular fa-user"></i>
+                        Login
+                    </a>
+
+                    <a href="signup.html" class="nav-signup">
+                        Sign Up
+                    </a>
+
+                </div>
+
+
+                <button
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    type="button"
+                    aria-label="Open navigation menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </nav>
+
+
+            <div class="mobile-menu" id="mobileMenu">
+
+                <a href="../index.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="ai-chat.html">
+                    <i class="fa-solid fa-robot"></i>
+                    AI Assistant
+                </a>
+
+                <a href="states.html" class="active">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    India
+                </a>
+
+                <a href="festivals.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Festivals
+                </a>
+
+                <a href="cuisines.html">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    Cuisines
+                </a>
+
+                <a href="ingredient-finder.html">
+                    <i class="fa-solid fa-carrot"></i>
+                    Ingredients
+                </a>
+
+                <a href="login.html">
+                    <i class="fa-regular fa-user"></i>
+                    Login
+                </a>
+
+                <a href="signup.html">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Sign Up
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="state-page">
+
+
+        <!-- =====================================================
+             STATE HERO
+        ====================================================== -->
+
+        <section class="state-hero">
+
+            <div class="state-hero-content">
+
+                <div class="state-breadcrumb">
+
+                    <a href="../index.html">
+                        Home
+                    </a>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <a href="states.html">
+                        Indian States
+                    </a>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <span id="breadcrumbState">
+                        State
+                    </span>
+
+                </div>
+
+
+                <div class="state-hero-main">
+
+                    <div class="state-title-area">
+
+                        <h1 id="stateName">
+                            Explore State
+                        </h1>
+
+                        <p id="stateDescription">
+                            Discover famous dishes, traditional recipes,
+                            local food and district-wise cuisine from this state.
+                        </p>
+
+                        <div class="state-meta">
+
+                            <div class="state-meta-item">
+                                <i class="fa-solid fa-star"></i>
+                                Famous Recipes
+                            </div>
+
+                            <div class="state-meta-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                District Food
+                            </div>
+
+                            <div class="state-meta-item">
+                                <i class="fa-solid fa-robot"></i>
+                                AI Cooking Help
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="state-hero-icon" id="stateHeroIcon">
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STATE NOT FOUND
+        ====================================================== -->
+
+        <section class="state-not-found" id="stateNotFound">
+
+            <div class="state-not-found-icon">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+
+            <h2>State Not Found</h2>
+
+            <p>
+                We could not find the requested state.
+                Please go back and select an Indian state.
+            </p>
+
+            <a href="states.html" class="back-states-button">
+                <i class="fa-solid fa-arrow-left"></i>
+                Explore States
+            </a>
+
+        </section>
+
+
+        <!-- =====================================================
+             STATE CONTENT
+        ====================================================== -->
+
+        <section class="state-content" id="stateContent">
+
+
+            <!-- =================================================
+                 FAMOUS RECIPES
+            ================================================== -->
+
+            <section class="famous-recipes-section">
+
+                <div class="section-heading-state">
+
+                    <div>
+                        <h2>
+                            <i class="fa-solid fa-star"></i>
+                            Famous Recipes
+                        </h2>
+
+                        <p id="famousSubtitle">
+                            Popular dishes from this state.
+                        </p>
+                    </div>
+
+                    <span class="section-badge">
+                        <i class="fa-solid fa-fire"></i>
+                        Top Recipes
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="famous-recipes-grid"
+                    id="famousRecipesGrid"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DISTRICTS
+            ================================================== -->
+
+            <section class="districts-section">
+
+                <div class="section-heading-state">
+
+                    <div>
+                        <h2>
+                            <i class="fa-solid fa-location-dot"></i>
+                            Explore Districts
+                        </h2>
+
+                        <p>
+                            Select a district to discover local and traditional recipes.
+                        </p>
+                    </div>
+
+                    <span
+                        class="section-badge"
+                        id="districtCount"
+                    >
+                        <i class="fa-solid fa-map"></i>
+                        Districts
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="districts-grid"
+                    id="districtsGrid"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 OTHER RECIPES
+            ================================================== -->
+
+            <section class="other-recipes-section">
+
+                <div class="section-heading-state">
+
+                    <div>
+                        <h2>
+                            <i class="fa-solid fa-utensils"></i>
+                            More Recipes
+                        </h2>
+
+                        <p>
+                            Explore more dishes from this state's food culture.
+                        </p>
+                    </div>
+
+                    <span class="section-badge">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        More Food
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="other-recipes-grid"
+                    id="otherRecipesGrid"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AI CTA
+            ================================================== -->
+
+            <section class="state-ai-section">
+
+                <div class="state-ai-content">
+
+                    <div class="state-ai-text">
+
+                        <h2>
+                            Want help cooking this food?
+                        </h2>
+
+                        <p>
+                            Ask our AI Cooking Assistant for ingredients,
+                            quantities, step-by-step instructions,
+                            substitutions and cooking tips.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="ai-chat.html"
+                        class="state-ai-button"
+                    >
+                        <i class="fa-solid fa-robot"></i>
+                        Ask AI to Cook
+                    </a>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="brand-logo">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span class="brand-text">
+                            <strong>AI Cooking</strong>
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Your smart cooking companion for recipes,
+                        ingredients and regional food discovery.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>Explore</h4>
+
+                    <a href="states.html">
+                        Indian States
+                    </a>
+
+                    <a href="festivals.html">
+                        Festival Recipes
+                    </a>
+
+                    <a href="cuisines.html">
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Ingredients
+                    </a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>AI Features</h4>
+
+                    <a href="ai-chat.html">
+                        AI Cooking Chat
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Recipe Finder
+                    </a>
+
+                    <a href="submit-recipe.html">
+                        Submit Recipe
+                    </a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>Account</h4>
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                    <a href="signup.html">
+                        Create Account
+                    </a>
+
+                    <a href="profile.html">
+                        My Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © <span id="currentYear"></span>
+                    AI Cooking Assistant. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================== -->
+
+    <button
+        class="back-to-top"
+        id="backToTop"
+        type="button"
+        aria-label="Back to top"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+    <!-- =========================================================
+         STATE PAGE DATA + LOGIC
+    ========================================================== -->
+
+    <script>
+
+        /*
+         * This is temporary frontend data.
+         *
+         * Later, the same structure will come from:
+         *
+         * data/states.json
+         * data/districts.json
+         * data/recipes.json
+         *
+         * and eventually from the backend/database.
+         */
+
+        const stateData = {
+
+            "Andhra Pradesh": {
+                description:
+                    "Explore the spicy, tangy and flavorful cuisine of Andhra Pradesh, including traditional rice dishes, pickles and regional favorites.",
+                icon: "fa-pepper-hot",
+                famous: [
+                    {
+                        name: "Pulihora",
+                        description: "A traditional tangy tamarind rice preparation.",
+                        time: "35 min",
+                        difficulty: "Easy",
+                        id: "andhra-pulihora"
+                    },
+                    {
+                        name: "Gongura Pachadi",
+                        description: "A popular Andhra chutney made with gongura leaves.",
+                        time: "25 min",
+                        difficulty: "Easy",
+                        id: "andhra-gongura-pachadi"
+                    },
+                    {
+                        name: "Andhra Chicken Curry",
+                        description: "A spicy regional chicken curry with aromatic spices.",
+                        time: "55 min",
+                        difficulty: "Medium",
+                        id: "andhra-chicken-curry"
+                    }
+                ],
+                districts: [
+                    "Anakapalli",
+                    "Anantapur",
+                    "Bapatla",
+                    "Chittoor",
+                    "East Godavari",
+                    "Eluru",
+                    "Guntur",
+                    "Kakinada",
+                    "Krishna",
+                    "Kurnool",
+                    "Nandyal",
+                    "Nellore",
+                    "Palnadu",
+                    "Prakasam",
+                    "Tirupati",
+                    "Visakhapatnam",
+                    "Vizianagaram",
+                    "West Godavari"
+                ],
+                other: [
+                    "Gutti Vankaya",
+                    "Pesarattu",
+                    "Bobbatlu",
+                    "Garelu",
+                    "Avakaya"
+                ]
+            },
+
+
+            "Assam": {
+                description:
+                    "Discover the distinctive flavors of Assamese cuisine, known for rice, fish, greens, herbs and traditional preparations.",
+                icon: "fa-leaf",
+                famous: [
+                    {
+                        name: "Masor Tenga",
+                        description: "A light and tangy Assamese fish curry.",
+                        time: "45 min",
+                        difficulty: "Medium",
+                        id: "assam-masor-tenga"
+                    },
+                    {
+                        name: "Assamese Pitha",
+                        description: "Traditional rice-based preparations enjoyed during festivals.",
+                        time: "40 min",
+                        difficulty: "Medium",
+                        id: "assam-pitha"
+                    },
+                    {
+                        name: "Khar",
+                        description: "A traditional Assamese alkaline preparation.",
+                        time: "35 min",
+                        difficulty: "Medium",
+                        id: "assam-khar"
+                    }
+                ],
+                districts: [
+                    "Baksa",
+                    "Barpeta",
+                    "Biswanath",
+                    "Bongaigaon",
+                    "Cachar",
+                    "Darrang",
+                    "Dhemaji",
+                    "Dhubri",
+                    "Dibrugarh",
+                    "Goalpara",
+                    "Golaghat",
+                    "Jorhat",
+                    "Kamrup",
+                    "Lakhimpur",
+                    "Majuli",
+                    "Nagaon",
+                    "Sivasagar",
+                    "Sonitpur",
+                    "Tinsukia"
+                ],
+                other: [
+                    "Duck Curry",
+                    "Aloo Pitika",
+                    "Xaak Bhaji",
+                    "Pitika",
+                    "Bora Saul Pitha"
+                ]
+            },
+
+
+            "Bihar": {
+                description:
+                    "Explore traditional Bihari cuisine featuring sattu, wheat, lentils, spices and famous festive dishes.",
+                icon: "fa-wheat-awn",
+                famous: [
+                    {
+                        name: "Litti Chokha",
+                        description: "A famous Bihari dish made with stuffed wheat balls and mashed vegetables.",
+                        time: "60 min",
+                        difficulty: "Medium",
+                        id: "bihar-litti-chokha"
+                    },
+                    {
+                        name: "Thekua",
+                        description: "A traditional sweet prepared especially during festivals.",
+                        time: "45 min",
+                        difficulty: "Medium",
+                        id: "bihar-thekua"
+                    },
+                    {
+                        name: "Sattu Paratha",
+                        description: "Stuffed flatbread prepared with seasoned roasted gram flour.",
+                        time: "35 min",
+                        difficulty: "Easy",
+                        id: "bihar-sattu-paratha"
+                    }
+                ],
+                districts: [
+                    "Araria",
+                    "Arwal",
+                    "Aurangabad",
+                    "Banka",
+                    "Begusarai",
+                    "Bhagalpur",
+                    "Bhojpur",
+                    "Buxar",
+                    "Darbhanga",
+                    "Gaya",
+                    "Gopalganj",
+                    "Jamui",
+                    "Jehanabad",
+                    "Katihar",
+                    "Khagaria",
+                    "Kishanganj",
+                    "Lakhisarai",
+                    "Madhepura",
+                    "Madhubani",
+                    "Munger",
+                    "Muzaffarpur",
+                    "Nalanda",
+                    "Patna",
+                    "Purnia",
+                    "Rohtas",
+                    "Samastipur",
+                    "Saran",
+                    "Sitamarhi",
+                    "Siwan",
+                    "Vaishali"
+                ],
+                other: [
+                    "Dal Pitha",
+                    "Chana Ghugni",
+                    "Khaja",
+                    "Malpua",
+                    "Kadhi Bari"
+                ]
+            },
+
+
+            "Gujarat": {
+                description:
+                    "Discover Gujarat's diverse vegetarian cuisine, famous snacks, breads, sweets and festive dishes.",
+                icon: "fa-seedling",
+                famous: [
+                    {
+                        name: "Dhokla",
+                        description: "A soft and steamed Gujarati savory snack.",
+                        time: "35 min",
+                        difficulty: "Easy",
+                        id: "gujarat-dhokla"
+                    },
+                    {
+                        name: "Thepla",
+                        description: "A spiced Gujarati flatbread commonly made with fenugreek.",
+                        time: "30 min",
+                        difficulty: "Easy",
+                        id: "gujarat-thepla"
+                    },
+                    {
+                        name: "Undhiyu",
+                        description: "A traditional mixed vegetable preparation.",
+                        time: "75 min",
+                        difficulty: "Medium",
+                        id: "gujarat-undhiyu"
+                    }
+                ],
+                districts: [
+                    "Ahmedabad",
+                    "Amreli",
+                    "Anand",
+                    "Aravalli",
+                    "Banaskantha",
+                    "Bharuch",
+                    "Bhavnagar",
+                    "Botad",
+                    "Chhota Udaipur",
+                    "Dahod",
+                    "Dang",
+                    "Devbhoomi Dwarka",
+                    "Gandhinagar",
+                    "Gir Somnath",
+                    "Jamnagar",
+                    "Junagadh",
+                    "Kheda",
+                    "Kutch",
+                    "Mahisagar",
+                    "Mehsana",
+                    "Morbi",
+                    "Narmada",
+                    "Navsari",
+                    "Panchmahal",
+                    "Patan",
+                    "Porbandar",
+                    "Rajkot",
+                    "Sabarkantha",
+                    "Surat",
+                    "Surendranagar",
+                    "Vadodara",
+                    "Valsad"
+                ],
+                other: [
+                    "Fafda",
+                    "Khandvi",
+                    "Handvo",
+                    "Basundi",
+                    "Muthiya"
+                ]
+            },
+
+
+            "Karnataka": {
+                description:
+                    "Explore Karnataka cuisine from traditional breakfasts and rice dishes to famous sweets and regional specialties.",
+                icon: "fa-utensils",
+                famous: [
+                    {
+                        name: "Bisi Bele Bath",
+                        description: "A comforting rice, lentil and vegetable dish with spices.",
+                        time: "50 min",
+                        difficulty: "Medium",
+                        id: "karnataka-bisi-bele-bath"
+                    },
+                    {
+                        name: "Mysore Pak",
+                        description: "A famous Karnataka sweet made with gram flour and ghee.",
+                        time: "35 min",
+                        difficulty: "Medium",
+                        id: "karnataka-mysore-pak"
+                    },
+                    {
+                        name: "Ragi Mudde",
+                        description: "A traditional finger millet preparation.",
+                        time: "25 min",
+                        difficulty: "Easy",
+                        id: "karnataka-ragi-mudde"
+                    }
+                ],
+                districts: [
+                    "Bagalkot",
+                    "Ballari",
+                    "Belagavi",
+                    "Bengaluru Rural",
+                    "Bengaluru Urban",
+                    "Bidar",
+                    "Chamarajanagar",
+                    "Chikkaballapur",
+                    "Chikkamagaluru",
+                    "Chitradurga",
+                    "Dakshina Kannada",
+                    "Davanagere",
+                    "Dharwad",
+                    "Gadag",
+                    "Hassan",
+                    "Haveri",
+                    "Kalaburagi",
+                    "Kodagu",
+                    "Kolar",
+                    "Koppal",
+                    "Mandya",
+                    "Mysuru",
+                    "Raichur",
+                    "Ramanagara",
+                    "Shivamogga",
+                    "Tumakuru",
+                    "Udupi",
+                    "Uttara Kannada",
+                    "Vijayapura",
+                    "Yadgir"
+                ],
+                other: [
+                    "Masala Dosa",
+                    "Neer Dosa",
+                    "Maddur Vada",
+                    "Kori Rotti",
+                    "Holige"
+                ]
+            },
+
+
+            "Kerala": {
+                description:
+                    "Discover Kerala's coconut-rich cuisine, traditional breakfasts, seafood and famous festive Sadya.",
+                icon: "fa-leaf",
+                famous: [
+                    {
+                        name: "Appam",
+                        description: "A soft-centered fermented rice pancake with crisp edges.",
+                        time: "40 min",
+                        difficulty: "Medium",
+                        id: "kerala-appam"
+                    },
+                    {
+                        name: "Puttu",
+                        description: "Steamed rice flour cylinders traditionally served with sides.",
+                        time: "25 min",
+                        difficulty: "Easy",
+                        id: "kerala-puttu"
+                    },
+                    {
+                        name: "Kerala Sadya",
+                        description: "A traditional vegetarian feast served with multiple dishes.",
+                        time: "90 min",
+                        difficulty: "Hard",
+                        id: "kerala-sadya"
+                    }
+                ],
+                districts: [
+                    "Alappuzha",
+                    "Ernakulam",
+                    "Idukki",
+                    "Kannur",
+                    "Kasaragod",
+                    "Kollam",
+                    "Kottayam",
+                    "Kozhikode",
+                    "Malappuram",
+                    "Palakkad",
+                    "Pathanamthitta",
+                    "Thiruvananthapuram",
+                    "Thrissur",
+                    "Wayanad"
+                ],
+                other: [
+                    "Avial",
+                    "Kerala Fish Curry",
+                    "Parotta",
+                    "Payasam",
+                    "Banana Chips"
+                ]
+            },
+
+
+            "Madhya Pradesh": {
+                description:
+                    "Explore central Indian flavors, famous breakfast dishes, snacks and traditional Madhya Pradesh food.",
+                icon: "fa-bowl-rice",
+                famous: [
+                    {
+                        name: "Poha",
+                        description: "A popular flattened rice breakfast with spices and vegetables.",
+                        time: "20 min",
+                        difficulty: "Easy",
+                        id: "mp-poha"
+                    },
+                    {
+                        name: "Dal Bafla",
+                        description: "A traditional wheat and lentil meal from central India.",
+                        time: "70 min",
+                        difficulty: "Medium",
+                        id: "mp-dal-bafla"
+                    },
+                    {
+                        name: "Bhutte Ka Kees",
+                        description: "A savory grated corn preparation with spices and milk.",
+                        time: "30 min",
+                        difficulty: "Easy",
+                        id: "mp-bhutte-ka-kees"
+                    }
+                ],
+                districts: [
+                    "Agar Malwa",
+                    "Alirajpur",
+                    "Anuppur",
+                    "Ashoknagar",
+                    "Balaghat",
+                    "Barwani",
+                    "Betul",
+                    "Bhind",
+                    "Bhopal",
+                    "Burhanpur",
+                    "Chhatarpur",
+                    "Chhindwara",
+                    "Damoh",
+                    "Datia",
+                    "Dewas",
+                    "Dhar",
+                    "Dindori",
+                    "Guna",
+                    "Gwalior",
+                    "Harda",
+                    "Indore",
+                    "Jabalpur",
+                    "Jhabua",
+                    "Katni",
+                    "Khandwa",
+                    "Khargone",
+                    "Mandla",
+                    "Mandsaur",
+                    "Morena",
+                    "Narmadapuram",
+                    "Neemuch",
+                    "Panna",
+                    "Raisen",
+                    "Rajgarh",
+                    "Ratlam",
+                    "Rewa",
+                    "Sagar",
+                    "Satna",
+                    "Sehore",
+                    "Seoni",
+                    "Shahdol",
+                    "Shajapur",
+                    "Sheopur",
+                    "Shivpuri",
+                    "Sidhi",
+                    "Singrauli",
+                    "Tikamgarh",
+                    "Ujjain",
+                    "Umaria",
+                    "Vidisha"
+                ],
+                other: [
+                    "Sabudana Khichdi",
+                    "Dal Paniya",
+                    "Mawa Bati",
+                    "Jalebi",
+                    "Kachori"
+                ]
+            },
+
+
+            "Maharashtra": {
+                description:
+                    "Discover Maharashtrian cuisine from famous street foods to festive sweets and traditional home cooking.",
+                icon: "fa-burger",
+                famous: [
+                    {
+                        name: "Vada Pav",
+                        description: "A popular Mumbai street food made with spiced potato fritter and pav.",
+                        time: "30 min",
+                        difficulty: "Easy",
+                        id: "maharashtra-vada-pav"
+                    },
+                    {
+                        name: "Puran Poli",
+                        description: "A traditional sweet flatbread filled with sweetened lentils.",
+                        time: "60 min",
+                        difficulty: "Medium",
+                        id: "maharashtra-puran-poli"
+                    },
+                    {
+                        name: "Misal Pav",
+                        description: "A spicy sprouted-legume curry served with pav and toppings.",
+                        time: "45 min",
+                        difficulty: "Medium",
+                        id: "maharashtra-misal-pav"
+                    }
+                ],
+                districts: [
+                    "Ahmednagar",
+                    "Akola",
+                    "Amravati",
+                    "Aurangabad",
+                    "Beed",
+                    "Bhandara",
+                    "Buldhana",
+                    "Chandrapur",
+                    "Dhule",
+                    "Gadchiroli",
+                    "Gondia",
+                    "Hingoli",
+                    "Jalgaon",
+                    "Jalna",
+                    "Kolhapur",
+                    "Latur",
+                    "Mumbai City",
+                    "Mumbai Suburban",
+                    "Nagpur",
+                    "Nanded",
+                    "Nandurbar",
+                    "Nashik",
+                    "Osmanabad",
+                    "Palghar",
+                    "Parbhani",
+                    "Pune",
+                    "Raigad",
+                    "Ratnagiri",
+                    "Sangli",
+                    "Satara",
+                    "Sindhudurg",
+                    "Solapur",
+                    "Thane",
+                    "Wardha",
+                    "Washim",
+                    "Yavatmal"
+                ],
+                other: [
+                    "Sabudana Vada",
+                    "Bharli Vangi",
+                    "Kothimbir Vadi",
+                    "Modak",
+                    "Thalipeeth"
+                ]
+            },
+
+
+            "Odisha": {
+                description:
+                    "Explore traditional Odia cuisine, famous temple food, rice dishes, seafood, sweets and district-specific recipes.",
+                icon: "fa-bowl-food",
+                famous: [
+                    {
+                        name: "Dalma",
+                        description: "A traditional Odia preparation of lentils cooked with vegetables and spices.",
+                        time: "40 min",
+                        difficulty: "Easy",
+                        id: "odisha-dalma"
+                    },
+                    {
+                        name: "Pakhala Bhata",
+                        description: "A traditional fermented rice preparation especially popular in Odisha.",
+                        time: "15 min",
+                        difficulty: "Easy",
+                        id: "odisha-pakhala"
+                    },
+                    {
+                        name: "Chhena Poda",
+                        description: "A famous Odia dessert made from chhena and caramelized sugar.",
+                        time: "70 min",
+                        difficulty: "Medium",
+                        id: "odisha-chhena-poda"
+                    }
+                ],
+                districts: [
+                    "Angul",
+                    "Balangir",
+                    "Balasore",
+                    "Bargarh",
+                    "Bhadrak",
+                    "Boudh",
+                    "Cuttack",
+                    "Deogarh",
+                    "Dhenkanal",
+                    "Gajapati",
+                    "Ganjam",
+                    "Jagatsinghpur",
+                    "Jajpur",
+                    "Jharsuguda",
+                    "Kalahandi",
+                    "Kandhamal",
+                    "Kendrapara",
+                    "Kendujhar",
+                    "Khordha",
+                    "Koraput",
+                    "Malkangiri",
+                    "Mayurbhanj",
+                    "Nabarangpur",
+                    "Nayagarh",
+                    "Nuapada",
+                    "Puri",
+                    "Rayagada",
+                    "Sambalpur",
+                    "Subarnapur",
+                    "Sundargarh"
+                ],
+                other: [
+                    "Dahi Bara Aloo Dum",
+                    "Macha Ghanta",
+                    "Santula",
+                    "Khaja",
+                    "Rasabali",
+                    "Chakuli Pitha",
+                    "Enduri Pitha",
+                    "Arisa Pitha"
+                ]
+            },
+
+
+            "Punjab": {
+                description:
+                    "Discover hearty Punjabi cuisine featuring wheat, dairy, legumes, rich curries and famous breads.",
+                icon: "fa-wheat-awn",
+                famous: [
+                    {
+                        name: "Sarson Saag",
+                        description: "A traditional mustard-green preparation usually served with makki roti.",
+                        time: "60 min",
+                        difficulty: "Medium",
+                        id: "punjab-sarson-saag"
+                    },
+                    {
+                        name: "Makki Di Roti",
+                        description: "A traditional cornmeal flatbread.",
+                        time: "35 min",
+                        difficulty: "Medium",
+                        id: "punjab-makki-roti"
+                    },
+                    {
+                        name: "Amritsari Kulcha",
+                        description: "A stuffed and baked Punjabi flatbread.",
+                        time: "50 min",
+                        difficulty: "Medium",
+                        id: "punjab-amritsari-kulcha"
+                    }
+                ],
+                districts: [
+                    "Amritsar",
+                    "Barnala",
+                    "Bathinda",
+                    "Faridkot",
+                    "Fatehgarh Sahib",
+                    "Fazilka",
+                    "Firozpur",
+                    "Gurdaspur",
+                    "Hoshiarpur",
+                    "Jalandhar",
+                    "Kapurthala",
+                    "Ludhiana",
+                    "Malerkotla",
+                    "Mansa",
+                    "Moga",
+                    "Pathankot",
+                    "Patiala",
+                    "Rupnagar",
+                    "Sahibzada Ajit Singh Nagar",
+                    "Sangrur",
+                    "Shaheed Bhagat Singh Nagar",
+                    "Sri Muktsar Sahib",
+                    "Tarn Taran"
+                ],
+                other: [
+                    "Chole Bhature",
+                    "Rajma",
+                    "Punjabi Kadhi",
+                    "Lassi",
+                    "Gajar Ka Halwa"
+                ]
+            },
+
+
+            "Rajasthan": {
+                description:
+                    "Explore Rajasthan's rich desert cuisine, traditional breads, lentils, vegetables, sweets and royal recipes.",
+                icon: "fa-sun",
+                famous: [
+                    {
+                        name: "Dal Baati Churma",
+                        description: "A famous Rajasthani meal of baked wheat balls, lentils and sweet churma.",
+                        time: "75 min",
+                        difficulty: "Medium",
+                        id: "rajasthan-dal-baati"
+                    },
+                    {
+                        name: "Gatte Ki Sabzi",
+                        description: "Spiced gram flour dumplings cooked in a yogurt-based gravy.",
+                        time: "50 min",
+                        difficulty: "Medium",
+                        id: "rajasthan-gatte"
+                    },
+                    {
+                        name: "Ghevar",
+                        description: "A traditional Rajasthani festive sweet.",
+                        time: "90 min",
+                        difficulty: "Hard",
+                        id: "rajasthan-ghevar"
+                    }
+                ],
+                districts: [
+                    "Ajmer",
+                    "Alwar",
+                    "Balotra",
+                    "Banswara",
+                    "Baran",
+                    "Barmer",
+                    "Beawar",
+                    "Bharatpur",
+                    "Bhilwara",
+                    "Bikaner",
+                    "Bundi",
+                    "Chittorgarh",
+                    "Churu",
+                    "Dausa",
+                    "Deeg",
+                    "Dholpur",
+                    "Didwana-Kuchamana",
+                    "Dungarpur",
+                    "Hanumangarh",
+                    "Jaipur",
+                    "Jaisalmer",
+                    "Jalore",
+                    "Jhalawar",
+                    "Jhunjhunu",
+                    "Jodhpur",
+                    "Karauli",
+                    "Khairthal-Tijara",
+                    "Kota",
+                    "Nagaur",
+                    "Pali",
+                    "Phalodi",
+                    "Pratapgarh",
+                    "Rajsamand",
+                    "Sawai Madhopur",
+                    "Salumbar",
+                    "Sikar",
+                    "Sirohi",
+                    "Sri Ganganagar",
+                    "Tonk",
+                    "Udaipur"
+                ],
+                other: [
+                    "Ker Sangri",
+                    "Pyaaz Kachori",
+                    "Mirchi Vada",
+                    "Mohanthal",
+                    "Bajra Roti"
+                ]
+            },
+
+
+            "Tamil Nadu": {
+                description:
+                    "Explore Tamil Nadu's famous South Indian breakfasts, rice dishes, Chettinad cuisine and traditional sweets.",
+                icon: "fa-utensils",
+                famous: [
+                    {
+                        name: "Idli",
+                        description: "Soft steamed fermented rice and lentil cakes.",
+                        time: "30 min",
+                        difficulty: "Easy",
+                        id: "tamil-idli"
+                    },
+                    {
+                        name: "Dosa",
+                        description: "A thin crispy fermented rice and lentil crepe.",
+                        time: "35 min",
+                        difficulty: "Medium",
+                        id: "tamil-dosa"
+                    },
+                    {
+                        name: "Pongal",
+                        description: "A traditional rice and lentil dish prepared in savory and sweet forms.",
+                        time: "35 min",
+                        difficulty: "Easy",
+                        id: "tamil-pongal"
+                    }
+                ],
+                districts: [
+                    "Ariyalur",
+                    "Chengalpattu",
+                    "Chennai",
+                    "Coimbatore",
+                    "Cuddalore",
+                    "Dharmapuri",
+                    "Dindigul",
+                    "Erode",
+                    "Kallakurichi",
+                    "Kancheepuram",
+                    "Karur",
+                    "Krishnagiri",
+                    "Madurai",
+                    "Mayiladuthurai",
+                    "Nagapattinam",
+                    "Namakkal",
+                    "Nilgiris",
+                    "Perambalur",
+                    "Pudukkottai",
+                    "Ramanathapuram",
+                    "Ranipet",
+                    "Salem",
+                    "Sivaganga",
+                    "Tenkasi",
+                    "Thanjavur",
+                    "Theni",
+                    "Thoothukudi",
+                    "Tiruchirappalli",
+                    "Tirunelveli",
+                    "Tirupathur",
+                    "Tiruppur",
+                    "Tiruvallur",
+                    "Tiruvannamalai",
+                    "Tiruvarur",
+                    "Vellore",
+                    "Viluppuram",
+                    "Virudhunagar"
+                ],
+                other: [
+                    "Sambar",
+                    "Rasam",
+                    "Pongal",
+                    "Medu Vada",
+                    "Kuzhi Paniyaram"
+                ]
+            },
+
+
+            "Telangana": {
+                description:
+                    "Discover Telangana's spicy regional dishes and the rich culinary traditions of the Hyderabad region.",
+                icon: "fa-bowl-rice",
+                famous: [
+                    {
+                        name: "Hyderabadi Biryani",
+                        description: "A fragrant rice dish associated with Hyderabad's culinary tradition.",
+                        time: "90 min",
+                        difficulty: "Hard",
+                        id: "telangana-biryani"
+                    },
+                    {
+                        name: "Haleem",
+                        description: "A slow-cooked preparation made with grains, lentils and meat.",
+                        time: "180 min",
+                        difficulty: "Hard",
+                        id: "telangana-haleem"
+                    },
+                    {
+                        name: "Sarva Pindi",
+                        description: "A savory Telangana rice-flour pancake with spices and peanuts.",
+                        time: "35 min",
+                        difficulty: "Medium",
+                        id: "telangana-sarva-pindi"
+                    }
+                ],
+                districts: [
+                    "Adilabad",
+                    "Bhadradri Kothagudem",
+                    "Hyderabad",
+                    "Jagtial",
+                    "Jangaon",
+                    "Jayashankar Bhupalpally",
+                    "Jogulamba Gadwal",
+                    "Kamareddy",
+                    "Karimnagar",
+                    "Khammam",
+                    "Komaram Bheem",
+                    "Mahabubabad",
+                    "Mahbubnagar",
+                    "Mancherial",
+                    "Medak",
+                    "Medchal-Malkajgiri",
+                    "Mulugu",
+                    "Nagarkurnool",
+                    "Nalgonda",
+                    "Narayanpet",
+                    "Nirmal",
+                    "Nizamabad",
+                    "Peddapalli",
+                    "Rajanna Sircilla",
+                    "Rangareddy",
+                    "Sangareddy",
+                    "Siddipet",
+                    "Suryapet",
+                         "Suryapet"
+                ],
+                other: ["Haleem", "Sarva Pindi", "Mirchi Ka Salan"]
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const requestedState = params.get("state") || "Odisha";
+            const state = Object.keys(stateData).find(name => name.toLowerCase() === requestedState.toLowerCase());
+            const content = document.getElementById("stateContent");
+            const notFound = document.getElementById("stateNotFound");
+            const stateName = document.getElementById("stateName");
+            const breadcrumb = document.getElementById("breadcrumbState");
+            const famousGrid = document.getElementById("famousRecipesGrid");
+            const otherGrid = document.getElementById("otherRecipesGrid");
+
+            if (!state) {
+                content.style.display = "none";
+                notFound.classList.add("show");
+                return;
+            }
+
+            const details = stateData[state];
+            stateName.textContent = state;
+            breadcrumb.textContent = state;
+            document.title = `${state} Recipes | AI Cooking Assistant`;
+            document.getElementById("stateDescription").textContent = details.description;
+
+            let catalog = [];
+            try {
+                const response = await fetch("../data/recipes.json");
+                if (response.ok) catalog = (await response.json()).recipes || [];
+            } catch (error) {
+                console.warn("Recipe catalog could not be loaded", error);
+            }
+
+            const stateRecipes = catalog.filter(recipe => recipe.state.toLowerCase() === state.toLowerCase());
+            const famous = stateRecipes.filter(recipe => recipe.famous);
+            const cards = famous.length ? famous : details.famous.map(recipe => ({ ...recipe, description: recipe.description, prepTime: parseInt(recipe.time) || 20, cookTime: 0, difficulty: recipe.difficulty }));
+            famousGrid.innerHTML = cards.map(recipeCard).join("");
+            const more = stateRecipes.filter(recipe => !recipe.famous);
+            otherGrid.innerHTML = (more.length ? more : details.other.map(name => ({ id: slugify(name), name, description: `Traditional ${state} specialty.` }))).map(otherCard).join("");
+
+            function recipeCard(recipe) {
+                const id = recipe.id || slugify(recipe.name);
+                return `<article class="state-recipe-card"><div class="state-recipe-image"><i class="fa-solid fa-bowl-food"></i>${recipe.famous ? '<span class="famous-label"><i class="fa-solid fa-star"></i> Famous</span>' : ''}</div><div class="state-recipe-body"><h3>${safe(recipe.name)}</h3><p>${safe(recipe.description || "A delicious regional recipe.")}</p><div class="recipe-info-row"><span class="recipe-info"><i class="fa-regular fa-clock"></i>${safe(String(recipe.prepTime || 30))} min</span><span class="recipe-info"><i class="fa-solid fa-signal"></i>${safe(recipe.difficulty || "Easy")}</span></div><a class="recipe-open-button" href="recipe.html?recipe=${encodeURIComponent(id)}">View Recipe</a></div></article>`;
+            }
+            function otherCard(recipe) {
+                const id = recipe.id || slugify(recipe.name);
+                return `<article class="other-recipe-card"><div class="other-recipe-visual"><i class="fa-solid fa-utensils"></i></div><div class="other-recipe-body"><h3>${safe(recipe.name)}</h3><p>${safe(recipe.description || "Traditional regional recipe.")}</p><a class="view-recipe-link" href="recipe.html?recipe=${encodeURIComponent(id)}">View Recipe <i class="fa-solid fa-arrow-right"></i></a></div></article>`;
+            }
+            function slugify(value) { return String(value).toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+            function safe(value) { return String(value ?? "").replace(/[&<>\"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[char])); }
+        });
+    </script>
+
+    <script src="../app.js"></script>
+</body>
+</html>

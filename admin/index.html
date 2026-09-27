@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Cooking Assistant - Admin Panel</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item active">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="../index.html" class="nav-item">
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+
+            <button
+                type="button"
+                class="logout-button"
+                id="logoutButton"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+                type="button"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+                <h1>Dashboard</h1>
+                <p>Welcome to AI Cooking Assistant Control Room</p>
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Super Admin</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Dashboard -->
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+                    <h2>Dashboard Overview</h2>
+                    <p>Manage your cooking platform from one place.</p>
+                </div>
+
+                <a
+                    href="recipes.html"
+                    class="primary-button"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Recipe
+                </a>
+
+            </div>
+
+
+            <!-- Stats -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon recipes-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Recipes</span>
+                        <strong id="totalRecipes">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon users-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                        <span>Total Users</span>
+                        <strong id="totalUsers">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon pending-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+                        <span>Pending Submissions</span>
+                        <strong id="pendingSubmissions">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon states-icon">
+                        <i class="fa-solid fa-map"></i>
+                    </div>
+
+                    <div>
+                        <span>States</span>
+                        <strong id="totalStates">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Actions -->
+            <div class="content-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Quick Actions</h3>
+                            <p>Frequently used admin controls.</p>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+
+                        <a href="recipes.html" class="quick-action">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add Recipe</span>
+                        </a>
+
+                        <a href="submissions.html" class="quick-action">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Review Submissions</span>
+                        </a>
+
+                        <a href="users.html" class="quick-action">
+                            <i class="fa-solid fa-user-gear"></i>
+                            <span>Manage Users</span>
+                        </a>
+
+                        <a href="states.html" class="quick-action">
+                            <i class="fa-solid fa-map"></i>
+                            <span>Manage States</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- System -->
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>System Status</h3>
+                            <p>Current platform status.</p>
+                        </div>
+                    </div>
+
+                    <div class="system-status">
+
+                        <div class="status-row">
+                            <span>Frontend</span>
+                            <strong class="status-online">
+                                <i class="fa-solid fa-circle"></i>
+                                Online
+                            </strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>Backend API</span>
+                            <strong class="status-online">
+                                <i class="fa-solid fa-circle"></i>
+                                Ready
+                            </strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>AI Service</span>
+                            <strong class="status-warning">
+                                <i class="fa-solid fa-circle"></i>
+                                Demo Mode
+                            </strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>Database</span>
+                            <strong class="status-warning">
+                                <i class="fa-solid fa-circle"></i>
+                                Development
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Recent submissions -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Recent Recipe Submissions</h3>
+                        <p>Latest recipes submitted by users.</p>
+                    </div>
+
+                    <a href="submissions.html" class="text-button">
+                        View All
+                    </a>
+
+                </div>
+
+                <div
+                    class="table-wrapper"
+                    id="recentSubmissions"
+                >
+
+                    <div class="empty-state">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                        <h3>No submissions yet</h3>
+                        <p>User submitted recipes will appear here.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>

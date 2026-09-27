@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Recipe Submissions - Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item active">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../index.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>Recipe Submissions</h1>
+
+                <p>
+                    Review recipes submitted by users.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>Submitted Recipes</h2>
+
+                    <p>
+                        Approve or reject user recipes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="toolbar">
+
+                    <select id="statusFilter">
+
+                        <option value="all">
+                            All
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="table-wrapper"
+                    id="submissionsContainer"
+                >
+
+                    <div class="empty-state">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        <h3>Loading submissions...</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="admin.js"></script>
+
+
+<script>
+
+let submissions = [];
+
+const container =
+    document.getElementById(
+        "submissionsContainer"
+    );
+
+const filter =
+    document.getElementById(
+        "statusFilter"
+    );
+
+
+async function loadSubmissions() {
+
+    try {
+
+        const data =
+            await AdminPanel.apiRequest(
+                "/submissions/"
+            );
+
+        submissions =
+            data.submissions || [];
+
+        renderSubmissions();
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+
+                <i class="fa-solid fa-server"></i>
+
+                <h3>Backend not connected</h3>
+
+                <p>
+                    Start the backend server.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+function renderSubmissions() {
+
+    const selected =
+        filter.value;
+
+
+    let data =
+        [...submissions];
+
+
+    if (selected !== "all") {
+
+        data =
+            data.filter(
+                item =>
+                    item.status === selected
+            );
+
+    }
+
+
+    if (!data.length) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+                <h3>No submissions</h3>
+
+                <p>
+                    There are no recipes
+                    matching this filter.
+                </p>
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Recipe</th>
+                    <th>State</th>
+                    <th>Cuisine</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${data.map(item => {
+
+                    const recipe =
+                        item.recipe_data || {};
+
+                    let badge =
+                        "badge-warning";
+
+                    if (
+                        item.status ===
+                        "approved"
+                    ) {
+                        badge =
+                            "badge-success";
+                    }
+
+                    if (
+                        item.status ===
+                        "rejected"
+                    ) {
+                        badge =
+                            "badge-danger";
+                    }
+
+
+                    return `
+
+                        <tr>
+
+                            <td>
+                                <strong>
+                                    ${escapeHTML(
+                                        recipe.name ||
+                                        "Untitled"
+                                    )}
+                                </strong>
+                            </td>
+
+                            <td>
+                                ${escapeHTML(
+                                    recipe.state ||
+                                    "-"
+                                )}
+                            </td>
+
+                            <td>
+                                ${escapeHTML(
+                                    recipe.cuisine ||
+                                    "-"
+                                )}
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="badge ${badge}"
+                                >
+                                    ${item.status}
+                                </span>
+
+                            </td>
+
+                            <td>
+                                ${
+                                    item.created_at
+                                    ?
+                                    new Date(
+                                        item.created_at
+                                    ).toLocaleDateString()
+                                    :
+                                    "-"
+                                }
+                            </td>
+
+                            <td>
+
+                                ${
+                                    item.status ===
+                                    "pending"
+                                    ?
+                                    `
+                                    <button
+                                        class="success-button"
+                                        onclick="approveSubmission('${item.id}')"
+                                    >
+                                        <i class="fa-solid fa-check"></i>
+                                        Approve
+                                    </button>
+
+                                    <button
+                                        class="danger-button"
+                                        onclick="rejectSubmission('${item.id}')"
+                                    >
+                                        <i class="fa-solid fa-xmark"></i>
+                                        Reject
+                                    </button>
+                                    `
+                                    :
+                                    "-"
+                                }
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }).join("")}
+
+            </tbody>
+
+        </table>
+
+    `;
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+window.approveSubmission =
+    async function(id) {
+
+        try {
+
+            await AdminPanel.apiRequest(
+                `/submissions/${id}/approve`,
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        admin_id: "admin"
+                    })
+                }
+            );
+
+            AdminPanel.showToast(
+                "Recipe approved and published."
+            );
+
+            loadSubmissions();
+
+        } catch (error) {
+
+            AdminPanel.showToast(
+                error.message,
+                "error"
+            );
+
+        }
+
+    };
+
+
+window.rejectSubmission =
+    async function(id) {
+
+        const note =
+            window.prompt(
+                "Reason for rejection:"
+            );
+
+        if (note === null) {
+            return;
+        }
+
+
+        try {
+
+            await AdminPanel.apiRequest(
+                `/submissions/${id}/reject`,
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        admin_id: "admin",
+                        note
+                    })
+                }
+            );
+
+            AdminPanel.showToast(
+                "Submission rejected."
+            );
+
+            loadSubmissions();
+
+        } catch (error) {
+
+            AdminPanel.showToast(
+                error.message,
+                "error"
+            );
+
+        }
+
+    };
+
+
+filter.addEventListener(
+    "change",
+    renderSubmissions
+);
+
+
+loadSubmissions();
+
+</script>
+
+</body>
+</html>

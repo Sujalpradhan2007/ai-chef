@@ -1,0 +1,130 @@
+{
+  "cuisines": [
+    {
+      "id": "odia",
+      "name": "Odia",
+      "country": "India",
+      "region": "Odisha",
+      "recipes": [
+        "Dalma",
+        "Pakhala Bhata",
+        "Chhena Poda",
+        "Dahi Bara Aloo Dum"
+      ]
+    },
+    {
+      "id": "bihari",
+      "name": "Bihari",
+      "country": "India",
+      "region": "Bihar",
+      "recipes": [
+        "Litti Chokha",
+        "Thekua",
+        "Sattu Paratha"
+      ]
+    },
+    {
+      "id": "punjabi",
+      "name": "Punjabi",
+      "country": "India",
+      "region": "Punjab",
+      "recipes": [
+        "Butter Chicken",
+        "Sarson Saag",
+        "Amritsari Kulcha"
+      ]
+    },
+    {
+      "id": "maharashtrian",
+      "name": "Maharashtrian",
+      "country": "India",
+      "region": "Maharashtra",
+      "recipes": [
+        "Vada Pav",
+        "Misal Pav",
+        "Pav Bhaji",
+        "Puran Poli"
+      ]
+    },
+    {
+      "id": "south-indian",
+      "name": "South Indian",
+      "country": "India",
+      "region": "South India",
+      "recipes": [
+        "Masala Dosa",
+        "Idli",
+        "Sambar",
+        "Pongal"
+      ]
+    },
+    {
+      "id": "chinese",
+      "name": "Chinese",
+      "country": "China",
+      "region": "East Asia",
+      "recipes": [
+        "Chinese Fried Rice",
+        "Hakka Noodles",
+        "Manchurian",
+        "Spring Rolls"
+      ]
+    },
+    {
+      "id": "italian",
+      "name": "Italian",
+      "country": "Italy",
+      "region": "Europe",
+      "recipes": [
+        "Pizza",
+        "Pasta",
+        "Lasagna",
+        "Risotto"
+      ]
+    },
+    {
+      "id": "mexican",
+      "name": "Mexican",
+      "country": "Mexico",
+      "region": "North America",
+      "recipes": [
+        "Tacos",
+        "Burritos",
+        "Quesadilla"
+      ]
+    },
+    {
+      "id": "thai",
+      "name": "Thai",
+      "country": "Thailand",
+      "region": "Southeast Asia",
+      "recipes": [
+        "Pad Thai",
+        "Thai Green Curry",
+        "Tom Yum Soup"
+      ]
+    },
+    {
+      "id": "japanese",
+      "name": "Japanese",
+      "country": "Japan",
+      "region": "East Asia",
+      "recipes": [
+        "Sushi",
+        "Ramen",
+        "Tempura"
+      ]
+    },
+    {
+      "id": "american",
+      "name": "American",
+      "country": "United States",
+      "region": "North America",
+      "recipes": [
+        "Burger",
+        "Pancakes",
+        "Mac and Cheese"
+      ]
+    }
+  ]
+}

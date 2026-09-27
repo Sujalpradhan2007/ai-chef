@@ -1,0 +1,2313 @@
+/* =========================================================
+   AI COOKING ASSISTANT
+   COMPONENTS.CSS
+   Reusable UI Components
+   ========================================================= */
+
+
+/* =========================================================
+   1. COMPONENT VARIABLES
+   ========================================================= */
+
+:root {
+    --component-primary: #ff6b35;
+    --component-primary-dark: #e85a28;
+    --component-secondary: #ffb703;
+    --component-success: #22c55e;
+    --component-danger: #ef4444;
+    --component-warning: #f59e0b;
+    --component-info: #3b82f6;
+
+    --component-white: #ffffff;
+    --component-black: #111827;
+    --component-text: #1f2937;
+    --component-muted: #6b7280;
+    --component-light: #f8fafc;
+    --component-border: #e5e7eb;
+
+    --component-radius-sm: 8px;
+    --component-radius-md: 12px;
+    --component-radius-lg: 18px;
+    --component-radius-xl: 24px;
+
+    --component-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --component-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.10);
+    --component-shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+    --component-transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   2. COMMON COMPONENT WRAPPER
+   ========================================================= */
+
+.component {
+    box-sizing: border-box;
+}
+
+.component *,
+.component *::before,
+.component *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   3. BUTTONS
+   ========================================================= */
+
+.btn-component {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 12px 20px;
+
+    border: 1px solid transparent;
+    border-radius: var(--component-radius-md);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        transform var(--component-transition),
+        box-shadow var(--component-transition),
+        background var(--component-transition),
+        border-color var(--component-transition),
+        color var(--component-transition);
+}
+
+.btn-component:hover {
+    transform: translateY(-2px);
+}
+
+.btn-component:active {
+    transform: translateY(0);
+}
+
+.btn-component:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* Primary */
+
+.btn-primary {
+    color: #fff;
+    background: var(--component-primary);
+    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.22);
+}
+
+.btn-primary:hover {
+    background: var(--component-primary-dark);
+    box-shadow: 0 12px 28px rgba(255, 107, 53, 0.30);
+}
+
+
+/* Secondary */
+
+.btn-secondary {
+    color: var(--component-black);
+    background: var(--component-secondary);
+}
+
+.btn-secondary:hover {
+    filter: brightness(0.96);
+}
+
+
+/* Outline */
+
+.btn-outline {
+    color: var(--component-primary);
+    background: transparent;
+    border-color: var(--component-primary);
+}
+
+.btn-outline:hover {
+    color: #fff;
+    background: var(--component-primary);
+}
+
+
+/* Dark */
+
+.btn-dark {
+    color: #fff;
+    background: #111827;
+}
+
+.btn-dark:hover {
+    background: #000;
+}
+
+
+/* Light */
+
+.btn-light {
+    color: var(--component-text);
+    background: #fff;
+    border-color: var(--component-border);
+}
+
+.btn-light:hover {
+    background: #f8fafc;
+}
+
+
+/* Success */
+
+.btn-success {
+    color: #fff;
+    background: var(--component-success);
+}
+
+.btn-success:hover {
+    background: #16a34a;
+}
+
+
+/* Danger */
+
+.btn-danger {
+    color: #fff;
+    background: var(--component-danger);
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+
+/* Button sizes */
+
+.btn-sm {
+    min-height: 36px;
+    padding: 8px 14px;
+    font-size: 13px;
+}
+
+.btn-lg {
+    min-height: 52px;
+    padding: 14px 26px;
+    font-size: 16px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+
+/* =========================================================
+   4. ICON BUTTON
+   ========================================================= */
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--component-border);
+    border-radius: 50%;
+
+    background: #fff;
+    color: var(--component-text);
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.icon-btn:hover {
+    color: var(--component-primary);
+    border-color: var(--component-primary);
+    transform: translateY(-2px);
+}
+
+.icon-btn.small {
+    width: 34px;
+    height: 34px;
+    font-size: 13px;
+}
+
+.icon-btn.large {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   5. CARDS
+   ========================================================= */
+
+.component-card {
+    background: #fff;
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-lg);
+    box-shadow: var(--component-shadow-sm);
+    overflow: hidden;
+
+    transition:
+        transform var(--component-transition),
+        box-shadow var(--component-transition),
+        border-color var(--component-transition);
+}
+
+.component-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--component-shadow-md);
+    border-color: rgba(255, 107, 53, 0.25);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--component-border);
+}
+
+.card-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--component-border);
+}
+
+
+/* =========================================================
+   6. RECIPE CARD
+   ========================================================= */
+
+.recipe-component-card {
+    position: relative;
+    background: #fff;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-lg);
+
+    overflow: hidden;
+
+    box-shadow: var(--component-shadow-sm);
+
+    transition:
+        transform var(--component-transition),
+        box-shadow var(--component-transition);
+}
+
+.recipe-component-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--component-shadow-lg);
+}
+
+.recipe-component-image {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.recipe-component-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.recipe-component-card:hover .recipe-component-image img {
+    transform: scale(1.07);
+}
+
+.recipe-component-content {
+    padding: 18px;
+}
+
+.recipe-component-title {
+    margin: 0 0 8px;
+    color: var(--component-black);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.recipe-component-description {
+    margin: 0 0 14px;
+    color: var(--component-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.recipe-component-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.recipe-component-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 6px 9px;
+
+    border-radius: 8px;
+    background: #f8fafc;
+
+    color: var(--component-muted);
+    font-size: 12px;
+}
+
+.recipe-component-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   7. FAVORITE BUTTON
+   ========================================================= */
+
+.favorite-btn {
+    width: 42px;
+    height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--component-border);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.95);
+    color: #6b7280;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.favorite-btn:hover {
+    color: #ef4444;
+    border-color: #fecaca;
+    transform: scale(1.08);
+}
+
+.favorite-btn.active {
+    color: #ef4444;
+    background: #fff1f2;
+    border-color: #fecaca;
+}
+
+
+/* =========================================================
+   8. BADGES
+   ========================================================= */
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1;
+}
+
+.badge-primary {
+    color: #c2410c;
+    background: #ffedd5;
+}
+
+.badge-success {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.badge-danger {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+.badge-warning {
+    color: #92400e;
+    background: #fef3c7;
+}
+
+.badge-info {
+    color: #1e40af;
+    background: #dbeafe;
+}
+
+.badge-dark {
+    color: #fff;
+    background: #111827;
+}
+
+.badge-light {
+    color: #4b5563;
+    background: #f3f4f6;
+}
+
+
+/* =========================================================
+   9. CATEGORY TAGS
+   ========================================================= */
+
+.category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 8px 14px;
+
+    border: 1px solid var(--component-border);
+    border-radius: 999px;
+
+    background: #fff;
+    color: var(--component-text);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.category-tag:hover,
+.category-tag.active {
+    color: #fff;
+    background: var(--component-primary);
+    border-color: var(--component-primary);
+}
+
+
+/* =========================================================
+   10. FORM COMPONENTS
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: var(--component-text);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-md);
+
+    background: #fff;
+    color: var(--component-text);
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color var(--component-transition),
+        box-shadow var(--component-transition);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: var(--component-primary);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.10);
+}
+
+.form-textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-help {
+    display: block;
+    margin-top: 6px;
+
+    color: var(--component-muted);
+    font-size: 12px;
+}
+
+.form-error {
+    display: block;
+    margin-top: 6px;
+
+    color: var(--component-danger);
+    font-size: 12px;
+}
+
+.form-success {
+    display: block;
+    margin-top: 6px;
+
+    color: var(--component-success);
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   11. INPUT WITH ICON
+   ========================================================= */
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--component-muted);
+
+    pointer-events: none;
+}
+
+.input-wrapper .form-input {
+    padding-left: 42px;
+}
+
+
+/* =========================================================
+   12. SEARCH BOX
+   ========================================================= */
+
+.component-search {
+    position: relative;
+    width: 100%;
+}
+
+.component-search input {
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 12px 52px 12px 18px;
+
+    border: 1px solid var(--component-border);
+    border-radius: 999px;
+
+    background: #fff;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: var(--component-transition);
+}
+
+.component-search input:focus {
+    border-color: var(--component-primary);
+    box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.10);
+}
+
+.component-search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--component-primary);
+    color: #fff;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.component-search button:hover {
+    background: var(--component-primary-dark);
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   13. ALERTS
+   ========================================================= */
+
+.component-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 14px 16px;
+
+    border: 1px solid transparent;
+    border-radius: var(--component-radius-md);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.component-alert-icon {
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+.alert-success {
+    color: #166534;
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.alert-danger {
+    color: #991b1b;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.alert-warning {
+    color: #92400e;
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.alert-info {
+    color: #1e40af;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+
+/* =========================================================
+   14. MODAL
+   ========================================================= */
+
+.component-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(17, 24, 39, 0.65);
+
+    backdrop-filter: blur(5px);
+}
+
+.component-modal.active {
+    display: flex;
+}
+
+.component-modal-box {
+    position: relative;
+
+    width: min(600px, 100%);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 28px;
+
+    border-radius: var(--component-radius-xl);
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-lg);
+
+    animation: componentModalIn 0.3s ease;
+}
+
+.component-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+    color: #374151;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.component-modal-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+@keyframes componentModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   15. DROPDOWN
+   ========================================================= */
+
+.component-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.component-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+
+    min-width: 190px;
+
+    padding: 8px;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-md);
+
+    background: #fff;
+    box-shadow: var(--component-shadow-md);
+
+    display: none;
+    z-index: 1000;
+}
+
+.component-dropdown.active .component-dropdown-menu {
+    display: block;
+}
+
+.component-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--component-text);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.component-dropdown-item:hover {
+    color: var(--component-primary);
+    background: #fff7f2;
+}
+
+
+/* =========================================================
+   16. TABS
+   ========================================================= */
+
+.component-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    padding: 5px;
+
+    border-radius: var(--component-radius-md);
+    background: #f3f4f6;
+}
+
+.component-tab {
+    padding: 9px 16px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+    color: var(--component-muted);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.component-tab:hover {
+    color: var(--component-text);
+}
+
+.component-tab.active {
+    color: var(--component-primary);
+    background: #fff;
+
+    box-shadow: var(--component-shadow-sm);
+}
+
+
+/* =========================================================
+   17. PROGRESS BAR
+   ========================================================= */
+
+.component-progress {
+    width: 100%;
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #e5e7eb;
+}
+
+.component-progress-bar {
+    height: 100%;
+    width: 0;
+
+    border-radius: inherit;
+
+    background: var(--component-primary);
+
+    transition: width 0.5s ease;
+}
+
+
+/* =========================================================
+   18. RATING
+   ========================================================= */
+
+.component-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+
+    color: #f59e0b;
+}
+
+.component-rating i {
+    font-size: 14px;
+}
+
+.component-rating-count {
+    margin-left: 5px;
+    color: var(--component-muted);
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   19. RECIPE INFO
+   ========================================================= */
+
+.recipe-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.recipe-info-item {
+    padding: 14px;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-md);
+
+    background: #fafafa;
+
+    text-align: center;
+}
+
+.recipe-info-item i {
+    display: block;
+    margin-bottom: 7px;
+
+    color: var(--component-primary);
+    font-size: 18px;
+}
+
+.recipe-info-item strong {
+    display: block;
+    margin-bottom: 3px;
+
+    color: var(--component-text);
+    font-size: 14px;
+}
+
+.recipe-info-item span {
+    color: var(--component-muted);
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   20. INGREDIENT LIST
+   ========================================================= */
+
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: var(--component-text);
+
+    font-size: 14px;
+}
+
+.ingredient-item::before {
+    content: "✓";
+
+    width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #dcfce7;
+    color: #16a34a;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   21. STEP LIST
+   ========================================================= */
+
+.step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    counter-reset: cooking-step;
+}
+
+.step-item {
+    position: relative;
+
+    display: flex;
+    gap: 14px;
+
+    counter-increment: cooking-step;
+}
+
+.step-item::before {
+    content: counter(cooking-step);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--component-primary);
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.step-item p {
+    margin: 5px 0 0;
+
+    color: var(--component-text);
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   22. VIDEO COMPONENT
+   ========================================================= */
+
+.recipe-video {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: var(--component-radius-lg);
+
+    background: #111827;
+}
+
+.recipe-video video,
+.recipe-video iframe {
+    display: block;
+
+    width: 100%;
+    min-height: 320px;
+
+    border: 0;
+}
+
+.video-placeholder {
+    min-height: 260px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #fff;
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #374151
+    );
+}
+
+.video-placeholder i {
+    font-size: 48px;
+    color: var(--component-primary);
+}
+
+
+/* =========================================================
+   23. AI CHAT COMPONENT
+   ========================================================= */
+
+.ai-chat-box {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 500px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-xl);
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-md);
+}
+
+.ai-chat-messages {
+    flex: 1;
+
+    min-height: 350px;
+    max-height: 500px;
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    background: #f8fafc;
+}
+
+.ai-message {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+.ai-message.user {
+    justify-content: flex-end;
+}
+
+.ai-avatar {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--component-primary);
+    color: #fff;
+}
+
+.ai-message-content {
+    max-width: 75%;
+
+    padding: 11px 14px;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    color: var(--component-text);
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    box-shadow: var(--component-shadow-sm);
+}
+
+.ai-message.user .ai-message-content {
+    background: var(--component-primary);
+    color: #fff;
+}
+
+.ai-chat-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 14px;
+
+    border-top: 1px solid var(--component-border);
+    background: #fff;
+}
+
+.ai-chat-input input,
+.ai-chat-input textarea {
+    flex: 1;
+
+    min-height: 44px;
+
+    padding: 11px 14px;
+
+    border: 1px solid var(--component-border);
+    border-radius: 12px;
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.ai-chat-input input:focus,
+.ai-chat-input textarea:focus {
+    border-color: var(--component-primary);
+}
+
+.ai-send-button {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--component-primary);
+    color: #fff;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.ai-send-button:hover {
+    background: var(--component-primary-dark);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   24. TYPING INDICATOR
+   ========================================================= */
+
+.typing-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 10px 14px;
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-sm);
+}
+
+.typing-indicator span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #9ca3af;
+
+    animation: typingDot 1.2s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.30s;
+}
+
+@keyframes typingDot {
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    30% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   25. VOICE BUTTON
+   ========================================================= */
+
+.voice-button {
+    width: 48px;
+    height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+    color: var(--component-text);
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.voice-button:hover {
+    color: #fff;
+    background: var(--component-primary);
+}
+
+.voice-button.recording {
+    color: #fff;
+    background: var(--component-danger);
+
+    animation: voicePulse 1.2s infinite;
+}
+
+@keyframes voicePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.45);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+
+/* =========================================================
+   26. INGREDIENT CHIP
+   ========================================================= */
+
+.ingredient-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+
+    border-radius: 999px;
+
+    background: #fff7f2;
+    color: #c2410c;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.ingredient-chip button {
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   27. EMPTY STATE
+   ========================================================= */
+
+.component-empty {
+    padding: 50px 20px;
+
+    text-align: center;
+}
+
+.component-empty-icon {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff7f2;
+    color: var(--component-primary);
+
+    font-size: 28px;
+}
+
+.component-empty h3 {
+    margin: 0 0 8px;
+
+    color: var(--component-text);
+
+    font-size: 20px;
+}
+
+.component-empty p {
+    max-width: 480px;
+
+    margin: 0 auto 18px;
+
+    color: var(--component-muted);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   28. LOADING SPINNER
+   ========================================================= */
+
+.component-spinner {
+    width: 38px;
+    height: 38px;
+
+    border: 4px solid #e5e7eb;
+    border-top-color: var(--component-primary);
+
+    border-radius: 50%;
+
+    animation: componentSpin 0.8s linear infinite;
+}
+
+@keyframes componentSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   29. SKELETON
+   ========================================================= */
+
+.component-skeleton {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #e5e7eb;
+}
+
+.component-skeleton::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    transform: translateX(-100%);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+    );
+
+    animation: skeletonLoading 1.5s infinite;
+}
+
+@keyframes skeletonLoading {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.skeleton-text {
+    height: 14px;
+    margin-bottom: 10px;
+}
+
+.skeleton-title {
+    width: 70%;
+    height: 22px;
+    margin-bottom: 12px;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 200px;
+}
+
+
+/* =========================================================
+   30. TOOLTIP
+   ========================================================= */
+
+.component-tooltip {
+    position: relative;
+}
+
+.component-tooltip::after {
+    content: attr(data-tooltip);
+
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+
+    transform: translateX(-50%) translateY(5px);
+
+    padding: 7px 10px;
+
+    border-radius: 7px;
+
+    background: #111827;
+    color: #fff;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition: var(--component-transition);
+    z-index: 2000;
+}
+
+.component-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* =========================================================
+   31. DIVIDER
+   ========================================================= */
+
+.component-divider {
+    width: 100%;
+    height: 1px;
+
+    margin: 20px 0;
+
+    background: var(--component-border);
+}
+
+.component-divider-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--component-muted);
+
+    font-size: 12px;
+}
+
+.component-divider-text::before,
+.component-divider-text::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: var(--component-border);
+}
+
+
+/* =========================================================
+   32. AVATAR
+   ========================================================= */
+
+.component-avatar {
+    width: 44px;
+    height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #fff7f2;
+    color: var(--component-primary);
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.component-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.component-avatar-sm {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+}
+
+.component-avatar-lg {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   33. STAT CARD
+   ========================================================= */
+
+.component-stat {
+    padding: 20px;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-lg);
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-sm);
+
+    transition: var(--component-transition);
+}
+
+.component-stat:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--component-shadow-md);
+}
+
+.component-stat-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 12px;
+
+    background: #fff7f2;
+    color: var(--component-primary);
+
+    font-size: 18px;
+}
+
+.component-stat-value {
+    margin-bottom: 4px;
+
+    color: var(--component-black);
+
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.component-stat-label {
+    color: var(--component-muted);
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   34. FESTIVAL CARD
+   ========================================================= */
+
+.festival-component-card {
+    position: relative;
+
+    min-height: 210px;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    overflow: hidden;
+
+    border-radius: var(--component-radius-xl);
+
+    background: linear-gradient(
+        135deg,
+        #ffedd5,
+        #fff7ed
+    );
+
+    box-shadow: var(--component-shadow-sm);
+
+    transition: var(--component-transition);
+}
+
+.festival-component-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--component-shadow-md);
+}
+
+.festival-component-icon {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+
+    font-size: 38px;
+}
+
+.festival-component-card h3 {
+    margin: 0 0 6px;
+
+    color: var(--component-black);
+
+    font-size: 20px;
+}
+
+.festival-component-card p {
+    margin: 0;
+
+    color: var(--component-muted);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   35. CUISINE CARD
+   ========================================================= */
+
+.cuisine-component-card {
+    overflow: hidden;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-lg);
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-sm);
+
+    transition: var(--component-transition);
+}
+
+.cuisine-component-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--component-shadow-md);
+}
+
+.cuisine-component-image {
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+}
+
+.cuisine-component-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.cuisine-component-card:hover img {
+    transform: scale(1.07);
+}
+
+.cuisine-component-content {
+    padding: 16px;
+}
+
+.cuisine-component-content h3 {
+    margin: 0 0 5px;
+
+    font-size: 17px;
+}
+
+.cuisine-component-content p {
+    margin: 0;
+
+    color: var(--component-muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   36. STATE / DISTRICT CARD
+   ========================================================= */
+
+.location-component-card {
+    position: relative;
+
+    padding: 22px;
+
+    border: 1px solid var(--component-border);
+    border-radius: var(--component-radius-lg);
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-sm);
+
+    transition: var(--component-transition);
+}
+
+.location-component-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--component-shadow-md);
+}
+
+.location-component-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border-radius: 14px;
+
+    background: #fff7f2;
+    color: var(--component-primary);
+
+    font-size: 22px;
+}
+
+.location-component-card h3 {
+    margin: 0 0 7px;
+
+    color: var(--component-black);
+
+    font-size: 18px;
+}
+
+.location-component-card p {
+    margin: 0;
+
+    color: var(--component-muted);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   37. UPLOAD BOX
+   ========================================================= */
+
+.component-upload {
+    position: relative;
+
+    padding: 30px 20px;
+
+    border: 2px dashed #d1d5db;
+    border-radius: var(--component-radius-lg);
+
+    background: #fafafa;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition: var(--component-transition);
+}
+
+.component-upload:hover,
+.component-upload.dragover {
+    border-color: var(--component-primary);
+    background: #fff7f2;
+}
+
+.component-upload-icon {
+    margin-bottom: 10px;
+
+    color: var(--component-primary);
+
+    font-size: 34px;
+}
+
+.component-upload h4 {
+    margin: 0 0 5px;
+
+    color: var(--component-text);
+
+    font-size: 16px;
+}
+
+.component-upload p {
+    margin: 0;
+
+    color: var(--component-muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   38. TOAST NOTIFICATION
+   ========================================================= */
+
+.component-toast-container {
+    position: fixed;
+
+    top: 85px;
+    right: 20px;
+
+    z-index: 10000;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: min(360px, calc(100% - 40px));
+}
+
+.component-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    background: #fff;
+
+    box-shadow: var(--component-shadow-lg);
+
+    animation: toastIn 0.3s ease;
+}
+
+.component-toast-icon {
+    flex-shrink: 0;
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+}
+
+.toast-success .component-toast-icon {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.toast-error .component-toast-icon {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.toast-warning .component-toast-icon {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.toast-info .component-toast-icon {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.component-toast-content {
+    flex: 1;
+
+    color: var(--component-text);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.component-toast-close {
+    border: none;
+
+    background: transparent;
+
+    color: var(--component-muted);
+
+    cursor: pointer;
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   39. BREADCRUMB
+   ========================================================= */
+
+.component-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    margin-bottom: 20px;
+
+    color: var(--component-muted);
+
+    font-size: 13px;
+}
+
+.component-breadcrumb a {
+    color: var(--component-primary);
+    text-decoration: none;
+}
+
+.component-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.component-breadcrumb i {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   40. PRICE / OFFER
+   ========================================================= */
+
+.component-price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.component-price-current {
+    color: var(--component-primary);
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.component-price-old {
+    color: var(--component-muted);
+
+    font-size: 13px;
+
+    text-decoration: line-through;
+}
+
+.component-discount {
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #dcfce7;
+    color: #15803d;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   41. RESPONSIVE COMPONENTS
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .recipe-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ai-message-content {
+        max-width: 85%;
+    }
+
+    .recipe-component-image {
+        height: 200px;
+    }
+
+    .recipe-video video,
+    .recipe-video iframe {
+        min-height: 260px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .btn-component {
+        padding: 10px 16px;
+    }
+
+    .btn-lg {
+        min-height: 48px;
+        padding: 12px 20px;
+    }
+
+    .component-modal {
+        padding: 12px;
+    }
+
+    .component-modal-box {
+        padding: 22px 16px;
+        border-radius: 18px;
+    }
+
+    .recipe-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .recipe-info-item {
+        padding: 11px 8px;
+    }
+
+    .recipe-component-image {
+        height: 180px;
+    }
+
+    .recipe-component-content {
+        padding: 15px;
+    }
+
+    .ai-chat-box {
+        min-height: 450px;
+    }
+
+    .ai-chat-messages {
+        min-height: 300px;
+    }
+
+    .ai-message-content {
+        max-width: 88%;
+    }
+
+    .component-toast-container {
+        top: 75px;
+        right: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .festival-component-card {
+        min-height: 180px;
+        padding: 18px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .recipe-info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .component-tabs {
+        width: 100%;
+    }
+
+    .component-tab {
+        flex: 1;
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    .recipe-component-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .recipe-component-actions .btn-component {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   42. ACCESSIBILITY
+   ========================================================= */
+
+.btn-component:focus-visible,
+.icon-btn:focus-visible,
+.favorite-btn:focus-visible,
+.category-tag:focus-visible,
+.component-tab:focus-visible,
+.form-input:focus-visible,
+.form-select:focus-visible,
+.form-textarea:focus-visible,
+.voice-button:focus-visible,
+.ai-send-button:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.35);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   43. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .component-card,
+    .recipe-component-card,
+    .festival-component-card,
+    .cuisine-component-card,
+    .location-component-card,
+    .component-stat,
+    .btn-component,
+    .icon-btn,
+    .favorite-btn {
+        transition: none;
+    }
+
+    .recipe-component-card:hover .recipe-component-image img,
+    .cuisine-component-card:hover img {
+        transform: none;
+    }
+
+    .typing-indicator span,
+    .voice-button.recording,
+    .component-spinner {
+        animation: none;
+    }
+}

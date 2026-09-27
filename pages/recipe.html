@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="View complete recipe details, ingredients, cooking steps, nutrition, video and AI cooking assistance."
+    >
+
+    <title>Recipe Details | AI Cooking Assistant</title>
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+    <style>
+        /* =========================================
+           RECIPE PAGE
+        ========================================= */
+
+        .recipe-page {
+            padding-top: 100px;
+            padding-bottom: 70px;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(255, 107, 53, 0.08),
+                    transparent 30%
+                ),
+                #fff;
+        }
+
+        .recipe-container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
+
+        .recipe-breadcrumb {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .recipe-breadcrumb a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .recipe-breadcrumb i {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        /* Main Hero */
+
+        .recipe-hero {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+            margin-bottom: 45px;
+        }
+
+        .recipe-image-box {
+            position: relative;
+            min-height: 470px;
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6b35,
+                    #ffb347
+                );
+            box-shadow: 0 20px 55px rgba(0, 0, 0, 0.12);
+        }
+
+        .recipe-image-box img {
+            width: 100%;
+            height: 100%;
+            min-height: 470px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recipe-image-placeholder {
+            min-height: 470px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 100px;
+        }
+
+        .recipe-image-overlay {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 35px 25px 25px;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.72),
+                    transparent
+                );
+            color: white;
+        }
+
+        .recipe-image-overlay span {
+            display: inline-flex;
+            padding: 7px 13px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 7px;
+            margin-top: 5px;
+        }
+
+        .recipe-favorite {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            color: #ff4f6d;
+            font-size: 21px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: 0.3s ease;
+            z-index: 3;
+        }
+
+        .recipe-favorite:hover {
+            transform: scale(1.08);
+        }
+
+        .recipe-favorite.active {
+            background: #ff4f6d;
+            color: white;
+        }
+
+        /* Recipe Information */
+
+        .recipe-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .recipe-badge {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: rgba(255, 107, 53, 0.1);
+            color: #ff6b35;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .recipe-title {
+            margin: 0 0 14px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(32px, 5vw, 54px);
+            line-height: 1.12;
+            color: #222;
+        }
+
+        .recipe-description {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .recipe-location {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .recipe-location span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 13px;
+            background: #f7f7f7;
+            border-radius: 20px;
+            color: #555;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .recipe-location i {
+            color: #ff6b35;
+        }
+
+        /* Quick Info */
+
+        .recipe-quick-info {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .quick-info-card {
+            padding: 17px 10px;
+            text-align: center;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            background: #fff;
+            transition: 0.3s ease;
+        }
+
+        .quick-info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .quick-info-card i {
+            color: #ff6b35;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .quick-info-card strong {
+            display: block;
+            color: #222;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .quick-info-card small {
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* Buttons */
+
+        .recipe-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .recipe-action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 20px;
+            border-radius: 12px;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .recipe-action-primary {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .recipe-action-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.25);
+        }
+
+        .recipe-action-secondary {
+            background: #fff;
+            color: #333;
+            border: 1px solid #e5e5e5;
+        }
+
+        .recipe-action-secondary:hover {
+            border-color: #ff6b35;
+            color: #ff6b35;
+        }
+
+        /* Content Grid */
+
+        .recipe-content-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.4fr;
+            gap: 30px;
+            margin-bottom: 45px;
+        }
+
+        .recipe-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+        }
+
+        .recipe-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 22px;
+            font-family: "Poppins", sans-serif;
+            color: #222;
+            font-size: 22px;
+        }
+
+        .recipe-card-title i {
+            color: #ff6b35;
+        }
+
+        /* Ingredients */
+
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ingredient-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 14px 0;
+            border-bottom: 1px dashed #e5e5e5;
+        }
+
+        .ingredient-item:last-child {
+            border-bottom: none;
+        }
+
+        .ingredient-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .ingredient-name i {
+            color: #ff6b35;
+            font-size: 9px;
+        }
+
+        .ingredient-quantity {
+            color: #777;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Cooking Steps */
+
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 46px 1fr;
+            gap: 16px;
+        }
+
+        .step-number {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff0e9;
+            color: #ff6b35;
+            font-weight: 800;
+        }
+
+        .step-content h3 {
+            margin: 2px 0 7px;
+            font-size: 17px;
+            color: #222;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: #666;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* Video */
+
+        .recipe-video-section {
+            margin-bottom: 45px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            min-height: 420px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #111;
+        }
+
+        .video-container video,
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            border: none;
+            display: block;
+        }
+
+        .video-placeholder {
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .video-placeholder i {
+            font-size: 65px;
+            color: #ff6b35;
+            margin-bottom: 18px;
+        }
+
+        .video-placeholder h3 {
+            margin: 0 0 8px;
+        }
+
+        .video-placeholder p {
+            color: #bbb;
+            margin: 0;
+        }
+
+        /* Nutrition */
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .nutrition-item {
+            padding: 18px;
+            border-radius: 15px;
+            background: #fafafa;
+            text-align: center;
+        }
+
+        .nutrition-item strong {
+            display: block;
+            color: #222;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .nutrition-item span {
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* AI Box */
+
+        .recipe-ai-box {
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 22px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff3ed,
+                    #fff8f4
+                );
+            border: 1px solid #ffe0d2;
+        }
+
+        .recipe-ai-box h2 {
+            margin: 0 0 8px;
+            color: #222;
+        }
+
+        .recipe-ai-box p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .ai-help-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .ai-help-btn {
+            padding: 10px 15px;
+            border: 1px solid #ffd1c0;
+            background: white;
+            border-radius: 10px;
+            color: #ff6b35;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .ai-help-btn:hover {
+            background: #ff6b35;
+            color: white;
+        }
+
+        /* Related Recipes */
+
+        .related-section {
+            margin-top: 45px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .related-card {
+            overflow: hidden;
+            border-radius: 18px;
+            background: white;
+            border: 1px solid #eee;
+            transition: 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .related-image {
+            height: 190px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff9a62,
+                    #ffd08a
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 55px;
+        }
+
+        .related-info {
+            padding: 18px;
+        }
+
+        .related-info h3 {
+            margin: 0 0 7px;
+            color: #222;
+            font-size: 17px;
+        }
+
+        .related-info p {
+            margin: 0;
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* Loading */
+
+        .recipe-loading {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .recipe-loading i {
+            font-size: 40px;
+            color: #ff6b35;
+        }
+
+        /* Empty / Error */
+
+        .recipe-error {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .recipe-error i {
+            font-size: 65px;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        .recipe-error h2 {
+            margin-bottom: 10px;
+        }
+
+        .recipe-error p {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 950px) {
+            .recipe-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .recipe-image-box,
+            .recipe-image-box img,
+            .recipe-image-placeholder {
+                min-height: 400px;
+            }
+
+            .recipe-content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .recipe-page {
+                padding-top: 85px;
+            }
+
+            .recipe-image-box,
+            .recipe-image-box img,
+            .recipe-image-placeholder {
+                min-height: 300px;
+            }
+
+            .recipe-title {
+                font-size: 34px;
+            }
+
+            .recipe-quick-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .recipe-card {
+                padding: 20px;
+            }
+
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container,
+            .video-container iframe,
+            .video-container video,
+            .video-placeholder {
+                min-height: 250px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .recipe-actions {
+                flex-direction: column;
+            }
+
+            .recipe-action-btn {
+                width: 100%;
+            }
+
+            .recipe-location {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         PAGE LOADER
+    ========================================== -->
+
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header id="mainHeader" class="main-header">
+
+        <div class="container navbar">
+
+            <a href="../index.html" class="brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-utensils"></i>
+                </span>
+
+                <span class="brand-text">
+                    <strong>AI Cooking</strong>
+                    <small>Assistant</small>
+                </span>
+            </a>
+
+
+            <button
+                id="mobileMenuButton"
+                class="mobile-menu-button"
+                aria-label="Open menu"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+
+            <nav class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="ai-chat.html">
+                    AI Assistant
+                </a>
+
+                <a href="states.html">
+                    India
+                </a>
+
+                <a href="festivals.html">
+                    Festivals
+                </a>
+
+                <a href="cuisines.html">
+                    Cuisines
+                </a>
+
+                <a href="ingredient-finder.html">
+                    Ingredients
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a
+                    href="signup.html"
+                    class="nav-signup"
+                >
+                    Sign Up
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- Mobile Menu -->
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu"
+        >
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="ai-chat.html">
+                AI Assistant
+            </a>
+
+            <a href="states.html">
+                India
+            </a>
+
+            <a href="festivals.html">
+                Festivals
+            </a>
+
+            <a href="cuisines.html">
+                Cuisines
+            </a>
+
+            <a href="ingredient-finder.html">
+                Ingredients
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN RECIPE PAGE
+    ========================================== -->
+
+    <main class="recipe-page">
+
+        <div class="recipe-container">
+
+
+            <!-- Breadcrumb -->
+
+            <div class="recipe-breadcrumb">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <a href="states.html">
+                    India
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span id="breadcrumbState">
+                    Recipe
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span id="breadcrumbRecipe">
+                    Details
+                </span>
+
+            </div>
+
+
+
+            <!-- Recipe Hero -->
+
+            <section class="recipe-hero">
+
+
+                <!-- Recipe Image -->
+
+                <div class="recipe-image-box">
+
+                    <button
+                        id="favoriteButton"
+                        class="recipe-favorite"
+                        type="button"
+                        aria-label="Add recipe to favorites"
+                        title="Add to favorites"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+
+                    <div
+                        id="recipeImageContainer"
+                        class="recipe-image-placeholder"
+                    >
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+
+
+                    <div class="recipe-image-overlay">
+
+                        <span id="recipeCuisineTag">
+                            Indian Cuisine
+                        </span>
+
+                        <span id="recipeFestivalTag">
+                            Popular
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Recipe Information -->
+
+                <div class="recipe-info">
+
+                    <div class="recipe-badge">
+
+                        <i class="fa-solid fa-star"></i>
+
+                        <span id="recipeBadge">
+                            Featured Recipe
+                        </span>
+
+                    </div>
+
+
+                    <h1
+                        id="recipeTitle"
+                        class="recipe-title"
+                    >
+                        Loading Recipe...
+                    </h1>
+
+
+                    <p
+                        id="recipeDescription"
+                        class="recipe-description"
+                    >
+                        Discover the complete ingredients,
+                        cooking process and AI-powered help
+                        for this delicious recipe.
+                    </p>
+
+
+                    <!-- Location -->
+
+                    <div class="recipe-location">
+
+                        <span>
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <span id="recipeState">
+                                India
+                            </span>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            <span id="recipeDistrict">
+                                District
+                            </span>
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-solid fa-utensils"></i>
+
+                            <span id="recipeCuisine">
+                                Indian
+                            </span>
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- Quick Information -->
+
+                    <div class="recipe-quick-info">
+
+                        <div class="quick-info-card">
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            <strong id="prepTime">
+                                15 min
+                            </strong>
+
+                            <small>
+                                Prep Time
+                            </small>
+
+                        </div>
+
+
+                        <div class="quick-info-card">
+
+                            <i class="fa-solid fa-fire-burner"></i>
+
+                            <strong id="cookTime">
+                                30 min
+                            </strong>
+
+                            <small>
+                                Cook Time
+                            </small>
+
+                        </div>
+
+
+                        <div class="quick-info-card">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            <strong id="servings">
+                                4
+                            </strong>
+
+                            <small>
+                                Servings
+                            </small>
+
+                        </div>
+
+
+                        <div class="quick-info-card">
+
+                            <i class="fa-solid fa-chart-simple"></i>
+
+                            <strong id="difficulty">
+                                Medium
+                            </strong>
+
+                            <small>
+                                Difficulty
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Action Buttons -->
+
+                    <div class="recipe-actions">
+
+                        <button
+                            id="startCookingButton"
+                            class="recipe-action-btn recipe-action-primary"
+                            type="button"
+                        >
+
+                            <i class="fa-solid fa-kitchen-set"></i>
+
+                            Start Cooking
+
+                        </button>
+
+
+                        <button
+                            id="askAIButton"
+                            class="recipe-action-btn recipe-action-secondary"
+                            type="button"
+                        >
+
+                            <i class="fa-solid fa-robot"></i>
+
+                            Ask AI About This Recipe
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 INGREDIENTS + COOKING STEPS
+            ========================================== -->
+
+            <section class="recipe-content-grid">
+
+
+                <!-- Ingredients -->
+
+                <div class="recipe-card">
+
+                    <h2 class="recipe-card-title">
+
+                        <i class="fa-solid fa-basket-shopping"></i>
+
+                        Ingredients
+
+                    </h2>
+
+
+                    <ul
+                        id="ingredientsList"
+                        class="ingredients-list"
+                    >
+
+                        <li class="ingredient-item">
+
+                            <span class="ingredient-name">
+                                <i class="fa-solid fa-circle"></i>
+                                Loading ingredients...
+                            </span>
+
+                            <span class="ingredient-quantity">
+                                —
+                            </span>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Cooking Steps -->
+
+                <div class="recipe-card">
+
+                    <h2 class="recipe-card-title">
+
+                        <i class="fa-solid fa-list-check"></i>
+
+                        Cooking Process
+
+                    </h2>
+
+
+                    <div
+                        id="stepsList"
+                        class="steps-list"
+                    >
+
+                        <div class="step">
+
+                            <div class="step-number">
+                                1
+                            </div>
+
+                            <div class="step-content">
+
+                                <h3>
+                                    Preparing the Recipe
+                                </h3>
+
+                                <p>
+                                    Recipe instructions will
+                                    appear here.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 VIDEO SECTION
+            ========================================== -->
+
+            <section class="recipe-video-section">
+
+                <div class="recipe-card">
+
+                    <h2 class="recipe-card-title">
+
+                        <i class="fa-solid fa-circle-play"></i>
+
+                        Cooking Video
+
+                    </h2>
+
+
+                    <div
+                        id="recipeVideoContainer"
+                        class="video-container"
+                    >
+
+                        <div class="video-placeholder">
+
+                            <i class="fa-solid fa-video"></i>
+
+                            <h3>
+                                Recipe Video
+                            </h3>
+
+                            <p>
+                                A cooking video will appear here
+                                when available.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 NUTRITION
+            ========================================== -->
+
+            <section class="recipe-card">
+
+                <h2 class="recipe-card-title">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    Nutrition Information
+
+                </h2>
+
+
+                <div class="nutrition-grid">
+
+                    <div class="nutrition-item">
+
+                        <strong id="calories">
+                            —
+                        </strong>
+
+                        <span>
+                            Calories
+                        </span>
+
+                    </div>
+
+
+                    <div class="nutrition-item">
+
+                        <strong id="protein">
+                            —
+                        </strong>
+
+                        <span>
+                            Protein
+                        </span>
+
+                    </div>
+
+
+                    <div class="nutrition-item">
+
+                        <strong id="carbs">
+                            —
+                        </strong>
+
+                        <span>
+                            Carbohydrates
+                        </span>
+
+                    </div>
+
+
+                    <div class="nutrition-item">
+
+                        <strong id="fat">
+                            —
+                        </strong>
+
+                        <span>
+                            Fat
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 AI COOKING ASSISTANT
+            ========================================== -->
+
+            <section class="recipe-ai-box">
+
+                <h2>
+                    <i class="fa-solid fa-robot"></i>
+                    Need Help While Cooking?
+                </h2>
+
+
+                <p>
+                    Ask the AI Cooking Assistant about this
+                    recipe. You can ask for ingredient
+                    substitutions, cooking tips, quantity
+                    changes, timing, or step-by-step guidance.
+                </p>
+
+
+                <div class="ai-help-buttons">
+
+                    <button
+                        class="ai-help-btn"
+                        data-ai-question="How can I substitute an ingredient in this recipe?"
+                        type="button"
+                    >
+                        Ingredient Substitute
+                    </button>
+
+
+                    <button
+                        class="ai-help-btn"
+                        data-ai-question="How can I make this recipe less spicy?"
+                        type="button"
+                    >
+                        Make It Less Spicy
+                    </button>
+
+
+                    <button
+                        class="ai-help-btn"
+                        data-ai-question="How can I increase this recipe to serve 8 people?"
+                        type="button"
+                    >
+                        Change Servings
+                    </button>
+
+
+                    <button
+                        class="ai-help-btn"
+                        data-ai-question="Give me important cooking tips for this recipe."
+                        type="button"
+                    >
+                        Cooking Tips
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================================
+                 RELATED RECIPES
+            ========================================== -->
+
+            <section class="related-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        MORE RECIPES
+                    </span>
+
+                    <h2>
+                        You May Also Like
+                    </h2>
+
+                    <p>
+                        Explore more delicious recipes.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="relatedRecipes"
+                    class="related-grid"
+                >
+
+                    <a
+                        href="recipe.html?recipe=related-1"
+                        class="related-card"
+                    >
+
+                        <div class="related-image">
+
+                            <i class="fa-solid fa-bowl-food"></i>
+
+                        </div>
+
+                        <div class="related-info">
+
+                            <h3>
+                                Delicious Indian Recipe
+                            </h3>
+
+                            <p>
+                                Explore this recipe
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="recipe.html?recipe=related-2"
+                        class="related-card"
+                    >
+
+                        <div class="related-image">
+
+                            <i class="fa-solid fa-plate-wheat"></i>
+
+                        </div>
+
+                        <div class="related-info">
+
+                            <h3>
+                                Traditional Home Food
+                            </h3>
+
+                            <p>
+                                Explore this recipe
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="recipe.html?recipe=related-3"
+                        class="related-card"
+                    >
+
+                        <div class="related-image">
+
+                            <i class="fa-solid fa-carrot"></i>
+
+                        </div>
+
+                        <div class="related-info">
+
+                            <h3>
+                                Healthy Food Recipe
+                            </h3>
+
+                            <p>
+                                Explore this recipe
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-about">
+
+                    <a
+                        href="../index.html"
+                        class="brand"
+                    >
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span class="brand-text">
+                            <strong>AI Cooking</strong>
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+
+                    <p>
+                        Your smart cooking companion for
+                        recipes, ingredients, cooking guidance
+                        and AI-powered kitchen assistance.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h3>
+                        Explore
+                    </h3>
+
+                    <a href="states.html">
+                        Indian States
+                    </a>
+
+                    <a href="festivals.html">
+                        Festival Recipes
+                    </a>
+
+                    <a href="cuisines.html">
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Ingredient Finder
+                    </a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h3>
+                        AI Tools
+                    </h3>
+
+                    <a href="ai-chat.html">
+                        AI Cooking Assistant
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Recipe Generator
+                    </a>
+
+                    <a href="ai-chat.html">
+                        Cooking Help
+                    </a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h3>
+                        Account
+                    </h3>
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                    <a href="signup.html">
+                        Create Account
+                    </a>
+
+                    <a href="profile.html">
+                        My Profile
+                    </a>
+
+                    <a href="submit-recipe.html">
+                        Submit Recipe
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span id="currentYear"></span>
+                    AI Cooking Assistant. All rights reserved.
+                </p>
+
+                <p>
+                    Made for food lovers everywhere.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- Back To Top -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        aria-label="Back to top"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+
+    <!-- =========================================
+         RECIPE PAGE JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            /*
+             * -----------------------------------------
+             * DEMO RECIPE DATA
+             * -----------------------------------------
+             *
+             * Later this data will come from:
+             * recipes.json / database / backend API.
+             */
+
+            const recipes = {
+
+                "demo-1": {
+
+                    id: "demo-1",
+
+                    title: "Paneer Butter Masala",
+
+                    description:
+                        "A rich and creamy North Indian curry made with paneer, tomatoes, butter and aromatic spices. Perfect with naan, roti or rice.",
+
+                    state: "Punjab",
+
+                    district: "Amritsar",
+
+                    cuisine: "North Indian",
+
+                    festival: "Popular",
+
+                    category: "Main Course",
+
+                    prepTime: "15 min",
+
+                    cookTime: "30 min",
+
+                    servings: "4",
+
+                    difficulty: "Medium",
+
+                    image: "",
+
+                    video: "",
+
+                    ingredients: [
+
+                        {
+                            name: "Paneer",
+                            quantity: "250 g"
+                        },
+
+                        {
+                            name: "Tomatoes",
+                            quantity: "4 medium"
+                        },
+
+                        {
+                            name: "Butter",
+                            quantity: "2 tbsp"
+                        },
+
+                        {
+                            name: "Fresh Cream",
+                            quantity: "3 tbsp"
+                        },
+
+                        {
+                            name: "Onion",
+                            quantity: "1 medium"
+                        },
+
+                        {
+                            name: "Ginger-Garlic Paste",
+                            quantity: "1 tbsp"
+                        },
+
+                        {
+                            name: "Garam Masala",
+                            quantity: "1 tsp"
+                        },
+
+                        {
+                            name: "Red Chili Powder",
+                            quantity: "1 tsp"
+                        },
+
+                        {
+                            name: "Turmeric",
+                            quantity: "1/2 tsp"
+                        },
+
+                        {
+                            name: "Salt",
+                            quantity: "As required"
+                        }
+
+                    ],
+
+                    steps: [
+
+                        {
+                            title: "Prepare the Paneer",
+                            description:
+                                "Cut the paneer into medium-sized cubes. Lightly fry the cubes until they become golden on the outside."
+                        },
+
+                        {
+                            title: "Prepare the Tomato Base",
+                            description:
+                                "Cook chopped tomatoes and onion until soft. Add ginger-garlic paste and cook until the raw smell disappears."
+                        },
+
+                        {
+                            title: "Blend the Gravy",
+                            description:
+                                "Allow the cooked mixture to cool slightly and blend it into a smooth paste."
+                        },
+
+                        {
+                            title: "Cook the Masala",
+                            description:
+                                "Heat butter in a pan. Add the blended gravy, turmeric, chili powder, garam masala and salt."
+                        },
+
+                        {
+                            title: "Add Paneer",
+                            description:
+                                "Add the paneer cubes and simmer the curry for several minutes so the paneer absorbs the flavors."
+                        },
+
+                        {
+                            title: "Finish with Cream",
+                            description:
+                                "Add fresh cream and mix gently. Cook for another minute and turn off the heat."
+                        },
+
+                        {
+                            title: "Serve",
+                            description:
+                                "Garnish with cream or coriander and serve hot with naan, roti, paratha or rice."
+                        }
+
+                    ],
+
+                    nutrition: {
+
+                        calories: "380 kcal",
+
+                        protein: "18 g",
+
+                        carbs: "16 g",
+
+                        fat: "27 g"
+
+                    }
+
+                }
+
+            };
+
+
+            /*
+             * -----------------------------------------
+             * GET RECIPE ID
+             * -----------------------------------------
+             */
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+            const recipeId =
+                params.get("recipe") || "demo-1";
+
+
+            const recipe =
+                recipes[recipeId] || recipes["demo-1"];
+
+
+            /*
+             * -----------------------------------------
+             * ELEMENTS
+             * -----------------------------------------
+             */
+
+            const title =
+                document.getElementById("recipeTitle");
+
+            const description =
+                document.getElementById("recipeDescription");
+
+            const state =
+                document.getElementById("recipeState");
+
+            const district =
+                document.getElementById("recipeDistrict");
+
+            const cuisine =
+                document.getElementById("recipeCuisine");
+
+            const cuisineTag =
+                document.getElementById("recipeCuisineTag");
+
+            const festivalTag =
+                document.getElementById("recipeFestivalTag");
+
+            const badge =
+                document.getElementById("recipeBadge");
+
+            const prepTime =
+                document.getElementById("prepTime");
+
+            const cookTime =
+                document.getElementById("cookTime");
+
+            const servings =
+                document.getElementById("servings");
+
+            const difficulty =
+                document.getElementById("difficulty");
+
+            const breadcrumbState =
+                document.getElementById("breadcrumbState");
+
+            const breadcrumbRecipe =
+                document.getElementById("breadcrumbRecipe");
+
+            const ingredientsList =
+                document.getElementById("ingredientsList");
+
+            const stepsList =
+                document.getElementById("stepsList");
+
+            const imageContainer =
+                document.getElementById(
+                    "recipeImageContainer"
+                );
+
+            const videoContainer =
+                document.getElementById(
+                    "recipeVideoContainer"
+                );
+
+
+            /*
+             * -----------------------------------------
+             * BASIC INFORMATION
+             * -----------------------------------------
+             */
+
+            title.textContent =
+                recipe.title;
+
+            description.textContent =
+                recipe.description;
+
+            state.textContent =
+                recipe.state;
+
+            district.textContent =
+                recipe.district;
+
+            cuisine.textContent =
+                recipe.cuisine;
+
+            cuisineTag.textContent =
+                recipe.cuisine;
+
+            festivalTag.textContent =
+                recipe.festival;
+
+            badge.textContent =
+                recipe.category;
+
+            prepTime.textContent =
+                recipe.prepTime;
+
+            cookTime.textContent =
+                recipe.cookTime;
+
+            servings.textContent =
+                recipe.servings;
+
+            difficulty.textContent =
+                recipe.difficulty;
+
+            breadcrumbState.textContent =
+                recipe.state;
+
+            breadcrumbRecipe.textContent =
+                recipe.title;
+
+            document.title =
+                `${recipe.title} | AI Cooking Assistant`;
+
+
+            /*
+             * -----------------------------------------
+             * RECIPE IMAGE
+             * -----------------------------------------
+             */
+
+            if (recipe.image) {
+
+                imageContainer.innerHTML = `
+                    <img
+                        src="${escapeHTML(recipe.image)}"
+                        alt="${escapeHTML(recipe.title)}"
+                    >
+                `;
+
+            } else {
+
+                imageContainer.innerHTML = `
+                    <i class="fa-solid fa-bowl-food"></i>
+                `;
+
+            }
+
+
+            /*
+             * -----------------------------------------
+             * INGREDIENTS
+             * -----------------------------------------
+             */
+
+            ingredientsList.innerHTML = "";
+
+            recipe.ingredients.forEach(
+                ingredient => {
+
+                    const li =
+                        document.createElement("li");
+
+                    li.className =
+                        "ingredient-item";
+
+                    li.innerHTML = `
+
+                        <span class="ingredient-name">
+
+                            <i class="fa-solid fa-circle"></i>
+
+                            ${escapeHTML(
+                                ingredient.name
+                            )}
+
+                        </span>
+
+                        <span class="ingredient-quantity">
+
+                            ${escapeHTML(
+                                ingredient.quantity
+                            )}
+
+                        </span>
+
+                    `;
+
+                    ingredientsList.appendChild(li);
+
+                }
+            );
+
+
+            /*
+             * -----------------------------------------
+             * COOKING STEPS
+             * -----------------------------------------
+             */
+
+            stepsList.innerHTML = "";
+
+            recipe.steps.forEach(
+                (step, index) => {
+
+                    const stepElement =
+                        document.createElement("div");
+
+                    stepElement.className =
+                        "step";
+
+                    stepElement.innerHTML = `
+
+                        <div class="step-number">
+                            ${index + 1}
+                        </div>
+
+                        <div class="step-content">
+
+                            <h3>
+                                ${escapeHTML(
+                                    step.title
+                                )}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    step.description
+                                )}
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    stepsList.appendChild(
+                        stepElement
+                    );
+
+                }
+            );
+
+
+            /*
+             * -----------------------------------------
+             * NUTRITION
+             * -----------------------------------------
+             */
+
+            document.getElementById(
+                "calories"
+            ).textContent =
+                recipe.nutrition.calories;
+
+            document.getElementById(
+                "protein"
+            ).textContent =
+                recipe.nutrition.protein;
+
+            document.getElementById(
+                "carbs"
+            ).textContent =
+                recipe.nutrition.carbs;
+
+            document.getElementById(
+                "fat"
+            ).textContent =
+                recipe.nutrition.fat;
+
+
+            /*
+             * -----------------------------------------
+             * VIDEO
+             * -----------------------------------------
+             */
+
+            if (recipe.video) {
+
+                videoContainer.innerHTML = `
+
+                    <video
+                        controls
+                        preload="metadata"
+                    >
+
+                        <source
+                            src="${escapeHTML(
+                                recipe.video
+                            )}"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support
+                        video playback.
+
+                    </video>
+
+                `;
+
+            }
+
+
+            /*
+             * -----------------------------------------
+             * FAVORITES
+             * -----------------------------------------
+             */
+
+            const favoriteButton =
+                document.getElementById(
+                    "favoriteButton"
+                );
+
+            const favoriteKey =
+                "aiCookingFavorites";
+
+            function getFavorites() {
+
+                try {
+
+                    return JSON.parse(
+                        localStorage.getItem(
+                            favoriteKey
+                        )
+                    ) || [];
+
+                } catch {
+
+                    return [];
+
+                }
+
+            }
+
+
+            function saveFavorites(
+                favorites
+            ) {
+
+                localStorage.setItem(
+                    favoriteKey,
+                    JSON.stringify(favorites)
+                );
+
+            }
+
+
+            function updateFavoriteIcon() {
+
+                const favorites =
+                    getFavorites();
+
+                const isFavorite =
+                    favorites.includes(
+                        recipe.id
+                    );
+
+                if (isFavorite) {
+
+                    favoriteButton.classList.add(
+                        "active"
+                    );
+
+                    favoriteButton.innerHTML =
+                        `<i class="fa-solid fa-heart"></i>`;
+
+                } else {
+
+                    favoriteButton.classList.remove(
+                        "active"
+                    );
+
+                    favoriteButton.innerHTML =
+                        `<i class="fa-regular fa-heart"></i>`;
+
+                }
+
+            }
+
+
+            favoriteButton.addEventListener(
+                "click",
+                () => {
+
+                    let favorites =
+                        getFavorites();
+
+                    const index =
+                        favorites.indexOf(
+                            recipe.id
+                        );
+
+                    if (index === -1) {
+
+                        favorites.push(
+                            recipe.id
+                        );
+
+                        showMessage(
+                            "Recipe added to favorites."
+                        );
+
+                    } else {
+
+                        favorites.splice(
+                            index,
+                            1
+                        );
+
+                        showMessage(
+                            "Recipe removed from favorites."
+                        );
+
+                    }
+
+                    saveFavorites(
+                        favorites
+                    );
+
+                    updateFavoriteIcon();
+
+                }
+            );
+
+
+            updateFavoriteIcon();
+
+
+            /*
+             * -----------------------------------------
+             * START COOKING
+             * -----------------------------------------
+             */
+
+            document.getElementById(
+                "startCookingButton"
+            ).addEventListener(
+                "click",
+                () => {
+
+                    const ingredientsSection =
+                        document.querySelector(
+                            ".recipe-content-grid"
+                        );
+
+                    ingredientsSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+            );
+
+
+            /*
+             * -----------------------------------------
+             * ASK AI
+             * -----------------------------------------
+             */
+
+            document.getElementById(
+                "askAIButton"
+            ).addEventListener(
+                "click",
+                () => {
+
+                    const question =
+                        encodeURIComponent(
+                            `Help me cook ${recipe.title}. Give me step-by-step guidance.`
+                        );
+
+                    window.location.href =
+                        `ai-chat.html?question=${question}`;
+
+                }
+            );
+
+
+            /*
+             * -----------------------------------------
+             * AI HELP BUTTONS
+             * -----------------------------------------
+             */
+
+            document
+                .querySelectorAll(".ai-help-btn")
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const question =
+                                button.dataset.aiQuestion;
+
+                            window.location.href =
+                                `ai-chat.html?question=${encodeURIComponent(
+                                    question
+                                )}&recipe=${encodeURIComponent(
+                                    recipe.title
+                                )}`;
+
+                        }
+                    );
+
+                });
+
+
+            /*
+             * -----------------------------------------
+             * CURRENT YEAR
+             * -----------------------------------------
+             */
+
+            const yearElement =
+                document.getElementById(
+                    "currentYear"
+                );
+
+            if (yearElement) {
+
+                yearElement.textContent =
+                    new Date().getFullYear();
+
+            }
+
+
+            /*
+             * -----------------------------------------
+             * ESCAPE HTML
+             * -----------------------------------------
+             */
+
+            function escapeHTML(value) {
+
+                return String(value)
+                    .replace(
+                        /&/g,
+                        "&amp;"
+                    )
+                    .replace(
+                        /</g,
+                        "&lt;"
+                    )
+                    .replace(
+                        />/g,
+                        "&gt;"
+                    )
+                    .replace(
+                        /"/g,
+                        "&quot;"
+                    )
+                    .replace(
+                        /'/g,
+                        "&#039;"
+                    );
+
+            }
+
+
+            /*
+             * -----------------------------------------
+             * SIMPLE MESSAGE
+             * -----------------------------------------
+             */
+
+            function showMessage(message) {
+
+                const oldMessage =
+                    document.querySelector(
+                        ".recipe-message"
+                    );
+
+                if (oldMessage) {
+                    oldMessage.remove();
+                }
+
+                const messageBox =
+                    document.createElement(
+                        "div"
+                    );
+
+                messageBox.className =
+                    "recipe-message";
+
+                messageBox.textContent =
+                    message;
+
+                Object.assign(
+                    messageBox.style,
+                    {
+                        position: "fixed",
+                        bottom: "25px",
+                        left: "50%",
+                        transform:
+                            "translateX(-50%)",
+                        background: "#222",
+                        color: "#fff",
+                        padding: "13px 20px",
+                        borderRadius: "10px",
+                        zIndex: "9999",
+                        boxShadow:
+                            "0 10px 30px rgba(0,0,0,0.2)",
+                        fontSize: "14px",
+                        fontWeight: "600"
+                    }
+                );
+
+                document.body.appendChild(
+                    messageBox
+                );
+
+                setTimeout(
+                    () => {
+
+                        messageBox.remove();
+
+                    },
+                    2200
+                );
+
+            }
+
+        });
+
+    </script>
+
+
+    <!-- Main JavaScript -->
+
+    <script src="../app.js"></script>
+    <script src="../js/recipe-catalog.js"></script>
+
+</body>
+</html>

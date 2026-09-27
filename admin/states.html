@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>States - Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item active">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>States</h1>
+
+                <p>
+                    Manage Indian states.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>Indian States</h2>
+
+                    <p>
+                        State data used by the recipe system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="search"
+                            id="stateSearch"
+                            placeholder="Search states..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="table-wrapper"
+                    id="statesContainer"
+                >
+
+                    <div class="empty-state">
+                        Loading states...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="admin.js"></script>
+
+
+<script>
+
+let states = [];
+
+const container =
+    document.getElementById(
+        "statesContainer"
+    );
+
+const search =
+    document.getElementById(
+        "stateSearch"
+    );
+
+
+async function loadStates() {
+
+    try {
+
+        const response =
+            await fetch(
+                "../data/states.json"
+            );
+
+        states =
+            await response.json();
+
+        renderStates();
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                <h3>Unable to load states</h3>
+            </div>
+        `;
+
+    }
+
+}
+
+
+function renderStates() {
+
+    const query =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    const filtered =
+        states.filter(
+            state =>
+                state.name
+                    .toLowerCase()
+                    .includes(query) ||
+                state.capital
+                    .toLowerCase()
+                    .includes(query)
+        );
+
+
+    container.innerHTML = `
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>State</th>
+                    <th>Capital</th>
+                    <th>Region</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${filtered.map(
+                    state => `
+
+                    <tr>
+
+                        <td>
+                            ${state.id}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(
+                                    state.name
+                                )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                state.capital
+                            )}
+                        </td>
+
+                        <td>
+                            <span class="badge badge-info">
+                                ${escapeHTML(
+                                    state.region
+                                )}
+                            </span>
+                        </td>
+
+                    </tr>
+
+                `
+                ).join("")}
+
+            </tbody>
+
+        </table>
+
+    `;
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+search.addEventListener(
+    "input",
+    renderStates
+);
+
+
+loadStates();
+
+</script>
+
+</body>
+</html>

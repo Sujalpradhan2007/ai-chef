@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Analytics - Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>Analytics</h1>
+
+                <p>
+                    Platform statistics and overview.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>Platform Analytics</h2>
+
+                    <p>
+                        Current development statistics.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon recipes-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Total Recipes</span>
+
+                        <strong id="analyticsRecipes">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon users-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Total Users</span>
+
+                        <strong id="analyticsUsers">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon pending-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div>
+
+                        <span>Pending</span>
+
+                        <strong id="analyticsPending">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon states-icon">
+                        <i class="fa-solid fa-map"></i>
+                    </div>
+
+                    <div>
+
+                        <span>States</span>
+
+                        <strong id="analyticsStates">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="content-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Recipe Platform
+                            </h3>
+
+                            <p>
+                                Current recipe statistics.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="system-status">
+
+                        <div class="status-row">
+
+                            <span>
+                                Published Recipes
+                            </span>
+
+                            <strong id="publishedRecipes">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="status-row">
+
+                            <span>
+                                Famous Recipes
+                            </span>
+
+                            <strong id="famousRecipes">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="status-row">
+
+                            <span>
+                                Total Views
+                            </span>
+
+                            <strong id="totalViews">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="status-row">
+
+                            <span>
+                                Total Likes
+                            </span>
+
+                            <strong id="totalLikes">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                User Activity
+                            </h3>
+
+                            <p>
+                                User account statistics.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="system-status">
+
+                        <div class="status-row">
+
+                            <span>
+                                Active Users
+                            </span>
+
+                            <strong id="activeUsers">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="status-row">
+
+                            <span>
+                                Blocked Users
+                            </span>
+
+                            <strong id="blockedUsers">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="status-row">
+
+                            <span>
+                                Submitted Recipes
+                            </span>
+
+                            <strong id="submittedRecipes">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="admin.js"></script>
+
+
+<script>
+
+async function loadAnalytics() {
+
+    try {
+
+        const recipes =
+            await AdminPanel.apiRequest(
+                "/recipes/"
+            );
+
+        const recipeList =
+            recipes.recipes || [];
+
+
+        document.getElementById(
+            "analyticsRecipes"
+        ).textContent =
+            recipeList.length;
+
+
+        document.getElementById(
+            "publishedRecipes"
+        ).textContent =
+            recipeList.length;
+
+
+        document.getElementById(
+            "famousRecipes"
+        ).textContent =
+            recipeList.filter(
+                recipe =>
+                    recipe.is_famous
+            ).length;
+
+
+        document.getElementById(
+            "totalViews"
+        ).textContent =
+            recipeList.reduce(
+                (
+                    total,
+                    recipe
+                ) =>
+                    total +
+                    Number(
+                        recipe.views || 0
+                    ),
+                0
+            );
+
+
+        document.getElementById(
+            "totalLikes"
+        ).textContent =
+            recipeList.reduce(
+                (
+                    total,
+                    recipe
+                ) =>
+                    total +
+                    Number(
+                        recipe.likes || 0
+                    ),
+                0
+            );
+
+
+        const users =
+            await AdminPanel.apiRequest(
+                "/users/"
+            );
+
+        const userList =
+            users.users || [];
+
+
+        document.getElementById(
+            "analyticsUsers"
+        ).textContent =
+            userList.length;
+
+
+        document.getElementById(
+            "activeUsers"
+        ).textContent =
+            userList.filter(
+                user =>
+                    user.status ===
+                    "active"
+            ).length;
+
+
+        document.getElementById(
+            "blockedUsers"
+        ).textContent =
+            userList.filter(
+                user =>
+                    user.status ===
+                    "blocked"
+            ).length;
+
+
+        document.getElementById(
+            "submittedRecipes"
+        ).textContent =
+            userList.reduce(
+                (
+                    total,
+                    user
+                ) =>
+                    total +
+                    Number(
+                        user.submitted_recipe_count ||
+                        0
+                    ),
+                0
+            );
+
+
+        const pending =
+            await AdminPanel.apiRequest(
+                "/submissions/?status=pending"
+            );
+
+
+        document.getElementById(
+            "analyticsPending"
+        ).textContent =
+            pending.count || 0;
+
+
+        const stateResponse =
+            await fetch(
+                "../data/states.json"
+            );
+
+        const states =
+            await stateResponse.json();
+
+
+        document.getElementById(
+            "analyticsStates"
+        ).textContent =
+            states.length;
+
+    } catch (error) {
+
+        AdminPanel.showToast(
+            "Unable to load analytics.",
+            "error"
+        );
+
+    }
+
+}
+
+
+loadAnalytics();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore famous and traditional recipes from Indian districts with AI Cooking Assistant."
+    >
+
+    <title>District Recipes | AI Cooking Assistant</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* =========================================================
+           DISTRICT PAGE
+        ========================================================== */
+
+        .district-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(249, 115, 22, 0.08),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(124, 58, 237, 0.08),
+                    transparent 35%
+                ),
+                #f8fafc;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================== */
+
+        .district-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 145px 20px 70px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7ed 0%,
+                    #ffffff 50%,
+                    #f5f3ff 100%
+                );
+        }
+
+        .district-hero::before {
+            content: "";
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            left: -160px;
+            top: -180px;
+            border-radius: 50%;
+            background: rgba(249, 115, 22, 0.10);
+            animation: districtFloat 8s ease-in-out infinite;
+        }
+
+        .district-hero::after {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            right: -150px;
+            bottom: -180px;
+            border-radius: 50%;
+            background: rgba(124, 58, 237, 0.08);
+            animation: districtFloat 9s ease-in-out infinite reverse;
+        }
+
+        .district-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 22px;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .breadcrumb a {
+            color: #ea580c;
+            text-decoration: none;
+        }
+
+        .breadcrumb i {
+            font-size: 9px;
+            color: #94a3b8;
+        }
+
+        .district-title-area {
+            text-align: center;
+        }
+
+        .district-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            margin-bottom: 17px;
+            border-radius: 999px;
+            background: rgba(249, 115, 22, 0.10);
+            color: #ea580c;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .district-title-area h1 {
+            margin: 0 0 15px;
+            color: #111827;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(35px, 5vw, 58px);
+            line-height: 1.08;
+            font-weight: 800;
+        }
+
+        .district-title-area h1 span {
+            background: linear-gradient(
+                135deg,
+                #f97316,
+                #ef4444,
+                #7c3aed
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .district-description {
+            max-width: 750px;
+            margin: 0 auto;
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           DISTRICT INFO
+        ========================================================== */
+
+        .district-info {
+            max-width: 1100px;
+            margin: 35px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .info-card {
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.04);
+            text-align: center;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 9px;
+            border-radius: 12px;
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        .info-card strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #111827;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .info-card span {
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* =========================================================
+           SEARCH / FILTER
+        ========================================================== */
+
+        .district-tools {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 10px;
+        }
+
+        .tools-card {
+            padding: 22px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .recipe-search {
+            flex: 1;
+            height: 52px;
+            min-width: 0;
+            padding: 0 17px;
+            border: 2px solid #e2e8f0;
+            border-radius: 13px;
+            background: #ffffff;
+            color: #0f172a;
+            font-family: "Inter", sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: 0.25s ease;
+        }
+
+        .recipe-search:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.10);
+        }
+
+        .search-button {
+            height: 52px;
+            padding: 0 21px;
+            border: none;
+            border-radius: 13px;
+            background: #111827;
+            color: #ffffff;
+            font-family: "Inter", sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .search-button:hover {
+            background: #f97316;
+            transform: translateY(-1px);
+        }
+
+        .filter-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 17px;
+        }
+
+        .filter-label {
+            margin-right: 5px;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .recipe-filter {
+            border: 1px solid #e2e8f0;
+            padding: 8px 13px;
+            border-radius: 999px;
+            background: #f8fafc;
+            color: #475569;
+            font-family: "Inter", sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .recipe-filter:hover,
+        .recipe-filter.active {
+            border-color: #f97316;
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        /* =========================================================
+           SECTION
+        ========================================================== */
+
+        .district-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 20px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 7px;
+            color: #111827;
+            font-family: "Poppins", sans-serif;
+            font-size: 29px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .recipe-count {
+            color: #ea580c;
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        /* =========================================================
+           FAMOUS RECIPES
+        ========================================================== */
+
+        .famous-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .famous-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 19px;
+            background: #ffffff;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+            transition: 0.3s ease;
+        }
+
+        .famous-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.11);
+        }
+
+        .famous-image {
+            position: relative;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff7ed,
+                    #fed7aa
+                );
+            font-size: 58px;
+        }
+
+        .famous-badge {
+            position: absolute;
+            top: 11px;
+            left: 11px;
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #ea580c;
+            font-size: 9px;
+            font-weight: 800;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+        }
+
+        .famous-content {
+            padding: 17px;
+        }
+
+        .famous-content h3 {
+            margin: 0 0 7px;
+            color: #111827;
+            font-family: "Poppins", sans-serif;
+            font-size: 17px;
+        }
+
+        .famous-content p {
+            margin: 0 0 13px;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .recipe-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .recipe-meta span {
+            padding: 5px 7px;
+            border-radius: 7px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .recipe-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #ea580c;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .recipe-link:hover {
+            color: #c2410c;
+        }
+
+        /* =========================================================
+           ALL RECIPES
+        ========================================================== */
+
+        .all-recipes-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 55px 20px 80px;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            background: #ffffff;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+            transition: 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 17px 38px rgba(15, 23, 42, 0.10);
+        }
+
+        .recipe-image {
+            height: 175px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fefce8,
+                    #fde68a
+                );
+            font-size: 62px;
+        }
+
+        .recipe-body {
+            padding: 19px;
+        }
+
+        .recipe-body h3 {
+            margin: 0 0 8px;
+            color: #111827;
+            font-family: "Poppins", sans-serif;
+            font-size: 18px;
+        }
+
+        .recipe-body p {
+            margin: 0 0 14px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .recipe-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .recipe-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .recipe-info span {
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .view-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 11px;
+            border-radius: 9px;
+            background: #111827;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 800;
+            transition: 0.2s ease;
+        }
+
+        .view-button:hover {
+            background: #f97316;
+        }
+
+        /* =========================================================
+           EMPTY STATE
+        ========================================================== */
+
+        .empty-state {
+            display: none;
+            padding: 65px 20px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 20px;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .empty-state.active {
+            display: block;
+        }
+
+        .empty-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: #fff7ed;
+            color: #f97316;
+            font-size: 28px;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 8px;
+            color: #1e293b;
+            font-family: "Poppins", sans-serif;
+            font-size: 20px;
+        }
+
+        .empty-state p {
+            max-width: 520px;
+            margin: 0 auto;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* =========================================================
+           AI BANNER
+        ========================================================== */
+
+        .district-ai-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .district-ai-card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 35px;
+            border-radius: 24px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #312e81
+                );
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+        }
+
+        .district-ai-card::after {
+            content: "";
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            right: -100px;
+            top: -120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .district-ai-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .district-ai-content h2 {
+            margin: 0 0 10px;
+            color: #ffffff;
+            font-family: "Poppins", sans-serif;
+            font-size: 25px;
+        }
+
+        .district-ai-content p {
+            max-width: 650px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .district-ai-button {
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 20px;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #111827;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+            transition: 0.25s ease;
+        }
+
+        .district-ai-button:hover {
+            transform: translateY(-2px);
+            background: #fff7ed;
+            color: #ea580c;
+        }
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================== */
+
+        @keyframes districtFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================== */
+
+        @media (max-width: 1050px) {
+
+            .famous-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .district-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            .recipe-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .district-hero {
+                padding: 125px 16px 55px;
+            }
+
+            .district-hero-content,
+            .district-tools,
+            .district-section,
+            .all-recipes-section,
+            .district-ai-section {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .district-info {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-row {
+                flex-direction: column;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .famous-grid,
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .district-ai-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 26px;
+            }
+
+            .district-ai-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+        }
+
+        @media (max-width: 400px) {
+
+            .district-title-area h1 {
+                font-size: 32px;
+            }
+
+            .district-info {
+                gap: 8px;
+            }
+
+            .info-card {
+                padding: 14px 8px;
+            }
+
+            .info-card strong {
+                font-size: 16px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .district-hero::before,
+            .district-hero::after {
+                animation: none;
+            }
+
+            .famous-card,
+            .recipe-card,
+            .district-ai-button {
+                transition: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="district-page">
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="site-header" id="mainHeader">
+
+            <div class="container">
+
+                <nav class="navbar">
+
+                    <a href="../index.html" class="brand">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span class="brand-text">
+                            AI Cooking
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+
+                    <div class="nav-links">
+
+                        <a href="../index.html">
+                            Home
+                        </a>
+
+                        <a href="ai-chat.html">
+                            AI Assistant
+                        </a>
+
+                        <a href="states.html" class="active">
+                            India
+                        </a>
+
+                        <a href="festivals.html">
+                            Festivals
+                        </a>
+
+                        <a href="cuisines.html">
+                            Cuisines
+                        </a>
+
+                        <a href="ingredient-finder.html">
+                            Ingredients
+                        </a>
+
+                        <a href="login.html" class="nav-login">
+                            Login
+                        </a>
+
+                        <a href="signup.html" class="nav-signup">
+                            Sign Up
+                        </a>
+
+                    </div>
+
+
+                    <button
+                        class="mobile-menu-button"
+                        id="mobileMenuButton"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                    >
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                </nav>
+
+
+                <div class="mobile-menu" id="mobileMenu">
+
+                    <a href="../index.html">
+                        Home
+                    </a>
+
+                    <a href="ai-chat.html">
+                        AI Assistant
+                    </a>
+
+                    <a href="states.html">
+                        India
+                    </a>
+
+                    <a href="festivals.html">
+                        Festivals
+                    </a>
+
+                    <a href="cuisines.html">
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Ingredients
+                    </a>
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                    <a href="signup.html">
+                        Sign Up
+                    </a>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             MAIN
+        ====================================================== -->
+
+        <main>
+
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+
+            <section class="district-hero">
+
+                <div class="district-hero-content">
+
+                    <div class="breadcrumb">
+
+                        <a href="../index.html">
+                            Home
+                        </a>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <a href="states.html">
+                            India
+                        </a>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <span id="breadcrumbState">
+                            State
+                        </span>
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                        <span id="breadcrumbDistrict">
+                            District
+                        </span>
+
+                    </div>
+
+
+                    <div class="district-title-area">
+
+                        <div class="district-badge">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            District Food Guide
+
+                        </div>
+
+
+                        <h1>
+
+                            <span id="districtName">
+                                District
+                            </span>
+
+                            <br>
+
+                            <span>Recipes</span>
+
+                        </h1>
+
+
+                        <p
+                            class="district-description"
+                            id="districtDescription"
+                        >
+                            Discover famous local dishes, traditional
+                            recipes, regional specialties, and everyday
+                            food from this district.
+                        </p>
+
+                    </div>
+
+
+                    <!-- District Stats -->
+
+                    <div class="district-info">
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                <i class="fa-solid fa-bowl-food"></i>
+                            </div>
+
+                            <strong id="recipeStat">
+                                20+
+                            </strong>
+
+                            <span>
+                                Local Recipes
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                            <strong>
+                                6+
+                            </strong>
+
+                            <span>
+                                Famous Dishes
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+
+                            <strong>
+                                Regional
+                            </strong>
+
+                            <span>
+                                Cuisine
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-card">
+
+                            <div class="info-icon">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+
+                            <strong>
+                                AI
+                            </strong>
+
+                            <span>
+                                Recipe Help
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SEARCH & FILTER
+            ================================================== -->
+
+            <section class="district-tools">
+
+                <div class="tools-card">
+
+                    <div class="search-row">
+
+                        <input
+                            type="search"
+                            id="recipeSearch"
+                            class="recipe-search"
+                            placeholder="Search recipes in this district..."
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            class="search-button"
+                            id="searchButton"
+                        >
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Search
+                        </button>
+
+                    </div>
+
+
+                    <div class="filter-row">
+
+                        <span class="filter-label">
+                            Category:
+                        </span>
+
+                        <button
+                            type="button"
+                            class="recipe-filter active"
+                            data-category="all"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            type="button"
+                            class="recipe-filter"
+                            data-category="main-course"
+                        >
+                            Main Course
+                        </button>
+
+                        <button
+                            type="button"
+                            class="recipe-filter"
+                            data-category="breakfast"
+                        >
+                            Breakfast
+                        </button>
+
+                        <button
+                            type="button"
+                            class="recipe-filter"
+                            data-category="snacks"
+                        >
+                            Snacks
+                        </button>
+
+                        <button
+                            type="button"
+                            class="recipe-filter"
+                            data-category="sweets"
+                        >
+                            Sweets
+                        </button>
+
+                        <button
+                            type="button"
+                            class="recipe-filter"
+                            data-category="vegetarian"
+                        >
+                            Vegetarian
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FAMOUS RECIPES
+            ================================================== -->
+
+            <section class="district-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Famous Local Recipes
+                        </h2>
+
+                        <p>
+                            Popular dishes associated with this district.
+                        </p>
+
+                    </div>
+
+                    <span class="recipe-count">
+                        Top Recipes
+                    </span>
+
+                </div>
+
+
+                <div class="famous-grid" id="famousGrid">
+
+                    <!-- Famous Recipe 1 -->
+
+                    <article class="famous-card">
+
+                        <div class="famous-image">
+
+                            <span class="famous-badge">
+                                Famous
+                            </span>
+
+                            🍛
+
+                        </div>
+
+                        <div class="famous-content">
+
+                            <h3>
+                                Traditional Local Curry
+                            </h3>
+
+                            <p>
+                                A traditional regional curry prepared
+                                with local spices and fresh ingredients.
+                            </p>
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    40 min
+                                </span>
+
+                                <span>
+                                    Medium
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="recipe.html?recipe=local-curry"
+                                class="recipe-link"
+                            >
+                                View Recipe
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Famous Recipe 2 -->
+
+                    <article class="famous-card">
+
+                        <div class="famous-image">
+
+                            <span class="famous-badge">
+                                Local Special
+                            </span>
+
+                            🥘
+
+                        </div>
+
+                        <div class="famous-content">
+
+                            <h3>
+                                Regional Vegetable Dish
+                            </h3>
+
+                            <p>
+                                A flavorful vegetable preparation
+                                inspired by local cooking traditions.
+                            </p>
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    30 min
+                                </span>
+
+                                <span>
+                                    Easy
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="recipe.html?recipe=regional-vegetable"
+                                class="recipe-link"
+                            >
+                                View Recipe
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Famous Recipe 3 -->
+
+                    <article class="famous-card">
+
+                        <div class="famous-image">
+
+                            <span class="famous-badge">
+                                Traditional
+                            </span>
+
+                            🍚
+
+                        </div>
+
+                        <div class="famous-content">
+
+                            <h3>
+                                Traditional Rice Dish
+                            </h3>
+
+                            <p>
+                                A comforting rice-based preparation
+                                enjoyed in local homes and celebrations.
+                            </p>
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    35 min
+                                </span>
+
+                                <span>
+                                    Easy
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="recipe.html?recipe=traditional-rice"
+                                class="recipe-link"
+                            >
+                                View Recipe
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Famous Recipe 4 -->
+
+                    <article class="famous-card">
+
+                        <div class="famous-image">
+
+                            <span class="famous-badge">
+                                Sweet
+                            </span>
+
+                            🍮
+
+                        </div>
+
+                        <div class="famous-content">
+
+                            <h3>
+                                Local Traditional Sweet
+                            </h3>
+
+                            <p>
+                                A beloved regional sweet traditionally
+                                prepared for celebrations.
+                            </p>
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    45 min
+                                </span>
+
+                                <span>
+                                    Medium
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="recipe.html?recipe=local-sweet"
+                                class="recipe-link"
+                            >
+                                View Recipe
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ALL RECIPES
+            ================================================== -->
+
+            <section class="all-recipes-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            All District Recipes
+                        </h2>
+
+                        <p>
+                            Explore more dishes from this region.
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="recipe-count"
+                        id="allRecipeCount"
+                    >
+                        8 Recipes
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="recipe-grid"
+                    id="recipeGrid"
+                >
+
+                    <!-- Recipe 1 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="main-course"
+                        data-name="traditional chicken curry"
+                    >
+
+                        <div class="recipe-image">
+                            🍗
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Traditional Chicken Curry
+                            </h3>
+
+                            <p>
+                                A flavorful chicken curry prepared
+                                with regional spices.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        50 min
+                                    </span>
+
+                                    <span>
+                                        Medium
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=traditional-chicken-curry"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 2 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="vegetarian"
+                        data-name="local vegetable curry"
+                    >
+
+                        <div class="recipe-image">
+                            🥘
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Local Vegetable Curry
+                            </h3>
+
+                            <p>
+                                Seasonal vegetables cooked with
+                                traditional spices.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        30 min
+                                    </span>
+
+                                    <span>
+                                        Easy
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=local-vegetable-curry"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 3 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="breakfast"
+                        data-name="traditional breakfast"
+                    >
+
+                        <div class="recipe-image">
+                            🥞
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Traditional Breakfast
+                            </h3>
+
+                            <p>
+                                A simple regional breakfast made
+                                with local ingredients.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        20 min
+                                    </span>
+
+                                    <span>
+                                        Easy
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=traditional-breakfast"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 4 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="snacks"
+                        data-name="regional snack"
+                    >
+
+                        <div class="recipe-image">
+                            🥟
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Regional Snack
+                            </h3>
+
+                            <p>
+                                A popular local snack perfect for
+                                tea time and family gatherings.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        25 min
+                                    </span>
+
+                                    <span>
+                                        Easy
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=regional-snack"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 5 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="sweets"
+                        data-name="traditional local sweet"
+                    >
+
+                        <div class="recipe-image">
+                            🍬
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Traditional Local Sweet
+                            </h3>
+
+                            <p>
+                                A regional sweet commonly prepared
+                                during festivals and celebrations.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        40 min
+                                    </span>
+
+                                    <span>
+                                        Medium
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=traditional-local-sweet"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 6 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="main-course"
+                        data-name="regional fish curry"
+                    >
+
+                        <div class="recipe-image">
+                            🐟
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Regional Fish Curry
+                            </h3>
+
+                            <p>
+                                A traditional fish preparation with
+                                aromatic regional spices.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        45 min
+                                    </span>
+
+                                    <span>
+                                        Medium
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=regional-fish-curry"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 7 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="vegetarian"
+                        data-name="dal traditional style"
+                    >
+
+                        <div class="recipe-image">
+                            🫘
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Traditional Dal
+                            </h3>
+
+                            <p>
+                                Comforting lentils cooked with spices
+                                in a traditional regional style.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        35 min
+                                    </span>
+
+                                    <span>
+                                        Easy
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=traditional-dal"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 8 -->
+
+                    <article
+                        class="recipe-card"
+                        data-category="snacks"
+                        data-name="traditional fried snack"
+                    >
+
+                        <div class="recipe-image">
+                            🥨
+                        </div>
+
+                        <div class="recipe-body">
+
+                            <h3>
+                                Traditional Fried Snack
+                            </h3>
+
+                            <p>
+                                A crispy local snack served during
+                                tea time and celebrations.
+                            </p>
+
+                            <div class="recipe-footer">
+
+                                <div class="recipe-info">
+
+                                    <span>
+                                        <i class="fa-regular fa-clock"></i>
+                                        25 min
+                                    </span>
+
+                                    <span>
+                                        Easy
+                                    </span>
+
+                                </div>
+
+                                <a
+                                    href="recipe.html?recipe=traditional-fried-snack"
+                                    class="view-button"
+                                >
+                                    View
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- Empty -->
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <h3>
+                        No Recipes Found
+                    </h3>
+
+                    <p>
+                        Try another recipe name or choose a different
+                        category.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AI SECTION
+            ================================================== -->
+
+            <section class="district-ai-section">
+
+                <div class="district-ai-card">
+
+                    <div class="district-ai-content">
+
+                        <h2>
+                            Can't Find the Dish You Want?
+                        </h2>
+
+                        <p>
+                            Ask the AI Cooking Assistant to create a
+                            recipe using local ingredients, your
+                            preferred cooking time, and your food
+                            preferences.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="ai-chat.html"
+                        class="district-ai-button"
+                    >
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        Ask AI Assistant
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="site-footer">
+
+            <div class="container">
+
+                <div class="footer-content">
+
+                    <div class="footer-brand">
+
+                        <a
+                            href="../index.html"
+                            class="brand"
+                        >
+
+                            <span class="brand-icon">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+
+                            <span class="brand-text">
+                                AI Cooking
+                                <small>Assistant</small>
+                            </span>
+
+                        </a>
+
+                        <p>
+                            Your smart cooking companion for recipes,
+                            ingredients, and everyday kitchen inspiration.
+                        </p>
+
+                    </div>
+
+
+                    <div class="footer-links">
+
+                        <h4>
+                            Explore
+                        </h4>
+
+                        <a href="states.html">
+                            Indian Recipes
+                        </a>
+
+                        <a href="festivals.html">
+                            Festival Recipes
+                        </a>
+
+                        <a href="cuisines.html">
+                            World Cuisines
+                        </a>
+
+                        <a href="ingredient-finder.html">
+                            Ingredient Finder
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-links">
+
+                        <h4>
+                            AI Features
+                        </h4>
+
+                        <a href="ai-chat.html">
+                            AI Chat
+                        </a>
+
+                        <a href="ai-chat.html">
+                            Recipe Generator
+                        </a>
+
+                        <a href="ai-chat.html">
+                            Voice Assistant
+                        </a>
+
+                        <a href="ai-chat.html">
+                            Smart Substitution
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-links">
+
+                        <h4>
+                            Account
+                        </h4>
+
+                        <a href="login.html">
+                            Login
+                        </a>
+
+                        <a href="signup.html">
+                            Create Account
+                        </a>
+
+                        <a href="profile.html">
+                            My Profile
+                        </a>
+
+                        <a href="submit-recipe.html">
+                            Submit Recipe
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="footer-bottom">
+
+                    <p>
+                        ©
+                        <span id="currentYear"></span>
+                        AI Cooking Assistant. All rights reserved.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+
+        <!-- Back To Top -->
+
+        <button
+            class="back-to-top"
+            id="backToTop"
+            aria-label="Back to top"
+        >
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                /* ===============================================
+                   URL PARAMETERS
+                =============================================== */
+
+                const params =
+                    new URLSearchParams(
+                        window.location.search
+                    );
+
+                const stateParam =
+                    params.get("state");
+
+                const districtParam =
+                    params.get("district");
+
+
+                /* ===============================================
+                   ELEMENTS
+                =============================================== */
+
+                const districtName =
+                    document.getElementById(
+                        "districtName"
+                    );
+
+                const breadcrumbState =
+                    document.getElementById(
+                        "breadcrumbState"
+                    );
+
+                const breadcrumbDistrict =
+                    document.getElementById(
+                        "breadcrumbDistrict"
+                    );
+
+                const districtDescription =
+                    document.getElementById(
+                        "districtDescription"
+                    );
+
+
+                /* ===============================================
+                   FORMAT NAME
+                =============================================== */
+
+                function formatName(value) {
+
+                    if (!value) {
+                        return "";
+                    }
+
+                    return value
+                        .replace(/[-_]+/g, " ")
+                        .split(" ")
+                        .filter(Boolean)
+                        .map(word =>
+                            word.charAt(0).toUpperCase() +
+                            word.slice(1).toLowerCase()
+                        )
+                        .join(" ");
+
+                }
+
+
+                /* ===============================================
+                   DISTRICT DATA
+                =============================================== */
+
+                const districtData = {
+
+                    bhubaneswar: {
+                        state: "Odisha",
+                        description:
+                            "Explore popular Odia dishes, traditional recipes, snacks, sweets, and everyday food associated with Bhubaneswar and the surrounding region."
+                    },
+
+                    cuttack: {
+                        state: "Odisha",
+                        description:
+                            "Discover traditional food, sweets, snacks, and regional recipes associated with Cuttack."
+                    },
+
+                    puri: {
+                        state: "Odisha",
+                        description:
+                            "Explore traditional food and regional recipes from Puri, including festive and everyday dishes."
+                    },
+
+                    berhampur: {
+                        state: "Odisha",
+                        description:
+                            "Discover local flavors, snacks, sweets, and traditional recipes from the Berhampur region."
+                    },
+
+                    khordha: {
+                        state: "Odisha",
+                        description:
+                            "Explore traditional dishes and local recipes from Khordha and the surrounding areas."
+                    }
+
+                };
+
+
+                /* ===============================================
+                   SET DISTRICT
+                =============================================== */
+
+                const cleanDistrict =
+                    formatName(districtParam) ||
+                    "Bhubaneswar";
+
+                const cleanState =
+                    formatName(stateParam) ||
+                    "Odisha";
+
+
+                districtName.textContent =
+                    cleanDistrict;
+
+                breadcrumbDistrict.textContent =
+                    cleanDistrict;
+
+                breadcrumbState.textContent =
+                    cleanState;
+
+
+                const districtKey =
+                    (districtParam || "bhubaneswar")
+                        .toLowerCase()
+                        .replace(/\s+/g, "-");
+
+
+                if (districtData[districtKey]) {
+
+                    districtDescription.textContent =
+                        districtData[districtKey].description;
+
+                }
+
+
+                /* ===============================================
+                   SEARCH & FILTER
+                =============================================== */
+
+                const searchInput =
+                    document.getElementById(
+                        "recipeSearch"
+                    );
+
+                const searchButton =
+                    document.getElementById(
+                        "searchButton"
+                    );
+
+                const filterButtons =
+                    document.querySelectorAll(
+                        ".recipe-filter"
+                    );
+
+                const recipeCards =
+                    document.querySelectorAll(
+                        ".recipe-card"
+                    );
+
+                const emptyState =
+                    document.getElementById(
+                        "emptyState"
+                    );
+
+                const recipeCount =
+                    document.getElementById(
+                        "allRecipeCount"
+                    );
+
+
+                let activeCategory = "all";
+
+
+                /* ===============================================
+                   FILTER RECIPES
+                =============================================== */
+
+                function filterRecipes() {
+
+                    const search =
+                        searchInput.value
+                            .trim()
+                            .toLowerCase();
+
+                    let visibleCount = 0;
+
+
+                    recipeCards.forEach(card => {
+
+                        const category =
+                            card.dataset.category ||
+                            "";
+
+                        const name =
+                            card.dataset.name ||
+                            card.textContent
+                                .toLowerCase();
+
+                        const categoryMatch =
+                            activeCategory === "all" ||
+                            category === activeCategory;
+
+                        const searchMatch =
+                            !search ||
+                            name.includes(search);
+
+
+                        if (
+                            categoryMatch &&
+                            searchMatch
+                        ) {
+
+                            card.style.display =
+                                "block";
+
+                            visibleCount++;
+
+                        } else {
+
+                            card.style.display =
+                                "none";
+
+                        }
+
+                    });
+
+
+                    recipeCount.textContent =
+                        `${visibleCount} Recipe${visibleCount === 1 ? "" : "s"}`;
+
+
+                    if (visibleCount === 0) {
+
+                        emptyState.classList.add(
+                            "active"
+                        );
+
+                    } else {
+
+                        emptyState.classList.remove(
+                            "active"
+                        );
+
+                    }
+
+                }
+
+
+                /* ===============================================
+                   SEARCH BUTTON
+                =============================================== */
+
+                searchButton.addEventListener(
+                    "click",
+                    filterRecipes
+                );
+
+
+                /* ===================

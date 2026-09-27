@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Users - Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item active">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../index.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>Users</h1>
+
+                <p>
+                    Manage registered users.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>User Management</h2>
+
+                    <p>
+                        View and manage user accounts.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="search"
+                            id="userSearch"
+                            placeholder="Search by name or mobile..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="table-wrapper"
+                    id="usersContainer"
+                >
+
+                    <div class="empty-state">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        <h3>Loading users...</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="admin.js"></script>
+
+
+<script>
+
+let allUsers = [];
+
+const container =
+    document.getElementById(
+        "usersContainer"
+    );
+
+const search =
+    document.getElementById(
+        "userSearch"
+    );
+
+
+async function loadUsers() {
+
+    try {
+
+        const data =
+            await AdminPanel.apiRequest(
+                "/users/"
+            );
+
+        allUsers =
+            data.users || [];
+
+        renderUsers();
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+
+                <i class="fa-solid fa-server"></i>
+
+                <h3>Backend not connected</h3>
+
+                <p>
+                    Start the backend server.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+function renderUsers() {
+
+    const query =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    const filtered =
+        allUsers.filter(
+            user =>
+                user.name
+                    .toLowerCase()
+                    .includes(query) ||
+                user.mobile
+                    .toLowerCase()
+                    .includes(query)
+        );
+
+
+    if (!filtered.length) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h3>No users found</h3>
+
+                <p>
+                    Registered users will appear here.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Status</th>
+                    <th>Recipes Submitted</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${filtered.map(user => `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(user.name)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHTML(user.mobile)}
+                        </td>
+
+                        <td>
+
+                            ${
+                                user.status === "active"
+                                ?
+                                `<span class="badge badge-success">
+                                    Active
+                                </span>`
+                                :
+                                `<span class="badge badge-danger">
+                                    Blocked
+                                </span>`
+                            }
+
+                        </td>
+
+                        <td>
+                            ${user.submitted_recipe_count || 0}
+                        </td>
+
+                        <td>
+                            ${
+                                user.created_at
+                                ?
+                                new Date(
+                                    user.created_at
+                                ).toLocaleDateString()
+                                :
+                                "-"
+                            }
+                        </td>
+
+                        <td>
+
+                            ${
+                                user.status === "active"
+                                ?
+                                `<button
+                                    class="danger-button"
+                                    onclick="toggleUser('${user.id}', 'block')"
+                                >
+                                    <i class="fa-solid fa-ban"></i>
+                                    Block
+                                </button>`
+                                :
+                                `<button
+                                    class="success-button"
+                                    onclick="toggleUser('${user.id}', 'unblock')"
+                                >
+                                    <i class="fa-solid fa-check"></i>
+                                    Unblock
+                                </button>`
+                            }
+
+                        </td>
+
+                    </tr>
+
+                `).join("")}
+
+            </tbody>
+
+        </table>
+
+    `;
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+window.toggleUser =
+    async function(
+        userId,
+        action
+    ) {
+
+        try {
+
+            await AdminPanel.apiRequest(
+                `/users/${userId}/${action}`,
+                {
+                    method: "POST"
+                }
+            );
+
+            AdminPanel.showToast(
+                action === "block"
+                    ? "User blocked."
+                    : "User unblocked."
+            );
+
+            loadUsers();
+
+        } catch (error) {
+
+            AdminPanel.showToast(
+                error.message,
+                "error"
+            );
+
+        }
+
+    };
+
+
+search.addEventListener(
+    "input",
+    renderUsers
+);
+
+
+loadUsers();
+
+</script>
+
+</body>
+</html>

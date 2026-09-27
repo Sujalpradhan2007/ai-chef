@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Login to AI Cooking Assistant using your mobile number."
+    >
+
+    <title>Login | AI Cooking Assistant</title>
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           LOGIN PAGE
+        ========================================== */
+
+        .auth-page {
+            min-height: 100vh;
+            padding: 110px 20px 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(255, 107, 53, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(255, 183, 77, 0.12),
+                    transparent 30%
+                ),
+                #fffaf7;
+        }
+
+        .auth-wrapper {
+            width: min(1050px, 100%);
+
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            background: white;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.10);
+        }
+
+        /* =========================================
+           LEFT PANEL
+        ========================================== */
+
+        .auth-intro {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 55px 45px;
+
+            overflow: hidden;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6b35,
+                    #ff914d
+                );
+        }
+
+        .auth-intro::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            right: -130px;
+            top: -100px;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+        }
+
+        .auth-intro::after {
+            content: "";
+
+            position: absolute;
+
+            width: 240px;
+            height: 240px;
+
+            border-radius: 50%;
+
+            left: -120px;
+            bottom: -100px;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+        }
+
+        .auth-intro-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-logo {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 25px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.18);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 28px;
+        }
+
+        .auth-intro h1 {
+            margin: 0 0 15px;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: clamp(30px, 4vw, 44px);
+
+            line-height: 1.15;
+        }
+
+        .auth-intro > div > p {
+            margin: 0 0 28px;
+
+            color: rgba(255, 255, 255, 0.88);
+
+            line-height: 1.8;
+
+            font-size: 15px;
+        }
+
+        .auth-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .auth-benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .auth-benefit-icon {
+            width: 35px;
+            height: 35px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255, 255, 255, 0.15);
+        }
+
+        /* =========================================
+           RIGHT PANEL
+        ========================================== */
+
+        .auth-form-panel {
+            padding: 50px 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-heading {
+            margin-bottom: 28px;
+        }
+
+        .auth-heading h2 {
+            margin: 0 0 7px;
+
+            color: #222;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 30px;
+        }
+
+        .auth-heading p {
+            margin: 0;
+
+            color: #777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           LOGIN FORM
+        ========================================== */
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .auth-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .auth-field label {
+            color: #333;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .auth-input-wrapper {
+            position: relative;
+        }
+
+        .auth-input-icon {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #999;
+
+            font-size: 15px;
+
+            pointer-events: none;
+        }
+
+        .auth-input {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 13px 14px 13px 42px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: white;
+
+            color: #333;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            transition: 0.25s ease;
+        }
+
+        .auth-input:focus {
+            border-color: #ff6b35;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 107, 53, 0.10);
+        }
+
+        .auth-input::placeholder {
+            color: #aaa;
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 13px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #888;
+
+            cursor: pointer;
+
+            padding: 5px;
+        }
+
+        .password-toggle:hover {
+            color: #ff6b35;
+        }
+
+        /* =========================================
+           LOGIN OPTIONS
+        ========================================== */
+
+        .auth-options {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-top: -2px;
+        }
+
+        .remember-me {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #666;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        .remember-me input {
+            accent-color: #ff6b35;
+        }
+
+        .forgot-password {
+            border: none;
+
+            background: transparent;
+
+            color: #ff6b35;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            padding: 0;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================================
+           MAIN BUTTON
+        ========================================== */
+
+        .auth-button {
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 14px 18px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #ff6b35;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+        .auth-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(255, 107, 53, 0.25);
+        }
+
+        .auth-button:disabled {
+            opacity: 0.65;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+            box-shadow: none;
+        }
+
+        /* =========================================
+           SIGNUP LINK
+        ========================================== */
+
+        .auth-switch {
+            margin-top: 23px;
+
+            text-align: center;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+        .auth-switch a {
+            color: #ff6b35;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================================
+           FORGOT PASSWORD MODAL
+        ========================================== */
+
+        .forgot-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0, 0, 0, 0.55);
+
+            backdrop-filter: blur(5px);
+        }
+
+        .forgot-modal.active {
+            display: flex;
+        }
+
+        .forgot-modal-card {
+            position: relative;
+
+            width: min(480px, 100%);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background: white;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.20);
+
+            animation:
+                modalSlideIn 0.25s ease;
+        }
+
+        @keyframes modalSlideIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+        .modal-close {
+            position: absolute;
+
+            top: 15px;
+            right: 15px;
+
+            width: 36px;
+            height: 36px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #f5f5f5;
+
+            color: #555;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #ffebe4;
+
+            color: #ff6b35;
+        }
+
+        .forgot-modal-card h2 {
+            margin: 0 0 8px;
+
+            color: #222;
+
+            font-family: "Poppins", sans-serif;
+
+            font-size: 24px;
+        }
+
+        .forgot-modal-card > p {
+            margin: 0 0 22px;
+
+            color: #777;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .forgot-step {
+            display: none;
+        }
+
+        .forgot-step.active {
+            display: block;
+        }
+
+        .otp-row {
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .otp-row .auth-input {
+            flex: 1;
+        }
+
+        .small-button {
+            flex-shrink: 0;
+
+            padding: 0 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #fff0e9;
+
+            color: #ff6b35;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .small-button:hover {
+            background: #ff6b35;
+
+            color: white;
+        }
+
+        .small-button:disabled {
+            opacity: 0.55;
+
+            cursor: not-allowed;
+        }
+
+        .otp-message {
+            margin-top: 10px;
+
+            color: #777;
+
+            font-size: 12px;
+        }
+
+        .otp-message.success {
+            color: #218c4b;
+        }
+
+        .otp-message.error {
+            color: #d63031;
+        }
+
+        /* =========================================
+           DEMO NOTICE
+        ========================================== */
+
+        .demo-notice {
+            padding: 11px 13px;
+
+            border-radius: 10px;
+
+            background: #fff8e6;
+
+            border: 1px solid #ffe6a8;
+
+            color: #8a6500;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 850px) {
+
+            .auth-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-intro {
+                padding: 40px 35px;
+            }
+
+            .auth-benefits {
+                display: grid;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .auth-form-panel {
+                padding: 40px 35px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .auth-page {
+                padding:
+                    90px 14px 35px;
+            }
+
+            .auth-intro {
+                padding: 32px 25px;
+            }
+
+            .auth-intro h1 {
+                font-size: 30px;
+            }
+
+            .auth-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-form-panel {
+                padding: 32px 22px;
+            }
+
+            .auth-heading h2 {
+                font-size: 26px;
+            }
+
+            .auth-options {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .otp-row {
+                flex-direction: column;
+            }
+
+            .small-button {
+                min-height: 44px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header
+        id="mainHeader"
+        class="main-header"
+    >
+
+        <div class="container navbar">
+
+            <a
+                href="../index.html"
+                class="brand"
+            >
+
+                <span class="brand-icon">
+                    <i class="fa-solid fa-utensils"></i>
+                </span>
+
+                <span class="brand-text">
+                    <strong>AI Cooking</strong>
+                    <small>Assistant</small>
+                </span>
+
+            </a>
+
+
+            <button
+                id="mobileMenuButton"
+                class="mobile-menu-button"
+                aria-label="Open menu"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <nav class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="ai-chat.html">
+                    AI Assistant
+                </a>
+
+                <a href="states.html">
+                    India
+                </a>
+
+                <a href="festivals.html">
+                    Festivals
+                </a>
+
+                <a href="cuisines.html">
+                    Cuisines
+                </a>
+
+                <a href="ingredient-finder.html">
+                    Ingredients
+                </a>
+
+                <a
+                    href="login.html"
+                    class="nav-signup"
+                >
+                    Login
+                </a>
+
+                <a href="signup.html">
+                    Sign Up
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- Mobile Menu -->
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu"
+        >
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="ai-chat.html">
+                AI Assistant
+            </a>
+
+            <a href="states.html">
+                India
+            </a>
+
+            <a href="festivals.html">
+                Festivals
+            </a>
+
+            <a href="cuisines.html">
+                Cuisines
+            </a>
+
+            <a href="ingredient-finder.html">
+                Ingredients
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         LOGIN
+    ========================================== -->
+
+    <main class="auth-page">
+
+        <div class="auth-wrapper">
+
+
+            <!-- =================================
+                 INTRO PANEL
+            ================================== -->
+
+            <section class="auth-intro">
+
+                <div class="auth-intro-content">
+
+                    <div class="auth-logo">
+
+                        <i class="fa-solid fa-kitchen-set"></i>
+
+                    </div>
+
+
+                    <h1>
+                        Welcome Back!
+                    </h1>
+
+
+                    <p>
+                        Sign in to continue your cooking
+                        journey with AI Cooking Assistant.
+                        Discover recipes, get cooking help
+                        and save your favorite dishes.
+                    </p>
+
+
+                    <div class="auth-benefits">
+
+                        <div class="auth-benefit">
+
+                            <span class="auth-benefit-icon">
+                                <i class="fa-solid fa-robot"></i>
+                            </span>
+
+                            <span>
+                                AI-powered cooking assistance
+                            </span>
+
+                        </div>
+
+
+                        <div class="auth-benefit">
+
+                            <span class="auth-benefit-icon">
+                                <i class="fa-solid fa-heart"></i>
+                            </span>
+
+                            <span>
+                                Save your favorite recipes
+                            </span>
+
+                        </div>
+
+
+                        <div class="auth-benefit">
+
+                            <span class="auth-benefit-icon">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </span>
+
+                            <span>
+                                Keep your recipe history
+                            </span>
+
+                        </div>
+
+
+                        <div class="auth-benefit">
+
+                            <span class="auth-benefit-icon">
+                                <i class="fa-solid fa-file-circle-plus"></i>
+                            </span>
+
+                            <span>
+                                Submit your own recipes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================
+                 FORM PANEL
+            ================================== -->
+
+            <section class="auth-form-panel">
+
+                <div class="auth-heading">
+
+                    <h2>
+                        Login
+                    </h2>
+
+                    <p>
+                        Enter your mobile number and password
+                        to access your account.
+                    </p>
+
+                </div>
+
+
+                <!-- Login Form -->
+
+                <form
+                    id="loginForm"
+                    class="auth-form"
+                >
+
+
+                    <!-- Mobile -->
+
+                    <div class="auth-field">
+
+                        <label for="loginMobile">
+                            Mobile Number
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <i
+                                class="fa-solid fa-mobile-screen auth-input-icon"
+                            ></i>
+
+                            <input
+                                id="loginMobile"
+                                class="auth-input"
+                                type="tel"
+                                inputmode="numeric"
+                                maxlength="10"
+                                placeholder="Enter 10-digit mobile number"
+                                autocomplete="tel"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="auth-field">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <i
+                                class="fa-solid fa-lock auth-input-icon"
+                            ></i>
+
+                            <input
+                                id="loginPassword"
+                                class="auth-input"
+                                type="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                id="toggleLoginPassword"
+                                class="password-toggle"
+                                type="button"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Options -->
+
+                    <div class="auth-options">
+
+                        <label class="remember-me">
+
+                            <input
+                                id="rememberMe"
+                                type="checkbox"
+                            >
+
+                            Remember me
+
+                        </label>
+
+
+                        <button
+                            id="forgotPasswordButton"
+                            class="forgot-password"
+                            type="button"
+                        >
+                            Forgot Password?
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Login Button -->
+
+                    <button
+                        id="loginButton"
+                        class="auth-button"
+                        type="submit"
+                    >
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+
+                        Login
+
+                    </button>
+
+
+                    <!-- Demo Notice -->
+
+                    <div class="demo-notice">
+
+                        <strong>Frontend demo:</strong>
+                        Real mobile OTP authentication,
+                        password verification and secure
+                        sessions will be connected to the
+                        backend later.
+
+                    </div>
+
+                </form>
+
+
+
+                <!-- Signup -->
+
+                <div class="auth-switch">
+
+                    Don't have an account?
+
+                    <a href="signup.html">
+                        Create Account
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FORGOT PASSWORD MODAL
+    ========================================== -->
+
+    <div
+        id="forgotModal"
+        class="forgot-modal"
+    >
+
+        <div class="forgot-modal-card">
+
+
+            <button
+                id="closeForgotModal"
+                class="modal-close"
+                type="button"
+                aria-label="Close"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <h2>
+                Reset Password
+            </h2>
+
+
+            <p>
+                Enter your registered mobile number.
+                We will verify it using OTP and then
+                allow you to create a new password.
+            </p>
+
+
+
+            <!-- =================================
+                 STEP 1
+            ================================== -->
+
+            <div
+                id="forgotStep1"
+                class="forgot-step active"
+            >
+
+                <div class="auth-field">
+
+                    <label for="forgotMobile">
+                        Mobile Number
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <i
+                            class="fa-solid fa-mobile-screen auth-input-icon"
+                        ></i>
+
+                        <input
+                            id="forgotMobile"
+                            class="auth-input"
+                            type="tel"
+                            inputmode="numeric"
+                            maxlength="10"
+                            placeholder="Enter 10-digit mobile number"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <button
+                    id="sendResetOtpButton"
+                    class="auth-button"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send OTP
+
+                </button>
+
+
+                <div
+                    id="resetOtpMessage"
+                    class="otp-message"
+                ></div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 STEP 2
+            ================================== -->
+
+            <div
+                id="forgotStep2"
+                class="forgot-step"
+            >
+
+                <div class="auth-field">
+
+                    <label for="resetOtp">
+                        Enter OTP
+                    </label>
+
+                    <div class="otp-row">
+
+                        <input
+                            id="resetOtp"
+                            class="auth-input"
+                            type="text"
+                            inputmode="numeric"
+                            maxlength="6"
+                            placeholder="6-digit OTP"
+                        >
+
+                        <button
+                            id="verifyResetOtpButton"
+                            class="small-button"
+                            type="button"
+                        >
+                            Verify
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="verifyOtpMessage"
+                    class="otp-message"
+                ></div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 STEP 3
+            ================================== -->
+
+            <div
+                id="forgotStep3"
+                class="forgot-step"
+            >
+
+                <div class="auth-field">
+
+                    <label for="newResetPassword">
+                        New Password
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <i
+                            class="fa-solid fa-lock auth-input-icon"
+                        ></i>
+
+                        <input
+                            id="newResetPassword"
+                            class="auth-input"
+                            type="password"
+                            placeholder="Minimum 8 characters"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <div class="auth-field">
+
+                    <label for="confirmResetPassword">
+                        Confirm New Password
+                    </label>
+
+                    <div class="auth-input-wrapper">
+
+                        <i
+                            class="fa-solid fa-lock auth-input-icon"
+                        ></i>
+
+                        <input
+                            id="confirmResetPassword"
+                            class="auth-input"
+                            type="password"
+                            placeholder="Confirm new password"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <button
+                    id="resetPasswordButton"
+                    class="auth-button"
+                    type="button"
+                >
+
+                    <i class="fa-solid fa-key"></i>
+
+                    Reset Password
+
+                </button>
+
+
+                <div
+                    id="resetPasswordMessage"
+                    class="otp-message"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+
+                /* =================================
+                   STORAGE KEYS
+                ================================= */
+
+                const userKey =
+                    "aiCookingUser";
+
+                const loginKey =
+                    "aiCookingLoggedIn";
+
+
+                /* =================================
+                   ELEMENTS
+                ================================= */
+
+                const loginForm =
+                    document.getElementById(
+                        "loginForm"
+                    );
+
+                const loginMobile =
+                    document.getElementById(
+                        "loginMobile"
+                    );
+
+                const loginPassword =
+                    document.getElementById(
+                        "loginPassword"
+                    );
+
+                const rememberMe =
+                    document.getElementById(
+                        "rememberMe"
+                    );
+
+
+                /* =================================
+                   LOAD SAVED MOBILE
+                ================================= */
+
+                const savedMobile =
+                    localStorage.getItem(
+                        "aiCookingRememberedMobile"
+                    );
+
+
+                if (savedMobile) {
+
+                    loginMobile.value =
+                        savedMobile;
+
+                    rememberMe.checked =
+                        true;
+
+                }
+
+
+                /* =================================
+                   PASSWORD VISIBILITY
+                ================================= */
+
+                const togglePassword =
+                    document.getElementById(
+                        "toggleLoginPassword"
+                    );
+
+
+                togglePassword.addEventListener(
+                    "click",
+                    () => {
+
+                        const isPassword =
+                            loginPassword.type ===
+                            "password";
+
+
+                        loginPassword.type =
+                            isPassword
+                                ? "text"
+                                : "password";
+
+
+                        togglePassword.innerHTML =
+                            isPassword
+                                ? `<i class="fa-regular fa-eye-slash"></i>`
+                                : `<i class="fa-regular fa-eye"></i>`;
+
+                    }
+                );
+
+
+                /* =================================
+                   MOBILE VALIDATION
+                ================================= */
+
+                function validMobile(
+                    mobile
+                ) {
+
+                    return /^[6-9]\d{9}$/.test(
+                        mobile
+                    );
+
+                }
+
+
+                /* =================================
+                   LOGIN
+                ================================= */
+
+                loginForm.addEventListener(
+                    "submit",
+                    event => {
+
+                        event.preventDefault();
+
+
+                        const mobile =
+                            loginMobile.value.trim();
+
+                        const password =
+                            loginPassword.value;
+
+
+                        if (!validMobile(mobile)) {
+
+                            showMessage(
+                                "Please enter a valid 10-digit Indian mobile number."
+                            );
+
+                            loginMobile.focus();
+
+                            return;
+
+                        }
+
+
+                        if (!password) {
+
+                            showMessage(
+                                "Please enter your password."
+                            );
+
+                            loginPassword.focus();
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * --------------------------------
+                         * DEMO FRONTEND LOGIN
+                         * --------------------------------
+                         *
+                         * The signup page currently
+                         * stores user information in
+                         * localStorage.
+                         *
+                         * Real password verification
+                         * will be done securely by the
+                         * backend later.
+                         */
+
+                        let user = null;
+
+
+                        try {
+
+                            user =
+                                JSON.parse(
+                                    localStorage.getItem(
+                                        userKey
+                                    )
+                                );
+
+                        } catch {
+
+                            user = null;
+
+                        }
+
+
+                        if (!user) {
+
+                            showMessage(
+                                "No account found. Please create an account first."
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            user.mobile &&
+                            user.mobile !== mobile
+                        ) {
+
+                            showMessage(
+                                "Mobile number does not match the registered account."
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * Demo login succeeds after
+                         * basic frontend validation.
+                         */
+
+                        localStorage.setItem(
+                            loginKey,
+                            "true"
+                        );
+
+
+                        if (
+                            rememberMe.checked
+                        ) {
+
+                            localStorage.setItem(
+                                "aiCookingRememberedMobile",
+                                mobile
+                            );
+
+                        } else {
+
+                            localStorage.removeItem(
+                                "aiCookingRememberedMobile"
+                            );
+
+                        }
+
+
+                        showMessage(
+                            "Login successful. Opening your profile..."
+                        );
+
+
+                        setTimeout(
+                            () => {
+
+                                window.location.href =
+                                    "profile.html";
+
+                            },
+                            700
+                        );
+
+                    }
+                );
+
+
+                /* =================================
+                   FORGOT PASSWORD MODAL
+                ================================== */
+
+                const forgotModal =
+                    document.getElementById(
+                        "forgotModal"
+                    );
+
+                const forgotPasswordButton =
+                    document.getElementById(
+                        "forgotPasswordButton"
+                    );
+
+                const closeForgotModal =
+                    document.getElementById(
+                        "closeForgotModal"
+                    );
+
+
+                forgotPasswordButton.addEventListener(
+                    "click",
+                    () => {
+
+                        forgotModal.classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                closeForgotModal.addEventListener(
+                    "click",
+                    closeModal
+                );
+
+
+                forgotModal.addEventListener(
+                    "click",
+                    event => {
+
+                        if (
+                            event.target ===
+                            forgotModal
+                        ) {
+
+                            closeModal();
+
+                        }
+
+                    }
+                );
+
+
+                document.addEventListener(
+                    "keydown",
+                    event => {
+
+                        if (
+                            event.key === "Escape" &&
+                            forgotModal.classList.contains(
+                                "active"
+                            )
+                        ) {
+
+                            closeModal();
+
+                        }
+
+                    }
+                );
+
+
+                function closeModal() {
+
+                    forgotModal.classList.remove(
+                        "active"
+                    );
+
+                    resetForgotFlow();
+
+                }
+
+
+                function resetForgotFlow() {
+
+                    document.getElementById(
+                        "forgotStep1"
+                    ).classList.add("active");
+
+                    document.getElementById(
+                        "forgotStep2"
+                    ).classList.remove("active");
+
+                    document.getElementById(
+                        "forgotStep3"
+                    ).classList.remove("active");
+
+
+                    document.getElementById(
+                        "forgotMobile"
+                    ).value = "";
+
+                    document.getElementById(
+                        "resetOtp"
+                    ).value = "";
+
+                    document.getElementById(
+                        "newResetPassword"
+                    ).value = "";
+
+                    document.getElementById(
+                        "confirmResetPassword"
+                    ).value = "";
+
+                    document.getElementById(
+                        "resetOtpMessage"
+                    ).textContent = "";
+
+                    document.getElementById(
+                        "verifyOtpMessage"
+                    ).textContent = "";
+
+                    document.getElementById(
+                        "resetPasswordMessage"
+                    ).textContent = "";
+
+                }
+
+
+                /* =================================
+                   RESET OTP
+                ================================== */
+
+                let resetOTP = null;
+
+                let resetMobile = null;
+
+                let resetOtpVerified = false;
+
+
+                const sendResetOtpButton =
+                    document.getElementById(
+                        "sendResetOtpButton"
+                    );
+
+
+                sendResetOtpButton.addEventListener(
+                    "click",
+                    () => {
+
+                        const mobile =
+                            document.getElementById(
+                                "forgotMobile"
+                            ).value.trim();
+
+
+                        if (!validMobile(mobile)) {
+
+                            setMessage(
+                                "resetOtpMessage",
+                                "Enter a valid 10-digit mobile number.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        let user = null;
+
+
+                        try {
+
+                            user =
+                                JSON.parse(
+                                    localStorage.getItem(
+                                        userKey
+                                    )
+                                );
+
+                        } catch {
+
+                            user = null;
+
+                        }
+
+
+                        if (
+                            !user ||
+                            user.mobile !== mobile
+                        ) {
+
+                            setMessage(
+                                "resetOtpMessage",
+                                "No account was found with this mobile number.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        resetMobile =
+                            mobile;
+
+
+                        resetOTP =
+                            String(
+                                Math.floor(
+                                    100000 +
+                                    Math.random() *
+                                    900000
+                                )
+                            );
+
+
+                        resetOtpVerified =
+                            false;
+
+
+                        /*
+                         * DEMO ONLY.
+                         *
+                         * Real OTP will be sent through
+                         * backend/SMS service later.
+                         */
+
+                        console.log(
+                            "Demo password reset OTP:",
+                            resetOTP
+                        );
+
+
+                        setMessage(
+                            "resetOtpMessage",
+                            "Demo OTP generated. Check the browser console for the OTP.",
+                            "success"
+                        );
+
+
+                        document.getElementById(
+                            "forgotStep1"
+                        ).classList.remove(
+                            "active"
+                        );
+
+
+                        document.getElementById(
+                            "forgotStep2"
+                        ).classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /* =================================
+                   VERIFY RESET OTP
+                ================================== */
+
+                document.getElementById(
+                    "verifyResetOtpButton"
+                ).addEventListener(
+                    "click",
+                    () => {
+
+                        const enteredOTP =
+                            document.getElementById(
+                                "resetOtp"
+                            ).value.trim();
+
+
+                        if (
+                            !enteredOTP ||
+                            enteredOTP.length !== 6
+                        ) {
+
+                            setMessage(
+                                "verifyOtpMessage",
+                                "Enter the 6-digit OTP.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            enteredOTP !==
+                            resetOTP
+                        ) {
+
+                            setMessage(
+                                "verifyOtpMessage",
+                                "Incorrect OTP. Please try again.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        resetOtpVerified =
+                            true;
+
+
+                        setMessage(
+                            "verifyOtpMessage",
+                            "OTP verified successfully.",
+                            "success"
+                        );
+
+
+                        document.getElementById(
+                            "forgotStep2"
+                        ).classList.remove(
+                            "active"
+                        );
+
+
+                        document.getElementById(
+                            "forgotStep3"
+                        ).classList.add(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                /* =================================
+                   RESET PASSWORD
+                ================================== */
+
+                document.getElementById(
+                    "resetPasswordButton"
+                ).addEventListener(
+                    "click",
+                    () => {
+
+                        const newPassword =
+                            document.getElementById(
+                                "newResetPassword"
+                            ).value;
+
+
+                        const confirmPassword =
+                            document.getElementById(
+                                "confirmResetPassword"
+                            ).value;
+
+
+                        if (
+                            !resetOtpVerified
+                        ) {
+
+                            setMessage(
+                                "resetPasswordMessage",
+                                "Please verify the OTP first.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            newPassword.length < 8
+                        ) {
+
+                            setMessage(
+                                "resetPasswordMessage",
+                                "Password must contain at least 8 characters.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        if (
+                            newPassword !==
+                            confirmPassword
+                        ) {
+
+                            setMessage(
+                                "resetPasswordMessage",
+                                "Passwords do not match.",
+                                "error"
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * --------------------------------
+                         * REAL BACKEND NOTE
+                         * --------------------------------
+                         *
+                         * The secure version will update
+                         * the password in the backend after
+                         * OTP verification.
+                         *
+                         * We intentionally do not store
+                         * passwords in localStorage.
+                         */
+
+
+                        setMessage(
+                            "resetPasswordMessage",
+                            "Password reset flow completed in demo mode.",
+                            "success"
+                        );
+
+
+                        setTimeout(
+                            () => {
+
+                                closeModal();
+
+                                showMessage(
+                                    "Password reset successfully. Please login again."
+                                );
+
+                            },
+                            1000
+                        );
+
+                    }
+                );
+
+
+                /* =================================
+                   MESSAGE HELPERS
+                ================================== */
+
+                function setMessage(
+                    elementId,
+                    message,
+                    type
+                ) {
+
+                    const element =
+                        document.getElementById(
+                            elementId
+                        );
+
+
+                    element.textContent =
+                        message;
+
+
+                    element.className =
+                        `otp-message ${type}`;
+
+                }
+
+
+                function showMessage(
+                    message
+                ) {
+
+                    const old =
+                        document.querySelector(
+                            ".login-message"
+                        );
+
+
+                    if (old) {
+                        old.remove();
+                    }
+
+
+                    const box =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    box.className =
+                        "login-message";
+
+
+                    box.textContent =
+                        message;
+
+
+                    Object.assign(
+                        box.style,
+                        {
+
+                            position: "fixed",
+
+                            left: "50%",
+
+                            bottom: "25px",
+
+                            transform:
+                                "translateX(-50%)",
+
+                            zIndex: "10000",
+
+                            background: "#222",
+
+                            color: "#fff",
+
+                            padding:
+                                "13px 20px",
+
+                            borderRadius:
+                                "10px",
+
+                            fontSize:
+                                "14px",
+
+                            fontWeight:
+                                "600",
+
+                            boxShadow:
+                                "0 10px 30px rgba(0,0,0,0.2)",
+
+                            maxWidth:
+                                "90%",
+
+                            textAlign:
+                                "center"
+
+                        }
+                    );
+
+
+                    document.body.appendChild(
+                        box
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            box.remove();
+
+                        },
+                        2800
+                    );
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+
+    <!-- Main JavaScript -->
+
+    <script src="../app.js"></script>
+
+</body>
+</html>

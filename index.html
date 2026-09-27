@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AI Cooking Assistant - Discover Indian, district-wise, festival and international recipes with AI-powered cooking assistance."
+    >
+
+    <meta
+        name="keywords"
+        content="AI Cooking Assistant, Indian Recipes, Odisha Recipes, Cooking AI, Recipe Generator, Ingredients"
+    >
+
+    <meta name="author" content="AI Cooking Assistant">
+
+    <title>AI Cooking Assistant | Smart Cooking & Recipes</title>
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="css/components.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         PAGE LOADER
+    ====================================================== -->
+
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-content">
+            <div class="loader-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div class="loader-spinner"></div>
+
+            <p>Preparing your kitchen...</p>
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         HEADER / NAVBAR
+    ====================================================== -->
+
+    <header id="mainHeader" class="main-header">
+
+        <div class="container">
+
+            <nav class="navbar">
+
+                <!-- Logo -->
+                <a href="index.html" class="brand">
+
+                    <div class="brand-icon">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                    </div>
+
+                    <div class="brand-text">
+                        <span class="brand-title">
+                            AI Cooking
+                        </span>
+
+                        <span class="brand-subtitle">
+                            Assistant
+                        </span>
+                    </div>
+
+                </a>
+
+
+                <!-- Desktop Navigation -->
+                <div class="nav-links">
+
+                    <a
+                        href="index.html"
+                        class="nav-link active"
+                    >
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+
+                    <a
+                        href="pages/ai-chat.html"
+                        class="nav-link"
+                    >
+                        <i class="fa-solid fa-robot"></i>
+                        AI Assistant
+                    </a>
+
+                    <a
+                        href="pages/states.html"
+                        class="nav-link"
+                    >
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        India
+                    </a>
+
+                    <a
+                        href="pages/festivals.html"
+                        class="nav-link"
+                    >
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Festivals
+                    </a>
+
+                    <a
+                        href="pages/cuisines.html"
+                        class="nav-link"
+                    >
+                        <i class="fa-solid fa-bowl-food"></i>
+                        Cuisines
+                    </a>
+
+                    <a
+                        href="pages/ingredient-finder.html"
+                        class="nav-link"
+                    >
+                        <i class="fa-solid fa-carrot"></i>
+                        Ingredients
+                    </a>
+
+                </div>
+
+
+                <!-- Auth Buttons -->
+                <div class="nav-actions">
+
+                    <a
+                        href="pages/login.html"
+                        class="btn btn-outline nav-login"
+                    >
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Login
+                    </a>
+
+                    <a
+                        href="pages/signup.html"
+                        class="btn btn-primary nav-signup"
+                    >
+                        <i class="fa-solid fa-user-plus"></i>
+                        Sign Up
+                    </a>
+
+                </div>
+
+
+                <!-- Mobile Menu Button -->
+                <button
+                    id="mobileMenuButton"
+                    class="mobile-menu-button"
+                    type="button"
+                    aria-label="Open menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </nav>
+
+
+            <!-- Mobile Navigation -->
+
+            <div
+                id="mobileMenu"
+                class="mobile-menu"
+            >
+
+                <a href="index.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="pages/ai-chat.html">
+                    <i class="fa-solid fa-robot"></i>
+                    AI Assistant
+                </a>
+
+                <a href="pages/states.html">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    India
+                </a>
+
+                <a href="pages/festivals.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Festivals
+                </a>
+
+                <a href="pages/cuisines.html">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    Cuisines
+                </a>
+
+                <a href="pages/ingredient-finder.html">
+                    <i class="fa-solid fa-carrot"></i>
+                    Ingredients
+                </a>
+
+                <a href="pages/login.html">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
+                </a>
+
+                <a href="pages/signup.html">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Sign Up
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO SECTION
+        ================================================== -->
+
+        <section class="hero-section">
+
+            <div class="hero-background"></div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-sparkles"></i>
+                        AI-Powered Cooking Assistant
+                    </div>
+
+
+                    <h1 class="hero-title">
+
+                        Cook Smarter.
+                        <span>Eat Better.</span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Discover delicious recipes from every
+                        state and district of India, get AI-powered
+                        cooking help, and turn your ingredients into
+                        amazing meals.
+
+                    </p>
+
+
+                    <!-- Hero Search -->
+
+                    <div class="hero-search-wrapper">
+
+                        <div class="hero-search">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="heroSearchInput"
+                                placeholder="Search recipes, ingredients, states..."
+                                autocomplete="off"
+                            >
+
+                            <button
+                                id="heroSearchButton"
+                                class="btn btn-primary"
+                                type="button"
+                            >
+                                Search
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Hero Buttons -->
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="pages/ai-chat.html"
+                            class="btn btn-primary btn-large"
+                        >
+                            <i class="fa-solid fa-robot"></i>
+                            Ask AI to Cook
+                        </a>
+
+                        <a
+                            href="pages/ingredient-finder.html"
+                            class="btn btn-light btn-large"
+                        >
+                            <i class="fa-solid fa-kitchen-set"></i>
+                            What Can I Make?
+                        </a>
+
+                    </div>
+
+
+                    <!-- Hero Stats -->
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                28+
+                            </strong>
+
+                            <span>
+                                Indian States
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                700+
+                            </strong>
+
+                            <span>
+                                Districts
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                1000+
+                            </strong>
+
+                            <span>
+                                Recipes
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                AI
+                            </strong>
+
+                            <span>
+                                Cooking Help
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Floating Cooking Elements -->
+
+            <div class="hero-floating floating-one">
+                <i class="fa-solid fa-pepper-hot"></i>
+            </div>
+
+            <div class="hero-floating floating-two">
+                <i class="fa-solid fa-lemon"></i>
+            </div>
+
+            <div class="hero-floating floating-three">
+                <i class="fa-solid fa-carrot"></i>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             AI FEATURES
+        ================================================== -->
+
+        <section class="section ai-features-section">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span class="section-tag">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        AI POWERED
+                    </span>
+
+                    <h2>
+                        Your Personal AI Cooking Assistant
+                    </h2>
+
+                    <p>
+                        From choosing a recipe to finishing your
+                        meal, AI can help you at every step.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-feature-grid">
+
+
+                    <!-- AI Chat -->
+
+                    <a
+                        href="pages/ai-chat.html"
+                        class="ai-feature-card"
+                    >
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+
+                        <div class="feature-content">
+
+                            <h3>
+                                Live AI Chat
+                            </h3>
+
+                            <p>
+                                Ask cooking questions and get
+                                step-by-step help from AI.
+                            </p>
+
+                            <span class="feature-link">
+                                Start Chat
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Voice -->
+
+                    <a
+                        href="pages/ai-chat.html"
+                        class="ai-feature-card"
+                    >
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+
+                        <div class="feature-content">
+
+                            <h3>
+                                Voice Cooking
+                            </h3>
+
+                            <p>
+                                Cook hands-free with voice-based
+                                cooking assistance.
+                            </p>
+
+                            <span class="feature-link">
+                                Use Voice
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Recipe Generator -->
+
+                    <a
+                        href="pages/ai-chat.html"
+                        class="ai-feature-card"
+                    >
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <div class="feature-content">
+
+                            <h3>
+                                Recipe Generator
+                            </h3>
+
+                            <p>
+                                Tell AI what ingredients you have
+                                and generate a recipe.
+                            </p>
+
+                            <span class="feature-link">
+                                Generate Recipe
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Substitution -->
+
+                    <a
+                        href="pages/ingredient-finder.html"
+                        class="ai-feature-card"
+                    >
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+
+                        <div class="feature-content">
+
+                            <h3>
+                                Smart Substitution
+                            </h3>
+
+                            <p>
+                                Find alternatives when an ingredient
+                                is unavailable.
+                            </p>
+
+                            <span class="feature-link">
+                                Find Substitute
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INGREDIENT FINDER
+        ================================================== -->
+
+        <section class="section ingredient-section">
+
+            <div class="container">
+
+                <div class="ingredient-finder">
+
+                    <div class="ingredient-content">
+
+                        <span class="section-tag">
+                            <i class="fa-solid fa-carrot"></i>
+                            INGREDIENT FINDER
+                        </span>
+
+                        <h2>
+                            What ingredients do you have?
+                        </h2>
+
+                        <p>
+                            Enter the ingredients available in
+                            your kitchen and discover recipes
+                            you can make right now.
+                        </p>
+
+
+                        <div class="ingredient-search">
+
+                            <i class="fa-solid fa-basket-shopping"></i>
+
+                            <input
+                                type="text"
+                                id="ingredientInput"
+                                placeholder="Example: rice, potato, onion..."
+                                autocomplete="off"
+                            >
+
+                            <button
+                                id="findRecipeButton"
+                                class="btn btn-primary"
+                                type="button"
+                            >
+                                Find Recipes
+                            </button>
+
+                        </div>
+
+
+                        <div class="quick-ingredients">
+
+                            <span>
+                                Try:
+                            </span>
+
+                            <button
+                                class="ingredient-tag"
+                                data-ingredient="rice"
+                                type="button"
+                            >
+                                Rice
+                            </button>
+
+                            <button
+                                class="ingredient-tag"
+                                data-ingredient="potato"
+                                type="button"
+                            >
+                                Potato
+                            </button>
+
+                            <button
+                                class="ingredient-tag"
+                                data-ingredient="paneer"
+                                type="button"
+                            >
+                                Paneer
+                            </button>
+
+                            <button
+                                class="ingredient-tag"
+                                data-ingredient="chicken"
+                                type="button"
+                            >
+                                Chicken
+                            </button>
+
+                            <button
+                                class="ingredient-tag"
+                                data-ingredient="egg"
+                                type="button"
+                            >
+                                Egg
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="ingredient-visual">
+
+                        <div class="ingredient-circle circle-one">
+                            <i class="fa-solid fa-apple-whole"></i>
+                        </div>
+
+                        <div class="ingredient-circle circle-two">
+                            <i class="fa-solid fa-carrot"></i>
+                        </div>
+
+                        <div class="ingredient-circle circle-three">
+                            <i class="fa-solid fa-pepper-hot"></i>
+                        </div>
+
+                        <div class="ingredient-main-icon">
+                            <i class="fa-solid fa-kitchen-set"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INDIAN STATES
+        ================================================== -->
+
+        <section class="section states-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-tag">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            EXPLORE INDIA
+                        </span>
+
+                        <h2>
+                            Discover Indian Food by State
+                        </h2>
+
+                        <p>
+                            Explore traditional and famous recipes
+                            from different parts of India.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="pages/states.html"
+                        class="btn btn-outline"
+                    >
+                        View All States
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="states-grid">
+
+
+                    <!-- Odisha -->
+
+                    <a
+                        href="pages/state.html?state=Odisha"
+                        class="state-card"
+                    >
+
+                        <div class="state-image">
+                            <div class="state-placeholder">
+                                <i class="fa-solid fa-landmark"></i>
+                            </div>
+                        </div>
+
+                        <div class="state-card-content">
+
+                            <span>
+                                East India
+                            </span>
+
+                            <h3>
+                                Odisha
+                            </h3>
+
+                            <p>
+                                Dalma • Pakhala • Chhena Poda
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Maharashtra -->
+
+                    <a
+                        href="pages/state.html?state=Maharashtra"
+                        class="state-card"
+                    >
+
+                        <div class="state-image">
+                            <div class="state-placeholder">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                        </div>
+
+                        <div class="state-card-content">
+
+                            <span>
+                                West India
+                            </span>
+
+                            <h3>
+                                Maharashtra
+                            </h3>
+
+                            <p>
+                                Vada Pav • Misal Pav
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Punjab -->
+
+                    <a
+                        href="pages/state.html?state=Punjab"
+                        class="state-card"
+                    >
+
+                        <div class="state-image">
+                            <div class="state-placeholder">
+                                <i class="fa-solid fa-wheat-awn"></i>
+                            </div>
+                        </div>
+
+                        <div class="state-card-content">
+
+                            <span>
+                                North India
+                            </span>
+
+                            <h3>
+                                Punjab
+                            </h3>
+
+                            <p>
+                                Kulcha • Chole • Lassi
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- West Bengal -->
+
+                    <a
+                        href="pages/state.html?state=West%20Bengal"
+                        class="state-card"
+                    >
+
+                        <div class="state-image">
+                            <div class="state-placeholder">
+                                <i class="fa-solid fa-fish"></i>
+                            </div>
+                        </div>
+
+                        <div class="state-card-content">
+
+                            <span>
+                                East India
+                            </span>
+
+                            <h3>
+                                West Bengal
+                            </h3>
+
+                            <p>
+                                Rasgulla • Mishti Doi
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Tamil Nadu -->
+
+                    <a
+                        href="pages/state.html?state=Tamil%20Nadu"
+                        class="state-card"
+                    >
+
+                        <div class="state-image">
+                            <div class="state-placeholder">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                        </div>
+
+                        <div class="state-card-content">
+
+                            <span>
+                                South India
+                            </span>
+
+                            <h3>
+                                Tamil Nadu
+                            </h3>
+
+                            <p>
+                                Dosa • Idli • Sambar
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Kerala -->
+
+                    <a
+                        href="pages/state.html?state=Kerala"
+                        class="state-card"
+                    >
+
+                        <div class="state-image">
+                            <div class="state-placeholder">
+                                <i class="fa-solid fa-water"></i>
+                            </div>
+                        </div>
+
+                        <div class="state-card-content">
+
+                            <span>
+                                South India
+                            </span>
+
+                            <h3>
+                                Kerala
+                            </h3>
+
+                            <p>
+                                Appam • Sadya • Payasam
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             POPULAR RECIPES
+        ================================================== -->
+
+        <section class="section recipes-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-tag">
+                            <i class="fa-solid fa-fire"></i>
+                            POPULAR RECIPES
+                        </span>
+
+                        <h2>
+                            Recipes People Love
+                        </h2>
+
+                        <p>
+                            Explore popular Indian and international
+                            recipes.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="pages/states.html"
+                        class="btn btn-outline"
+                    >
+                        Explore Recipes
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="recipe-grid">
+
+
+                    <!-- Recipe 1 -->
+
+                    <article class="recipe-card">
+
+                        <div class="recipe-image">
+
+                            <div class="recipe-placeholder">
+                                <i class="fa-solid fa-bowl-food"></i>
+                            </div>
+
+                            <button
+                                class="favorite-button"
+                                type="button"
+                                aria-label="Add to favorites"
+                                data-recipe-id="dalma"
+                            >
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                            <span class="recipe-badge">
+                                Famous
+                            </span>
+
+                        </div>
+
+
+                        <div class="recipe-content">
+
+                            <span class="recipe-category">
+                                Odia Cuisine
+                            </span>
+
+                            <h3>
+                                Dalma
+                            </h3>
+
+                            <p>
+                                Traditional Odisha lentil and
+                                vegetable dish.
+                            </p>
+
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    40 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-signal"></i>
+                                    Easy
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 2 -->
+
+                    <article class="recipe-card">
+
+                        <div class="recipe-image">
+
+                            <div class="recipe-placeholder">
+                                <i class="fa-solid fa-bowl-rice"></i>
+                            </div>
+
+                            <button
+                                class="favorite-button"
+                                type="button"
+                                aria-label="Add to favorites"
+                                data-recipe-id="pakhala-bhata"
+                            >
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                            <span class="recipe-badge">
+                                Odisha
+                            </span>
+
+                        </div>
+
+
+                        <div class="recipe-content">
+
+                            <span class="recipe-category">
+                                Odia Cuisine
+                            </span>
+
+                            <h3>
+                                Pakhala Bhata
+                            </h3>
+
+                            <p>
+                                A refreshing traditional fermented
+                                rice dish from Odisha.
+                            </p>
+
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    15 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-signal"></i>
+                                    Easy
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 3 -->
+
+                    <article class="recipe-card">
+
+                        <div class="recipe-image">
+
+                            <div class="recipe-placeholder">
+                                <i class="fa-solid fa-cheese"></i>
+                            </div>
+
+                            <button
+                                class="favorite-button"
+                                type="button"
+                                aria-label="Add to favorites"
+                                data-recipe-id="chhena-poda"
+                            >
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                            <span class="recipe-badge">
+                                Famous
+                            </span>
+
+                        </div>
+
+
+                        <div class="recipe-content">
+
+                            <span class="recipe-category">
+                                Odia Dessert
+                            </span>
+
+                            <h3>
+                                Chhena Poda
+                            </h3>
+
+                            <p>
+                                Famous caramelized cottage cheese
+                                dessert from Odisha.
+                            </p>
+
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    60 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-signal"></i>
+                                    Medium
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Recipe 4 -->
+
+                    <article class="recipe-card">
+
+                        <div class="recipe-image">
+
+                            <div class="recipe-placeholder">
+                                <i class="fa-solid fa-burger"></i>
+                            </div>
+
+                            <button
+                                class="favorite-button"
+                                type="button"
+                                aria-label="Add to favorites"
+                                data-recipe-id="vada-pav"
+                            >
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+
+                            <span class="recipe-badge">
+                                Popular
+                            </span>
+
+                        </div>
+
+
+                        <div class="recipe-content">
+
+                            <span class="recipe-category">
+                                Maharashtrian
+                            </span>
+
+                            <h3>
+                                Vada Pav
+                            </h3>
+
+                            <p>
+                                Popular Mumbai street food made
+                                with potato fritters and pav.
+                            </p>
+
+
+                            <div class="recipe-meta">
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    30 min
+                                </span>
+
+                                <span>
+                                    <i class="fa-solid fa-signal"></i>
+                                    Easy
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FESTIVAL RECIPES
+        ================================================== -->
+
+        <section class="section festival-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-tag">
+                            <i class="fa-solid fa-calendar-star"></i>
+                            FESTIVAL SPECIAL
+                        </span>
+
+                        <h2>
+                            Cook for Every Celebration
+                        </h2>
+
+                        <p>
+                            Discover special recipes for India's
+                            biggest festivals and celebrations.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="pages/festivals.html"
+                        class="btn btn-outline"
+                    >
+                        View Festivals
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="festival-grid">
+
+
+                    <a
+                        href="pages/festivals.html?festival=Diwali"
+                        class="festival-card"
+                    >
+
+                        <div class="festival-icon">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Diwali
+                            </h3>
+
+                            <p>
+                                Sweets & festive dishes
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="pages/festivals.html?festival=Holi"
+                        class="festival-card"
+                    >
+
+                        <div class="festival-icon">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Holi
+                            </h3>
+
+                            <p>
+                                Gujiya & festive treats
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="pages/festivals.html?festival=Ganesh%20Chaturthi"
+                        class="festival-card"
+                    >
+
+                        <div class="festival-icon">
+                            <i class="fa-solid fa-hands-praying"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Ganesh Chaturthi
+                            </h3>
+
+                            <p>
+                                Modak & traditional recipes
+                            </p>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="pages/festivals.html?festival=Pongal"
+                        class="festival-card"
+                    >
+
+                        <div class="festival-icon">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Pongal
+                            </h3>
+
+                            <p>
+                                South Indian festival food
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             INTERNATIONAL CUISINES
+        ================================================== -->
+
+        <section class="section cuisines-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-tag">
+                            <i class="fa-solid fa-earth-americas"></i>
+                            WORLD CUISINES
+                        </span>
+
+                        <h2>
+                            Explore Global Flavors
+                        </h2>
+
+                        <p>
+                            Discover recipes from around the world.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="pages/cuisines.html"
+                        class="btn btn-outline"
+                    >
+                        Explore Cuisines
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div class="cuisine-grid">
+
+
+                    <a
+                        href="pages/Chinese.html"
+                        class="cuisine-card"
+                    >
+
+                        <div class="cuisine-icon">
+                            <i class="fa-solid fa-bowl-rice"></i>
+                        </div>
+
+                        <h3>
+                            Chinese
+                        </h3>
+
+                        <span>
+                            Fried Rice • Noodles
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="pages/cuisines.html?cuisine=Italian"
+                        class="cuisine-card"
+                    >
+
+                        <div class="cuisine-icon">
+                            <i class="fa-solid fa-pizza-slice"></i>
+                        </div>
+
+                        <h3>
+                            Italian
+                        </h3>
+
+                        <span>
+                            Pizza • Pasta
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="pages/cuisines.html?cuisine=Japanese"
+                        class="cuisine-card"
+                    >
+
+                        <div class="cuisine-icon">
+                            <i class="fa-solid fa-fish"></i>
+                        </div>
+
+                        <h3>
+                            Japanese
+                        </h3>
+
+                        <span>
+                            Sushi • Ramen
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="pages/cuisines.html?cuisine=Mexican"
+                        class="cuisine-card"
+                    >
+
+                        <div class="cuisine-icon">
+                            <i class="fa-solid fa-pepper-hot"></i>
+                        </div>
+
+                        <h3>
+                            Mexican
+                        </h3>
+
+                        <span>
+                            Tacos • Burritos
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="pages/cuisines.html?cuisine=Thai"
+                        class="cuisine-card"
+                    >
+
+                        <div class="cuisine-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+
+                        <h3>
+                            Thai
+                        </h3>
+
+                        <span>
+                            Curry • Noodles
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="pages/cuisines.html?cuisine=American"
+                        class="cuisine-card"
+                    >
+
+                        <div class="cuisine-icon">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+
+                        <h3>
+                            American
+                        </h3>
+
+                        <span>
+                            Burgers • Pancakes
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUBMIT RECIPE
+        ================================================== -->
+
+        <section class="section submit-section">
+
+            <div class="container">
+
+                <div class="submit-box">
+
+                    <div class="submit-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+
+
+                    <div class="submit-content">
+
+                        <span class="section-tag">
+                            <i class="fa-solid fa-utensils"></i>
+                            SHARE YOUR RECIPE
+                        </span>
+
+                        <h2>
+                            Have a Special Family Recipe?
+                        </h2>
+
+                        <p>
+                            Share your traditional or original recipe
+                            with our cooking community. Your recipe
+                            will be reviewed before publishing.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="pages/submit-recipe.html"
+                        class="btn btn-primary btn-large"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Submit Recipe
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HOW IT WORKS
+        ================================================== -->
+
+        <section class="section how-section">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span class="section-tag">
+                        <i class="fa-solid fa-circle-info"></i>
+                        HOW IT WORKS
+                    </span>
+
+                    <h2>
+                        Your Cooking Journey Starts Here
+                    </h2>
+
+                    <p>
+                        Simple steps to discover, learn and cook.
+                    </p>
+
+                </div>
+
+
+                <div class="steps-grid">
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+
+                        <h3>
+                            Find a Recipe
+                        </h3>
+
+                        <p>
+                            Search by recipe, ingredient, state,
+                            district or cuisine.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-icon">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <h3>
+                            Ask AI
+                        </h3>
+
+                        <p>
+                            Get personalized cooking help and
+                            recipe suggestions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-icon">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+
+                        <h3>
+                            Start Cooking
+                        </h3>
+
+                        <p>
+                            Follow ingredients and step-by-step
+                            cooking instructions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <div class="step-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+                        <h3>
+                            Save & Share
+                        </h3>
+
+                        <p>
+                            Save your favorite recipes and share
+                            your own recipes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="main-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <!-- Brand -->
+
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="brand"
+                    >
+
+                        <div class="brand-icon">
+                            <i class="fa-solid fa-kitchen-set"></i>
+                        </div>
+
+                        <div class="brand-text">
+
+                            <span class="brand-title">
+                                AI Cooking
+                            </span>
+
+                            <span class="brand-subtitle">
+                                Assistant
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <p>
+                        Your smart cooking companion for discovering
+                        recipes, ingredients and food traditions.
+                    </p>
+
+
+                    <div class="footer-social">
+
+                        <a
+                            href="#"
+                            aria-label="Facebook"
+                        >
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a
+                            href="#"
+                            aria-label="Instagram"
+                        >
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a
+                            href="#"
+                            aria-label="YouTube"
+                        >
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Explore -->
+
+                <div class="footer-column">
+
+                    <h3>
+                        Explore
+                    </h3>
+
+                    <a href="pages/states.html">
+                        Indian States
+                    </a>
+
+                    <a href="pages/festivals.html">
+                        Festivals
+                    </a>
+
+                    <a href="pages/cuisines.html">
+                        Cuisines
+                    </a>
+
+                    <a href="pages/ingredient-finder.html">
+                        Ingredients
+                    </a>
+
+                </div>
+
+
+                <!-- AI -->
+
+                <div class="footer-column">
+
+                    <h3>
+                        AI Features
+                    </h3>
+
+                    <a href="pages/ai-chat.html">
+                        AI Chat
+                    </a>
+
+                    <a href="pages/ai-chat.html">
+                        Voice Cooking
+                    </a>
+
+                    <a href="pages/ai-chat.html">
+                        Recipe Generator
+                    </a>
+
+                    <a href="pages/ingredient-finder.html">
+                        Ingredient Finder
+                    </a>
+
+                </div>
+
+
+                <!-- Account -->
+
+                <div class="footer-column">
+
+                    <h3>
+                        Account
+                    </h3>
+
+                    <a href="pages/login.html">
+                        Login
+                    </a>
+
+                    <a href="pages/signup.html">
+                        Create Account
+                    </a>
+
+                    <a href="pages/profile.html">
+                        My Profile
+                    </a>
+
+                    <a href="pages/submit-recipe.html">
+                        Submit Recipe
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span id="currentYear"></span>
+                    AI Cooking Assistant.
+                    All rights reserved.
+                </p>
+
+                <div class="footer-bottom-links">
+
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         BACK TO TOP
+    ====================================================== -->
+
+    <button
+        id="backToTop"
+        class="back-to-top"
+        type="button"
+        aria-label="Back to top"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="app.js"></script>
+
+    <!-- Optional feature modules -->
+    <script src="js/navigation.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/favorites.js"></script>
+
+</body>
+</html>

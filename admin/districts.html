@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Districts - Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item active">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>Districts</h1>
+
+                <p>
+                    Manage district data.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>District Management</h2>
+
+                    <p>
+                        View available state and district data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="search"
+                            id="districtSearch"
+                            placeholder="Search districts..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="table-wrapper"
+                    id="districtsContainer"
+                >
+
+                    <div class="empty-state">
+                        Loading districts...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="admin.js"></script>
+
+
+<script>
+
+let districts = [];
+
+const container =
+    document.getElementById(
+        "districtsContainer"
+    );
+
+const search =
+    document.getElementById(
+        "districtSearch"
+    );
+
+
+async function loadDistricts() {
+
+    try {
+
+        const response =
+            await fetch(
+                "../data/districts.json"
+            );
+
+        districts =
+            await response.json();
+
+        renderDistricts();
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+                <h3>Unable to load districts</h3>
+            </div>
+        `;
+
+    }
+
+}
+
+
+function renderDistricts() {
+
+    const query =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    const filtered =
+        districts.filter(
+            district =>
+                district.name
+                    .toLowerCase()
+                    .includes(query) ||
+                district.state
+                    .toLowerCase()
+                    .includes(query)
+        );
+
+
+    container.innerHTML = `
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+                    <th>State</th>
+                    <th>District</th>
+                    <th>Famous Recipes</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${filtered.map(
+                    district => `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHTML(
+                                district.state
+                            )}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(
+                                    district.name
+                                )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${
+                                district.famous_recipes
+                                ?
+                                district.famous_recipes.join(
+                                    ", "
+                                )
+                                :
+                                "-"
+                            }
+                        </td>
+
+                    </tr>
+
+                `
+                ).join("")}
+
+            </tbody>
+
+        </table>
+
+    `;
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+search.addEventListener(
+    "input",
+    renderDistricts
+);
+
+
+loadDistricts();
+
+</script>
+
+</body>
+</html>

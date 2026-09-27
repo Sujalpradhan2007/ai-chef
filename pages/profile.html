@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Manage your AI Cooking Assistant profile, favorite recipes, recipe history and submitted recipes."
+    >
+
+    <title>My Profile | AI Cooking Assistant</title>
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           PROFILE PAGE
+        ========================================== */
+
+        .profile-page {
+            padding-top: 105px;
+            padding-bottom: 80px;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(255, 107, 53, 0.08),
+                    transparent 30%
+                ),
+                #f9fafb;
+            min-height: 100vh;
+        }
+
+        .profile-container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
+
+        .profile-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 25px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .profile-breadcrumb a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .profile-breadcrumb i {
+            font-size: 10px;
+            color: #aaa;
+        }
+
+        /* Profile Header */
+
+        .profile-header {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 25px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 25px;
+            background: white;
+            border: 1px solid #eee;
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-header::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            right: -80px;
+            top: -100px;
+            border-radius: 50%;
+            background: rgba(255, 107, 53, 0.08);
+        }
+
+        /* Avatar */
+
+        .profile-avatar {
+            position: relative;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6b35,
+                    #ff9f5b
+                );
+            color: white;
+            font-family: "Poppins", sans-serif;
+            font-size: 34px;
+            font-weight: 800;
+            box-shadow:
+                0 10px 30px rgba(255, 107, 53, 0.25);
+        }
+
+        .profile-main-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-main-info h1 {
+            margin: 0 0 5px;
+            color: #222;
+            font-family: "Poppins", sans-serif;
+            font-size: 30px;
+        }
+
+        .profile-main-info p {
+            margin: 0 0 8px;
+            color: #777;
+        }
+
+        .profile-mobile {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .profile-mobile i {
+            color: #ff6b35;
+        }
+
+        .profile-status {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 13px;
+            border-radius: 30px;
+            background: #e9f9ef;
+            color: #1f9d55;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .profile-status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #27ae60;
+        }
+
+        /* Layout */
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* Sidebar */
+
+        .profile-sidebar {
+            position: sticky;
+            top: 100px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .profile-tab {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 14px;
+            margin-bottom: 4px;
+            border: none;
+            border-radius: 11px;
+            background: transparent;
+            color: #555;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .profile-tab i {
+            width: 20px;
+            color: #888;
+        }
+
+        .profile-tab:hover {
+            background: #fff3ee;
+            color: #ff6b35;
+        }
+
+        .profile-tab.active {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .profile-tab.active i {
+            color: white;
+        }
+
+        .profile-tab.logout {
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            border-radius: 0 0 10px 10px;
+            color: #e74c3c;
+            padding-top: 17px;
+        }
+
+        .profile-tab.logout i {
+            color: #e74c3c;
+        }
+
+        /* Content */
+
+        .profile-content {
+            min-width: 0;
+        }
+
+        .profile-section {
+            display: none;
+            animation: profileFadeIn 0.3s ease;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        @keyframes profileFadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .profile-section-header {
+            margin-bottom: 18px;
+        }
+
+        .profile-section-header h2 {
+            margin: 0 0 5px;
+            font-family: "Poppins", sans-serif;
+            color: #222;
+            font-size: 25px;
+        }
+
+        .profile-section-header p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Stats */
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .profile-stat {
+            padding: 20px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 17px;
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        .profile-stat-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            border-radius: 11px;
+            background: #fff1eb;
+            color: #ff6b35;
+        }
+
+        .profile-stat strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #222;
+            font-size: 24px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .profile-stat span {
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* Cards */
+
+        .profile-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        .profile-card-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .profile-card-title h3 {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            color: #222;
+            font-size: 19px;
+        }
+
+        .profile-card-title i {
+            color: #ff6b35;
+            margin-right: 7px;
+        }
+
+        /* Recipe Grid */
+
+        .profile-recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .profile-recipe-card {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            gap: 14px;
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            background: white;
+            transition: 0.25s ease;
+        }
+
+        .profile-recipe-card:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        .profile-recipe-image {
+            height: 90px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff9b67,
+                    #ffd18a
+                );
+            color: white;
+            font-size: 30px;
+        }
+
+        .profile-recipe-info {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-recipe-info h4 {
+            margin: 0 0 5px;
+            color: #222;
+            font-size: 15px;
+        }
+
+        .profile-recipe-info p {
+            margin: 0 0 7px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .profile-recipe-info a {
+            width: fit-content;
+            color: #ff6b35;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* Empty State */
+
+        .profile-empty {
+            padding: 45px 20px;
+            text-align: center;
+            color: #888;
+        }
+
+        .profile-empty i {
+            display: block;
+            margin-bottom: 15px;
+            color: #ffb08e;
+            font-size: 45px;
+        }
+
+        .profile-empty h3 {
+            margin: 0 0 7px;
+            color: #333;
+        }
+
+        .profile-empty p {
+            margin: 0 0 18px;
+            font-size: 14px;
+        }
+
+        /* Submission List */
+
+        .submission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .submission-item {
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            gap: 14px;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 14px;
+        }
+
+        .submission-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #fff3ed;
+            color: #ff6b35;
+        }
+
+        .submission-info h4 {
+            margin: 0 0 4px;
+            color: #222;
+            font-size: 15px;
+        }
+
+        .submission-info p {
+            margin: 0;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .submission-status {
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: #fff5dc;
+            color: #b77900;
+        }
+
+        .status-approved {
+            background: #e8f8ee;
+            color: #218c4b;
+        }
+
+        .status-rejected {
+            background: #ffebeb;
+            color: #d63031;
+        }
+
+        /* Forms */
+
+        .profile-form {
+            display: grid;
+            gap: 17px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .profile-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .profile-field label {
+            color: #333;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .profile-field input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            transition: 0.25s ease;
+            box-sizing: border-box;
+        }
+
+        .profile-field input:focus {
+            border-color: #ff6b35;
+            box-shadow:
+                0 0 0 3px rgba(
+                    255,
+                    107,
+                    53,
+                    0.1
+                );
+        }
+
+        .profile-field input:disabled {
+            background: #f5f5f5;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        .profile-button {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #ff6b35;
+            color: white;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .profile-button:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 8px 20px rgba(
+                    255,
+                    107,
+                    53,
+                    0.2
+                );
+        }
+
+        .profile-button.secondary {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .profile-button.danger {
+            background: #fff;
+            color: #d63031;
+            border: 1px solid #ffd0d0;
+        }
+
+        /* Settings */
+
+        .settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 17px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-info h4 {
+            margin: 0 0 4px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .settings-info p {
+            margin: 0;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 46px;
+            height: 25px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            background: #ddd;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .toggle-slider::before {
+            content: "";
+            position: absolute;
+            width: 19px;
+            height: 19px;
+            left: 3px;
+            top: 3px;
+            border-radius: 50%;
+            background: white;
+            transition: 0.25s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: #ff6b35;
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(21px);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 950px) {
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                position: static;
+                display: flex;
+                overflow-x: auto;
+                padding: 7px;
+            }
+
+            .profile-tab {
+                width: auto;
+                min-width: max-content;
+                margin: 0;
+            }
+
+            .profile-tab.logout {
+                margin-top: 0;
+                margin-left: 5px;
+                border-top: none;
+                border-left: 1px solid #eee;
+            }
+
+            .profile-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .profile-page {
+                padding-top: 85px;
+            }
+
+            .profile-header {
+                grid-template-columns: auto 1fr;
+                padding: 22px;
+            }
+
+            .profile-status {
+                grid-column: 1 / -1;
+                width: fit-content;
+            }
+
+            .profile-avatar {
+                width: 75px;
+                height: 75px;
+                font-size: 27px;
+            }
+
+            .profile-main-info h1 {
+                font-size: 23px;
+            }
+
+            .profile-recipe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+        }
+
+        @media (max-width: 420px) {
+
+            .profile-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+
+            .profile-stat {
+                padding: 15px;
+            }
+
+            .profile-stat strong {
+                font-size: 20px;
+            }
+
+            .submission-item {
+                grid-template-columns: 42px 1fr;
+            }
+
+            .submission-status {
+                grid-column: 2;
+                width: fit-content;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header
+        id="mainHeader"
+        class="main-header"
+    >
+
+        <div class="container navbar">
+
+            <a
+                href="../index.html"
+                class="brand"
+            >
+
+                <span class="brand-icon">
+                    <i class="fa-solid fa-utensils"></i>
+                </span>
+
+                <span class="brand-text">
+                    <strong>AI Cooking</strong>
+                    <small>Assistant</small>
+                </span>
+
+            </a>
+
+
+            <button
+                id="mobileMenuButton"
+                class="mobile-menu-button"
+                aria-label="Open menu"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+
+            <nav class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="ai-chat.html">
+                    AI Assistant
+                </a>
+
+                <a href="states.html">
+                    India
+                </a>
+
+                <a href="festivals.html">
+                    Festivals
+                </a>
+
+                <a href="cuisines.html">
+                    Cuisines
+                </a>
+
+                <a href="ingredient-finder.html">
+                    Ingredients
+                </a>
+
+                <a
+                    href="profile.html"
+                    class="nav-signup"
+                >
+                    My Profile
+                </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- Mobile Menu -->
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu"
+        >
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="ai-chat.html">
+                AI Assistant
+            </a>
+
+            <a href="states.html">
+                India
+            </a>
+
+            <a href="festivals.html">
+                Festivals
+            </a>
+
+            <a href="cuisines.html">
+                Cuisines
+            </a>
+
+            <a href="ingredient-finder.html">
+                Ingredients
+            </a>
+
+            <a href="profile.html">
+                My Profile
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         PROFILE PAGE
+    ========================================== -->
+
+    <main class="profile-page">
+
+        <div class="profile-container">
+
+
+            <!-- Breadcrumb -->
+
+            <div class="profile-breadcrumb">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span>
+                    My Profile
+                </span>
+
+            </div>
+
+
+
+            <!-- Profile Header -->
+
+            <section class="profile-header">
+
+                <div
+                    id="profileAvatar"
+                    class="profile-avatar"
+                >
+                    U
+                </div>
+
+
+                <div class="profile-main-info">
+
+                    <h1 id="profileName">
+                        User
+                    </h1>
+
+                    <p>
+                        AI Cooking Assistant Member
+                    </p>
+
+                    <div class="profile-mobile">
+
+                        <i class="fa-solid fa-mobile-screen"></i>
+
+                        <span id="profileMobile">
+                            Mobile number
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-status">
+
+                    <span class="profile-status-dot"></span>
+
+                    Account Active
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Main Layout -->
+
+            <div class="profile-layout">
+
+
+                <!-- =================================
+                     SIDEBAR
+                ================================== -->
+
+                <aside class="profile-sidebar">
+
+                    <button
+                        class="profile-tab active"
+                        data-tab="overview"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        Overview
+
+                    </button>
+
+
+                    <button
+                        class="profile-tab"
+                        data-tab="favorites"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        Favorites
+
+                    </button>
+
+
+                    <button
+                        class="profile-tab"
+                        data-tab="history"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        Recipe History
+
+                    </button>
+
+
+                    <button
+                        class="profile-tab"
+                        data-tab="submissions"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-file-circle-plus"></i>
+
+                        My Submissions
+
+                    </button>
+
+
+                    <button
+                        class="profile-tab"
+                        data-tab="approved"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        Approved Recipes
+
+                    </button>
+
+
+                    <button
+                        class="profile-tab"
+                        data-tab="settings"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Account Settings
+
+                    </button>
+
+
+                    <button
+                        id="logoutButton"
+                        class="profile-tab logout"
+                        type="button"
+                    >
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </button>
+
+                </aside>
+
+
+
+                <!-- =================================
+                     CONTENT
+                ================================== -->
+
+                <div class="profile-content">
+
+
+                    <!-- =================================
+                         OVERVIEW
+                    ================================== -->
+
+                    <section
+                        id="tab-overview"
+                        class="profile-section active"
+                    >
+
+                        <div class="profile-section-header">
+
+                            <h2>
+                                Welcome,
+                                <span id="welcomeName">
+                                    User
+                                </span>!
+                            </h2>
+
+                            <p>
+                                Manage your cooking activity
+                                from one place.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Stats -->
+
+                        <div class="profile-stats">
+
+                            <div class="profile-stat">
+
+                                <div class="profile-stat-icon">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+
+                                <strong id="favoriteCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Favorite Recipes
+                                </span>
+
+                            </div>
+
+
+                            <div class="profile-stat">
+
+                                <div class="profile-stat-icon">
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+                                </div>
+
+                                <strong id="historyCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Recipe History
+                                </span>
+
+                            </div>
+
+
+                            <div class="profile-stat">
+
+                                <div class="profile-stat-icon">
+                                    <i class="fa-solid fa-file-circle-plus"></i>
+                                </div>
+
+                                <strong id="submissionCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Submitted Recipes
+                                </span>
+
+                            </div>
+
+
+                            <div class="profile-stat">
+
+                                <div class="profile-stat-icon">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+
+                                <strong id="approvedCount">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Approved Recipes
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Quick Actions -->
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3>
+                                    <i class="fa-solid fa-bolt"></i>
+                                    Quick Actions
+                                </h3>
+
+                            </div>
+
+
+                            <div class="recipe-actions">
+
+                                <a
+                                    href="ai-chat.html"
+                                    class="profile-button"
+                                >
+                                    <i class="fa-solid fa-robot"></i>
+                                    Ask AI
+                                </a>
+
+
+                                <a
+                                    href="ingredient-finder.html"
+                                    class="profile-button secondary"
+                                >
+                                    <i class="fa-solid fa-carrot"></i>
+                                    Find a Recipe
+                                </a>
+
+
+                                <a
+                                    href="submit-recipe.html"
+                                    class="profile-button secondary"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                    Submit Recipe
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Recent Activity -->
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3>
+                                    <i class="fa-solid fa-clock"></i>
+                                    Recent Activity
+                                </h3>
+
+                            </div>
+
+
+                            <div
+                                id="recentActivity"
+                                class="submission-list"
+                            >
+
+                                <div class="profile-empty">
+
+                                    <i class="fa-solid fa-utensils"></i>
+
+                                    <h3>
+                                        No activity yet
+                                    </h3>
+
+                                    <p>
+                                        Start exploring recipes
+                                        and your activity will
+                                        appear here.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         FAVORITES
+                    ================================== -->
+
+                    <section
+                        id="tab-favorites"
+                        class="profile-section"
+                    >
+
+                        <div class="profile-section-header">
+
+                            <h2>
+                                Favorite Recipes
+                            </h2>
+
+                            <p>
+                                Recipes you saved for later.
+                            </p>
+
+                        </div>
+
+
+                        <div class="profile-card">
+
+                            <div
+                                id="favoritesContainer"
+                                class="profile-recipe-grid"
+                            >
+
+                                <div
+                                    class="profile-empty"
+                                    style="grid-column: 1 / -1;"
+                                >
+
+                                    <i class="fa-regular fa-heart"></i>
+
+                                    <h3>
+                                        No favorite recipes
+                                    </h3>
+
+                                    <p>
+                                        Tap the heart button on
+                                        any recipe to save it here.
+                                    </p>
+
+                                    <a
+                                        href="states.html"
+                                        class="profile-button"
+                                    >
+                                        Explore Recipes
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         HISTORY
+                    ================================== -->
+
+                    <section
+                        id="tab-history"
+                        class="profile-section"
+                    >
+
+                        <div class="profile-section-header">
+
+                            <h2>
+                                Recipe History
+                            </h2>
+
+                            <p>
+                                Recipes you recently viewed.
+                            </p>
+
+                        </div>
+
+
+                        <div class="profile-card">
+
+                            <div
+                                id="historyContainer"
+                                class="profile-recipe-grid"
+                            >
+
+                                <div
+                                    class="profile-empty"
+                                    style="grid-column: 1 / -1;"
+                                >
+
+                                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                                    <h3>
+                                        No recipe history
+                                    </h3>
+
+                                    <p>
+                                        Your recently viewed
+                                        recipes will appear here.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         SUBMISSIONS
+                    ================================== -->
+
+                    <section
+                        id="tab-submissions"
+                        class="profile-section"
+                    >
+
+                        <div class="profile-section-header">
+
+                            <h2>
+                                My Recipe Submissions
+                            </h2>
+
+                            <p>
+                                Track recipes you submitted
+                                for admin review.
+                            </p>
+
+                        </div>
+
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3>
+                                    <i class="fa-solid fa-file-circle-plus"></i>
+                                    Submitted Recipes
+                                </h3>
+
+                                <a
+                                    href="submit-recipe.html"
+                                    class="profile-button"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                    New Recipe
+                                </a>
+
+                            </div>
+
+
+                            <div
+                                id="submissionsContainer"
+                                class="submission-list"
+                            >
+
+                                <div class="profile-empty">
+
+                                    <i class="fa-solid fa-file-circle-plus"></i>
+
+                                    <h3>
+                                        No submissions yet
+                                    </h3>
+
+                                    <p>
+                                        Submit your first recipe
+                                        and it will appear here.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         APPROVED RECIPES
+                    ================================== -->
+
+                    <section
+                        id="tab-approved"
+                        class="profile-section"
+                    >
+
+                        <div class="profile-section-header">
+
+                            <h2>
+                                Approved Recipes
+                            </h2>
+
+                            <p>
+                                Recipes approved by the
+                                AI Cooking Assistant admin team.
+                            </p>
+
+                        </div>
+
+
+                        <div class="profile-card">
+
+                            <div
+                                id="approvedContainer"
+                                class="profile-recipe-grid"
+                            >
+
+                                <div
+                                    class="profile-empty"
+                                    style="grid-column: 1 / -1;"
+                                >
+
+                                    <i class="fa-solid fa-circle-check"></i>
+
+                                    <h3>
+                                        No approved recipes yet
+                                    </h3>
+
+                                    <p>
+                                        Approved recipes will
+                                        appear here.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- =================================
+                         SETTINGS
+                    ================================== -->
+
+                    <section
+                        id="tab-settings"
+                        class="profile-section"
+                    >
+
+                        <div class="profile-section-header">
+
+                            <h2>
+                                Account Settings
+                            </h2>
+
+                            <p>
+                                Update your profile and
+                                application preferences.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Personal Information -->
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3>
+                                    <i class="fa-solid fa-user"></i>
+                                    Personal Information
+                                </h3>
+
+                            </div>
+
+
+                            <form
+                                id="profileForm"
+                                class="profile-form"
+                            >
+
+                                <div class="form-row">
+
+                                    <div class="profile-field">
+
+                                        <label for="editName">
+                                            Full Name
+                                        </label>
+
+                                        <input
+                                            id="editName"
+                                            type="text"
+                                            placeholder="Enter your name"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <div class="profile-field">
+
+                                        <label for="editMobile">
+                                            Mobile Number
+                                        </label>
+
+                                        <input
+                                            id="editMobile"
+                                            type="tel"
+                                            disabled
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <button
+                                    type="submit"
+                                    class="profile-button"
+                                >
+
+                                    <i class="fa-solid fa-floppy-disk"></i>
+
+                                    Save Changes
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+
+                        <!-- Password -->
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3>
+                                    <i class="fa-solid fa-lock"></i>
+                                    Security
+                                </h3>
+
+                            </div>
+
+
+                            <form
+                                id="passwordForm"
+                                class="profile-form"
+                            >
+
+                                <div class="profile-field">
+
+                                    <label for="currentPassword">
+                                        Current Password
+                                    </label>
+
+                                    <input
+                                        id="currentPassword"
+                                        type="password"
+                                        placeholder="Enter current password"
+                                    >
+
+                                </div>
+
+
+                                <div class="form-row">
+
+                                    <div class="profile-field">
+
+                                        <label for="newPassword">
+                                            New Password
+                                        </label>
+
+                                        <input
+                                            id="newPassword"
+                                            type="password"
+                                            placeholder="Minimum 8 characters"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="profile-field">
+
+                                        <label for="confirmPassword">
+                                            Confirm New Password
+                                        </label>
+
+                                        <input
+                                            id="confirmPassword"
+                                            type="password"
+                                            placeholder="Confirm new password"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+
+                                <button
+                                    type="submit"
+                                    class="profile-button"
+                                >
+
+                                    <i class="fa-solid fa-key"></i>
+
+                                    Change Password
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+
+                        <!-- Preferences -->
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3>
+                                    <i class="fa-solid fa-sliders"></i>
+                                    Preferences
+                                </h3>
+
+                            </div>
+
+
+                            <div class="settings-item">
+
+                                <div class="settings-info">
+
+                                    <h4>
+                                        Recipe Notifications
+                                    </h4>
+
+                                    <p>
+                                        Receive updates about
+                                        recipes and cooking tips.
+                                    </p>
+
+                                </div>
+
+
+                                <label class="toggle">
+
+                                    <input
+                                        id="recipeNotifications"
+                                        type="checkbox"
+                                        checked
+                                    >
+
+                                    <span class="toggle-slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="settings-item">
+
+                                <div class="settings-info">
+
+                                    <h4>
+                                        Festival Recipe Alerts
+                                    </h4>
+
+                                    <p>
+                                        Get notifications for
+                                        special festival recipes.
+                                    </p>
+
+                                </div>
+
+
+                                <label class="toggle">
+
+                                    <input
+                                        id="festivalNotifications"
+                                        type="checkbox"
+                                        checked
+                                    >
+
+                                    <span class="toggle-slider"></span>
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="settings-item">
+
+                                <div class="settings-info">
+
+                                    <h4>
+                                        AI Cooking Suggestions
+                                    </h4>
+
+                                    <p>
+                                        Allow personalized AI
+                                        recipe suggestions.
+                                    </p>
+
+                                </div>
+
+
+                                <label class="toggle">
+
+                                    <input
+                                        id="aiSuggestions"
+                                        type="checkbox"
+                                        checked
+                                    >
+
+                                    <span class="toggle-slider"></span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Danger Zone -->
+
+                        <div class="profile-card">
+
+                            <div class="profile-card-title">
+
+                                <h3 style="color:#d63031;">
+
+                                    <i
+                                        class="fa-solid fa-triangle-exclamation"
+                                        style="color:#d63031;"
+                                    ></i>
+
+                                    Account
+
+                                </h3>
+
+                            </div>
+
+
+                            <button
+                                id="logoutButtonSettings"
+                                type="button"
+                                class="profile-button secondary"
+                            >
+
+                                <i class="fa-solid fa-right-from-bracket"></i>
+
+                                Logout
+
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-about">
+
+                    <a
+                        href="../index.html"
+                        class="brand"
+                    >
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span class="brand-text">
+                            <strong>AI Cooking</strong>
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+
+                    <p>
+                        Your smart cooking companion for
+                        recipes, ingredients, cooking guidance
+                        and AI-powered kitchen assistance.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h3>
+                        Explore
+                    </h3>
+
+                    <a href="states.html">
+                        Indian States
+                    </a>
+
+                    <a href="festivals.html">
+                        Festival Recipes
+                    </a>
+
+                    <a href="cuisines.html">
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Ingredient Finder
+                    </a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h3>
+                        AI Tools
+                    </h3>
+
+                    <a href="ai-chat.html">
+                        AI Cooking Assistant
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Recipe Generator
+                    </a>
+
+                    <a href="ai-chat.html">
+                        Cooking Help
+                    </a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h3>
+                        Account
+                    </h3>
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                    <a href="signup.html">
+                        Create Account
+                    </a>
+
+                    <a href="submit-recipe.html">
+                        Submit Recipe
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span id="currentYear"></span>
+                    AI Cooking Assistant.
+                    All rights reserved.
+                </p>
+
+                <p>
+                    Made for food lovers everywhere.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         PROFILE JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                /* =================================
+                   USER DATA
+                ================================= */
+
+                const userKey =
+                    "aiCookingUser";
+
+                let user = null;
+
+                try {
+
+                    user =
+                        JSON.parse(
+                            localStorage.getItem(
+                                userKey
+                            )
+                        );
+
+                } catch {
+
+                    user = null;
+
+                }
+
+
+                /*
+                 * Demo account fallback.
+                 * Real authentication will be
+                 * connected to backend later.
+                 */
+
+                if (!user) {
+
+                    user = {
+
+                        name: "Guest User",
+
+                        mobile: "Not logged in",
+
+                        favorites: [],
+
+                        history: [],
+
+                        submittedRecipes: [],
+
+                        approvedRecipes: [],
+
+                        createdAt:
+                            new Date().toISOString()
+
+                    };
+
+                }
+
+
+                /* =================================
+                   ELEMENTS
+                ================================= */
+
+                const profileName =
+                    document.getElementById(
+                        "profileName"
+                    );
+
+                const welcomeName =
+                    document.getElementById(
+                        "welcomeName"
+                    );
+
+                const profileMobile =
+                    document.getElementById(
+                        "profileMobile"
+                    );
+
+                const profileAvatar =
+                    document.getElementById(
+                        "profileAvatar"
+                    );
+
+
+                /* =================================
+                   LOAD USER
+                ================================= */
+
+                function loadUser() {
+
+                    const name =
+                        user.name ||
+                        "Guest User";
+
+                    profileName.textContent =
+                        name;
+
+                    welcomeName.textContent =
+                        name.split(" ")[0];
+
+                    profileMobile.textContent =
+                        user.mobile ||
+                        "Not available";
+
+
+                    const initials =
+                        name
+                            .split(" ")
+                            .filter(Boolean)
+                            .map(
+                                word =>
+                                    word.charAt(0)
+                            )
+                            .slice(0, 2)
+                            .join("")
+                            .toUpperCase();
+
+                    profileAvatar.textContent =
+                        initials || "U";
+
+
+                    document.getElementById(
+                        "editName"
+                    ).value =
+                        user.name || "";
+
+
+                    document.getElementById(
+                        "editMobile"
+                    ).value =
+                        user.mobile || "";
+
+                }
+
+
+                loadUser();
+
+
+                /* =================================
+                   ARRAYS
+                ================================= */
+
+                const favorites =
+                    Array.isArray(
+                        user.favorites
+                    )
+                        ? user.favorites
+                        : [];
+
+                const history =
+                    Array.isArray(
+                        user.history
+                    )
+                        ? user.history
+                        : [];
+
+                const submissions =
+                    Array.isArray(
+                        user.submittedRecipes
+                    )
+                        ? user.submittedRecipes
+                        : [];
+
+                const approved =
+                    Array.isArray(
+                        user.approvedRecipes
+                    )
+                        ? user.approvedRecipes
+                        : [];
+
+
+                /* =================================
+                   UPDATE STATS
+                ================================= */
+
+                document.getElementById(
+                    "favoriteCount"
+                ).textContent =
+                    favorites.length;
+
+                document.getElementById(
+                    "historyCount"
+                ).textContent =
+                    history.length;
+
+                document.getElementById(
+                    "submissionCount"
+                ).textContent =
+                    submissions.length;
+
+                document.getElementById(
+                    "approvedCount"
+                ).textContent =
+                    approved.length;
+
+
+                /* =================================
+                   TABS
+                ================================= */
+
+                const tabs =
+                    document.querySelectorAll(
+                        ".profile-tab[data-tab]"
+                    );
+
+                const sections =
+                    document.querySelectorAll(
+                        ".profile-section"
+                    );
+
+
+                tabs.forEach(tab => {
+
+                    tab.addEventListener(
+                        "click",
+                        () => {
+
+                            const tabName =
+                                tab.dataset.tab;
+
+
+                            tabs.forEach(item => {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                            sections.forEach(section => {
+
+                                section.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                            tab.classList.add(
+                                "active"
+                            );
+
+
+                            const target =
+                                document.getElementById(
+                                    `tab-${tabName}`
+                                );
+
+
+                            if (target) {
+
+                                target.classList.add(
+                                    "active"
+                                );
+
+                            }
+
+
+                            window.scrollTo({
+
+                                top: 0,
+
+                                behavior: "smooth"
+
+                            });
+
+                        }
+                    );
+
+                });
+
+
+                /* =================================
+                   RENDER RECIPE CARDS
+                ================================= */
+
+                function renderRecipes(
+                    containerId,
+                    recipeArray,
+                    emptyIcon,
+                    emptyTitle,
+                    emptyText
+                ) {
+
+                    const container =
+                        document.getElementById(
+                            containerId
+                        );
+
+
+                    if (!container) {
+                        return;
+                    }
+
+
+                    if (
+                        !recipeArray ||
+                        recipeArray.length === 0
+                    ) {
+
+                        container.innerHTML = `
+
+                            <div
+                                class="profile-empty"
+                                style="grid-column:1/-1;"
+                            >
+
+                                <i class="${emptyIcon}"></i>
+
+                                <h3>
+                                    ${emptyTitle}
+                                </h3>
+
+                                <p>
+                                    ${emptyText}
+                                </p>
+
+                            </div>
+
+                        `;
+
+                        return;
+
+                    }
+
+
+                    container.innerHTML = "";
+
+
+                    recipeArray.forEach(
+                        (recipe, index) => {
+
+                            const recipeId =
+                                typeof recipe === "string"
+                                    ? recipe
+                                    : recipe.id || index;
+
+                            const recipeTitle =
+                                typeof recipe === "string"
+                                    ? "Saved Recipe"
+                                    : recipe.title ||
+                                      "My Recipe";
+
+
+                            const card =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            card.className =
+                                "profile-recipe-card";
+
+
+                            card.innerHTML = `
+
+                                <div class="profile-recipe-image">
+
+                                    <i class="fa-solid fa-bowl-food"></i>
+
+                                </div>
+
+
+                                <div class="profile-recipe-info">
+
+                                    <h4>
+                                        ${escapeHTML(
+                                            recipeTitle
+                                        )}
+                                    </h4>
+
+                                    <p>
+                                        Recipe ID:
+                                        ${escapeHTML(
+                                            String(
+                                                recipeId
+                                            )
+                                        )}
+                                    </p>
+
+                                    <a
+                                        href="recipe.html?recipe=${encodeURIComponent(
+                                            recipeId
+                                        )}"
+                                    >
+                                        View Recipe
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
+
+                            `;
+
+
+                            container.appendChild(
+                                card
+                            );
+
+                        }
+                    );
+
+                }
+
+
+                renderRecipes(
+
+                    "favoritesContainer",
+
+                    favorites,
+
+                    "fa-regular fa-heart",
+
+                    "No favorite recipes",
+
+                    "Save recipes using the heart button."
+
+                );
+
+
+                renderRecipes(
+
+                    "historyContainer",
+
+                    history,
+
+                    "fa-solid fa-clock-rotate-left",
+
+                    "No recipe history",
+
+                    "Recipes you view will appear here."
+
+                );
+
+
+                renderRecipes(
+
+                    "approvedContainer",
+
+                    approved,
+
+                    "fa-solid fa-circle-check",
+
+                    "No approved recipes yet",
+
+                    "Your approved recipes will appear here."
+
+                );
+
+
+                /* =================================
+                   SUBMISSIONS
+                ================================= */
+
+                const submissionsContainer =
+                    document.getElementById(
+                        "submissionsContainer"
+                    );
+
+
+                if (
+                    submissions.length > 0
+                ) {
+
+                    submissionsContainer.innerHTML =
+                        "";
+
+
+                    submissions.forEach(
+                        (submission, index) => {
+
+                            const item =
+                                document.createElement(
+                                    "div"
+                                );
+
+                            item.className =
+                                "submission-item";
+
+
+                            const submissionTitle =
+                                typeof submission === "string"
+                                    ? submission
+                                    : submission.title ||
+                                      `Recipe Submission ${index + 1}`;
+
+
+                            const submissionStatus =
+                                typeof submission === "object" &&
+                                submission.status
+                                    ? submission.status
+                                    : "pending";
+
+
+                            let statusClass =
+                                "status-pending";
+
+
+                            if (
+                                submissionStatus ===
+                                "approved"
+                            ) {
+
+                                statusClass =
+                                    "status-approved";
+
+                            }
+
+                

@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Indian States & Recipes | AI Cooking Assistant</title>
+
+    <meta
+        name="description"
+        content="Explore Indian states, famous dishes, traditional recipes, regional cuisines and local food with AI Cooking Assistant."
+    >
+
+    <meta name="theme-color" content="#ff6b35">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main Website CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* =========================================================
+           STATES PAGE
+        ========================================================= */
+
+        .states-page {
+            min-height: 100vh;
+            padding-top: 90px;
+            background:
+                radial-gradient(circle at top left, rgba(255, 107, 53, 0.10), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(255, 193, 7, 0.10), transparent 30%),
+                #fff;
+        }
+
+        /* Page Hero */
+
+        .states-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 80px 20px 70px;
+            text-align: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 107, 53, 0.96),
+                    rgba(255, 159, 67, 0.94),
+                    rgba(255, 193, 7, 0.92)
+                );
+            color: #fff;
+        }
+
+        .states-hero::before,
+        .states-hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .states-hero::before {
+            width: 320px;
+            height: 320px;
+            top: -170px;
+            left: -100px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .states-hero::after {
+            width: 420px;
+            height: 420px;
+            right: -160px;
+            bottom: -230px;
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .states-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .states-hero-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            font-size: 36px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .states-hero h1 {
+            margin: 0 0 16px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .states-hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.08rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Search */
+
+        .states-search-wrapper {
+            position: relative;
+            z-index: 5;
+            max-width: 760px;
+            margin: -32px auto 0;
+            padding: 0 20px;
+        }
+
+        .states-search-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
+        }
+
+        .states-search-box i {
+            margin-left: 12px;
+            color: #ff6b35;
+            font-size: 20px;
+        }
+
+        .states-search-box input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 14px 4px;
+            font-family: "Inter", sans-serif;
+            font-size: 16px;
+            color: #222;
+        }
+
+        .states-search-box input::placeholder {
+            color: #999;
+        }
+
+        .states-search-box button {
+            border: none;
+            border-radius: 13px;
+            padding: 13px 22px;
+            background: linear-gradient(135deg, #ff6b35, #ff8a4c);
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .states-search-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.30);
+        }
+
+        /* Main Content */
+
+        .states-content {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 70px 20px 90px;
+        }
+
+        .states-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .states-toolbar-text h2 {
+            margin: 0 0 7px;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.8rem;
+            color: #222;
+        }
+
+        .states-toolbar-text p {
+            margin: 0;
+            color: #777;
+        }
+
+        .states-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 30px;
+            background: #fff4ef;
+            color: #e85d2a;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* States Grid */
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .state-explorer-card {
+            position: relative;
+            min-height: 280px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .state-explorer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+        }
+
+        .state-card-visual {
+            position: relative;
+            height: 175px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff6b35,
+                    #ff9f43
+                );
+        }
+
+        .state-card-visual::before {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            top: -70px;
+            right: -35px;
+        }
+
+        .state-card-visual::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.10);
+            bottom: -70px;
+            left: -30px;
+        }
+
+        .state-card-icon {
+            position: relative;
+            z-index: 2;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 34px;
+        }
+
+        .state-card-body {
+            padding: 20px;
+        }
+
+        .state-card-body h3 {
+            margin: 0 0 8px;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.15rem;
+            color: #222;
+        }
+
+        .state-card-body p {
+            margin: 0 0 15px;
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        .state-famous {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #e85d2a;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .state-famous i {
+            font-size: 12px;
+        }
+
+        .state-card-link {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            text-decoration: none;
+        }
+
+        /* Search Empty State */
+
+        .states-empty {
+            display: none;
+            padding: 70px 20px;
+            text-align: center;
+        }
+
+        .states-empty.show {
+            display: block;
+        }
+
+        .states-empty-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff4ef;
+            color: #ff6b35;
+            font-size: 34px;
+        }
+
+        .states-empty h3 {
+            margin: 0 0 10px;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .states-empty p {
+            margin: 0;
+            color: #777;
+        }
+
+        /* India Info */
+
+        .india-info-section {
+            margin-top: 75px;
+            padding: 45px;
+            border-radius: 28px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 107, 53, 0.08),
+                    rgba(255, 193, 7, 0.08)
+                );
+            border: 1px solid rgba(255, 107, 53, 0.10);
+        }
+
+        .india-info-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .india-info-content h2 {
+            margin: 0 0 15px;
+            font-family: "Poppins", sans-serif;
+            font-size: 2rem;
+            color: #222;
+        }
+
+        .india-info-content p {
+            margin: 0 0 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .india-info-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .india-info-point {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        .india-info-point i {
+            color: #ff6b35;
+        }
+
+        .india-map-placeholder {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle, rgba(255, 255, 255, 0.28) 2px, transparent 2px),
+                linear-gradient(135deg, #ff6b35, #ff9f43);
+            background-size: 25px 25px, auto;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .india-map-placeholder-inner i {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 70px;
+        }
+
+        .india-map-placeholder-inner strong {
+            display: block;
+            font-family: "Poppins", sans-serif;
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1100px) {
+            .states-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .india-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .states-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .states-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .india-info-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .states-page {
+                padding-top: 75px;
+            }
+
+            .states-hero {
+                padding: 60px 18px 55px;
+            }
+
+            .states-hero-icon {
+                width: 65px;
+                height: 65px;
+                border-radius: 20px;
+                font-size: 28px;
+            }
+
+            .states-hero p {
+                font-size: 0.95rem;
+            }
+
+            .states-search-wrapper {
+                padding: 0 14px;
+            }
+
+            .states-search-box {
+                flex-wrap: wrap;
+                border-radius: 17px;
+            }
+
+            .states-search-box input {
+                width: calc(100% - 55px);
+            }
+
+            .states-search-box button {
+                width: 100%;
+            }
+
+            .states-content {
+                padding: 55px 15px 70px;
+            }
+
+            .states-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .state-explorer-card {
+                min-height: 270px;
+            }
+
+            .india-info-section {
+                margin-top: 50px;
+                padding: 25px 18px;
+            }
+
+            .india-info-points {
+                grid-template-columns: 1fr;
+            }
+
+            .india-map-placeholder {
+                min-height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         PAGE LOADER
+    ========================================================== -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+    </div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+    <header class="main-header" id="mainHeader">
+
+        <div class="container">
+
+            <nav class="navbar">
+
+                <!-- Logo -->
+                <a href="../index.html" class="brand-logo">
+                    <span class="brand-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </span>
+
+                    <span class="brand-text">
+                        <strong>AI Cooking</strong>
+                        <small>Assistant</small>
+                    </span>
+                </a>
+
+
+                <!-- Desktop Navigation -->
+                <div class="nav-links">
+
+                    <a href="../index.html">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+
+                    <a href="ai-chat.html">
+                        <i class="fa-solid fa-robot"></i>
+                        AI Assistant
+                    </a>
+
+                    <a href="states.html" class="active">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        India
+                    </a>
+
+                    <a href="festivals.html">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Festivals
+                    </a>
+
+                    <a href="cuisines.html">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        <i class="fa-solid fa-carrot"></i>
+                        Ingredients
+                    </a>
+
+                </div>
+
+
+                <!-- Right Actions -->
+                <div class="nav-actions">
+
+                    <a href="login.html" class="nav-login">
+                        <i class="fa-regular fa-user"></i>
+                        Login
+                    </a>
+
+                    <a href="signup.html" class="nav-signup">
+                        Sign Up
+                    </a>
+
+                </div>
+
+
+                <!-- Mobile Menu Button -->
+                <button
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    aria-label="Open navigation menu"
+                    type="button"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </nav>
+
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+
+                <a href="../index.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="ai-chat.html">
+                    <i class="fa-solid fa-robot"></i>
+                    AI Assistant
+                </a>
+
+                <a href="states.html" class="active">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    India
+                </a>
+
+                <a href="festivals.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Festivals
+                </a>
+
+                <a href="cuisines.html">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    Cuisines
+                </a>
+
+                <a href="ingredient-finder.html">
+                    <i class="fa-solid fa-carrot"></i>
+                    Ingredients
+                </a>
+
+                <a href="login.html">
+                    <i class="fa-regular fa-user"></i>
+                    Login
+                </a>
+
+                <a href="signup.html">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Sign Up
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <main class="states-page">
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+        <section class="states-hero">
+
+            <div class="states-hero-content">
+
+                <div class="states-hero-icon">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+
+                <h1>Explore Indian Food</h1>
+
+                <p>
+                    Discover famous recipes, traditional dishes and local
+                    flavors from every state of India. Choose a state to
+                    explore its cuisine and regional recipes.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SEARCH
+        ====================================================== -->
+        <div class="states-search-wrapper">
+
+            <div class="states-search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="search"
+                    id="stateSearchInput"
+                    placeholder="Search state or famous dish..."
+                    autocomplete="off"
+                    aria-label="Search Indian states"
+                >
+
+                <button
+                    type="button"
+                    id="stateSearchButton"
+                >
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+        <section class="states-content">
+
+            <div class="states-toolbar">
+
+                <div class="states-toolbar-text">
+
+                    <h2>Indian States & Their Cuisines</h2>
+
+                    <p>
+                        Select a state to discover its famous and traditional recipes.
+                    </p>
+
+                </div>
+
+                <div class="states-count" id="statesCount">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>28 States</span>
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATES GRID
+            ================================================== -->
+            <div class="states-grid" id="statesGrid">
+
+
+                <!-- Andhra Pradesh -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Andhra Pradesh"
+                    data-search="andhra pradesh andhra hyderabadi pulihora gongura"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-pepper-hot"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Andhra Pradesh</h3>
+
+                        <p>
+                            Explore spicy, flavorful and traditional Andhra cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Pulihora, Gongura Pachadi
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Andhra%20Pradesh"
+                        class="state-card-link"
+                        aria-label="Explore Andhra Pradesh recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Arunachal Pradesh -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Arunachal Pradesh"
+                    data-search="arunachal pradesh momos thukpa bamboo shoot"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-mountain-sun"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Arunachal Pradesh</h3>
+
+                        <p>
+                            Discover food traditions influenced by the Himalayan region.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Thukpa, Momos
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Arunachal%20Pradesh"
+                        class="state-card-link"
+                        aria-label="Explore Arunachal Pradesh recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Assam -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Assam"
+                    data-search="assam assamese masor tenga khar pitha"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Assam</h3>
+
+                        <p>
+                            Explore distinctive Assamese flavors and traditional dishes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Masor Tenga, Pitha
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Assam"
+                        class="state-card-link"
+                        aria-label="Explore Assam recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Bihar -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Bihar"
+                    data-search="bihar litti chokha sattu thekua"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Bihar</h3>
+
+                        <p>
+                            Enjoy hearty dishes made with traditional grains and spices.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Litti Chokha, Thekua
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Bihar"
+                        class="state-card-link"
+                        aria-label="Explore Bihar recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Chhattisgarh -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Chhattisgarh"
+                    data-search="chhattisgarh chila fara angakar roti"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Chhattisgarh</h3>
+
+                        <p>
+                            Discover traditional tribal and regional Chhattisgarhi food.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Chila, Fara
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Chhattisgarh"
+                        class="state-card-link"
+                        aria-label="Explore Chhattisgarh recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Goa -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Goa"
+                    data-search="goa goan fish curry vindaloo bebinca"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-fish"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Goa</h3>
+
+                        <p>
+                            Explore coastal Goan food, seafood and Portuguese-influenced dishes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Goan Fish Curry, Bebinca
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Goa"
+                        class="state-card-link"
+                        aria-label="Explore Goa recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Gujarat -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Gujarat"
+                    data-search="gujarat dhokla fafda thepla undhiyu"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Gujarat</h3>
+
+                        <p>
+                            Taste famous Gujarati vegetarian dishes and snacks.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Dhokla, Thepla
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Gujarat"
+                        class="state-card-link"
+                        aria-label="Explore Gujarat recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Haryana -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Haryana"
+                    data-search="haryana bajra roti kadhi churma"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Haryana</h3>
+
+                        <p>
+                            Discover rustic North Indian dishes and traditional meals.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Bajra Roti, Churma
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Haryana"
+                        class="state-card-link"
+                        aria-label="Explore Haryana recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Himachal Pradesh -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Himachal Pradesh"
+                    data-search="himachal pradesh dham sidu madra"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-mountain"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Himachal Pradesh</h3>
+
+                        <p>
+                            Explore mountain cuisine and traditional Himachali meals.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Dham, Sidu
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Himachal%20Pradesh"
+                        class="state-card-link"
+                        aria-label="Explore Himachal Pradesh recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Jharkhand -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Jharkhand"
+                    data-search="jharkhand dhuska thekua rugra"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Jharkhand</h3>
+
+                        <p>
+                            Discover indigenous and traditional Jharkhandi recipes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Dhuska, Rugra
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Jharkhand"
+                        class="state-card-link"
+                        aria-label="Explore Jharkhand recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Karnataka -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Karnataka"
+                    data-search="karnataka bisibelebath dosa mysore pak ragi mudde"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Karnataka</h3>
+
+                        <p>
+                            Explore South Indian classics and regional Karnataka cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Bisi Bele Bath, Mysore Pak
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Karnataka"
+                        class="state-card-link"
+                        aria-label="Explore Karnataka recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Kerala -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Kerala"
+                    data-search="kerala appam puttu sadya avial fish curry"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Kerala</h3>
+
+                        <p>
+                            Taste coconut-rich dishes and famous Kerala cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Appam, Puttu, Sadya
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Kerala"
+                        class="state-card-link"
+                        aria-label="Explore Kerala recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Madhya Pradesh -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Madhya Pradesh"
+                    data-search="madhya pradesh poha bhutte ka kees dal bafla"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-bowl-rice"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Madhya Pradesh</h3>
+
+                        <p>
+                            Discover popular central Indian dishes and street foods.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Poha, Dal Bafla
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Madhya%20Pradesh"
+                        class="state-card-link"
+                        aria-label="Explore Madhya Pradesh recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Maharashtra -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Maharashtra"
+                    data-search="maharashtra vada pav misal pav puran poli modak"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Maharashtra</h3>
+
+                        <p>
+                            Explore famous Maharashtrian snacks, sweets and meals.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Vada Pav, Puran Poli
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Maharashtra"
+                        class="state-card-link"
+                        aria-label="Explore Maharashtra recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Manipur -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Manipur"
+                    data-search="manipur eromba singju chamthong manipuri"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Manipur</h3>
+
+                        <p>
+                            Discover unique ingredients and traditional Manipuri dishes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Eromba, Singju
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Manipur"
+                        class="state-card-link"
+                        aria-label="Explore Manipur recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Meghalaya -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Meghalaya"
+                    data-search="meghalaya jadoh tungrymbai nakham bitchi"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Meghalaya</h3>
+
+                        <p>
+                            Explore traditional Khasi, Jaintia and Garo cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Jadoh, Tungrymbai
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Meghalaya"
+                        class="state-card-link"
+                        aria-label="Explore Meghalaya recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Mizoram -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Mizoram"
+                    data-search="mizoram bai sawchiar bamboo shoot"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Mizoram</h3>
+
+                        <p>
+                            Discover simple, fresh and traditional Mizo dishes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Bai, Sawchiar
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Mizoram"
+                        class="state-card-link"
+                        aria-label="Explore Mizoram recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Nagaland -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Nagaland"
+                    data-search="nagaland smoked pork bamboo shoot axone naga cuisine"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Nagaland</h3>
+
+                        <p>
+                            Explore bold flavors and traditional Naga cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Smoked Pork, Axone
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Nagaland"
+                        class="state-card-link"
+                        aria-label="Explore Nagaland recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Odisha -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Odisha"
+                    data-search="odisha odia dalma pakhala chhena poda dahi bara"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Odisha</h3>
+
+                        <p>
+                            Discover traditional Odia food, sweets and temple cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Dalma, Pakhala, Chhena Poda
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Odisha"
+                        class="state-card-link"
+                        aria-label="Explore Odisha recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Punjab -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Punjab"
+                    data-search="punjab sarson saag makki roti butter chicken lassi"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Punjab</h3>
+
+                        <p>
+                            Enjoy rich, hearty Punjabi dishes and famous breads.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Sarson Saag, Makki Roti
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Punjab"
+                        class="state-card-link"
+                        aria-label="Explore Punjab recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Rajasthan -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Rajasthan"
+                    data-search="rajasthan dal bati churma gatte ker sangri ghevar"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Rajasthan</h3>
+
+                        <p>
+                            Explore royal desert cuisine and iconic Rajasthani dishes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Dal Baati Churma, Ghevar
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Rajasthan"
+                        class="state-card-link"
+                        aria-label="Explore Rajasthan recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Sikkim -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Sikkim"
+                    data-search="sikkim momos thukpa gundruk"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-mountain-sun"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Sikkim</h3>
+
+                        <p>
+                            Discover Himalayan food traditions and comforting dishes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Momos, Thukpa
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Sikkim"
+                        class="state-card-link"
+                        aria-label="Explore Sikkim recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Tamil Nadu -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Tamil Nadu"
+                    data-search="tamil nadu dosa idli sambar pongal chettinad"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Tamil Nadu</h3>
+
+                        <p>
+                            Explore classic Tamil cuisine, breakfast dishes and sweets.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Idli, Dosa, Pongal
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Tamil%20Nadu"
+                        class="state-card-link"
+                        aria-label="Explore Tamil Nadu recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Telangana -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Telangana"
+                    data-search="telangana hyderabadi biryani haleem sarva pindi"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-bowl-rice"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Telangana</h3>
+
+                        <p>
+                            Discover spicy regional food and Hyderabadi influences.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Biryani, Haleem
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Telangana"
+                        class="state-card-link"
+                        aria-label="Explore Telangana recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Tripura -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Tripura"
+                    data-search="tripura mui borok chakhwi bamboo shoot"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Tripura</h3>
+
+                        <p>
+                            Explore traditional Tripuri food and local ingredients.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Chakhwi, Mui Borok
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Tripura"
+                        class="state-card-link"
+                        aria-label="Explore Tripura recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Uttar Pradesh -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Uttar Pradesh"
+                    data-search="uttar pradesh awadhi biryani kebab kachori peda"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-drumstick-bite"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Uttar Pradesh</h3>
+
+                        <p>
+                            Discover Awadhi, Mughlai and traditional UP cuisine.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Kachori, Awadhi Biryani
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Uttar%20Pradesh"
+                        class="state-card-link"
+                        aria-label="Explore Uttar Pradesh recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Uttarakhand -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Uttarakhand"
+                    data-search="uttarakhand aloo ke gutke kafuli bhatt ki churkani"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-mountain"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Uttarakhand</h3>
+
+                        <p>
+                            Taste wholesome mountain recipes from Uttarakhand.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Aloo Ke Gutke, Kafuli
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Uttarakhand"
+                        class="state-card-link"
+                        aria-label="Explore Uttarakhand recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- West Bengal -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="West Bengal"
+                    data-search="west bengal bengali macher jhol rosogolla mishti doi shorshe"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-fish"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>West Bengal</h3>
+
+                        <p>
+                            Explore Bengali fish dishes, sweets and traditional recipes.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Macher Jhol, Rosogolla
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=West%20Bengal"
+                        class="state-card-link"
+                        aria-label="Explore West Bengal recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Jammu & Kashmir -->
+                <article
+                    class="state-explorer-card reveal"
+                    data-state="Jammu and Kashmir"
+                    data-search="jammu kashmir rogan josh yakhni dum aloo kahwa"
+                >
+
+                    <div class="state-card-visual">
+                        <div class="state-card-icon">
+                            <i class="fa-solid fa-mountain-sun"></i>
+                        </div>
+                    </div>
+
+                    <div class="state-card-body">
+
+                        <h3>Jammu & Kashmir</h3>
+
+                        <p>
+                            Discover aromatic Kashmiri dishes and mountain flavors.
+                        </p>
+
+                        <div class="state-famous">
+                            <i class="fa-solid fa-star"></i>
+                            Famous: Rogan Josh, Kahwa
+                        </div>
+
+                    </div>
+
+                    <a
+                        href="state.html?state=Jammu%20and%20Kashmir"
+                        class="state-card-link"
+                        aria-label="Explore Jammu and Kashmir recipes"
+                    ></a>
+
+                </article>
+
+
+                <!-- Additional state cards can be loaded dynamically later -->
+
+            </div>
+
+
+            <!-- =================================================
+                 EMPTY SEARCH RESULT
+            ================================================== -->
+            <div class="states-empty" id="statesEmpty">
+
+                <div class="states-empty-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <h3>No state found</h3>
+
+                <p>
+                    Try searching with another state name or a famous dish.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 INDIA FOOD INFO
+            ================================================== -->
+            <section class="india-info-section reveal">
+
+                <div class="india-info-grid">
+
+                    <div class="india-info-content">
+
+                        <h2>India's Food Heritage</h2>
+
+                        <p>
+                            Indian cuisine changes dramatically from one region
+                            to another. Every state has its own ingredients,
+                            cooking methods, spices, traditions and special dishes.
+                            Explore state by state and discover the stories behind
+                            India's diverse food culture.
+                        </p>
+
+                        <div class="india-info-points">
+
+                            <div class="india-info-point">
+                                <i class="fa-solid fa-map"></i>
+                                <span>State-wise recipes</span>
+                            </div>
+
+                            <div class="india-info-point">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>District-wise food</span>
+                            </div>
+
+                            <div class="india-info-point">
+                                <i class="fa-solid fa-star"></i>
+                                <span>Famous local dishes</span>
+                            </div>
+
+                            <div class="india-info-point">
+                                <i class="fa-solid fa-robot"></i>
+                                <span>AI recipe assistance</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="india-map-placeholder">
+
+                        <div class="india-map-placeholder-inner">
+
+                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            <strong>Explore India</strong>
+
+                            <span>State → District → Recipe</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="brand-logo">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span class="brand-text">
+                            <strong>AI Cooking</strong>
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Your smart cooking companion for recipes,
+                        ingredients and regional food discovery.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>Explore</h4>
+
+                    <a href="states.html">Indian States</a>
+                    <a href="festivals.html">Festival Recipes</a>
+                    <a href="cuisines.html">Cuisines</a>
+                    <a href="ingredient-finder.html">Ingredients</a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>AI Features</h4>
+
+                    <a href="ai-chat.html">AI Cooking Chat</a>
+                    <a href="ingredient-finder.html">Recipe Finder</a>
+                    <a href="submit-recipe.html">Submit Recipe</a>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>Account</h4>
+
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Create Account</a>
+                    <a href="profile.html">My Profile</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © <span id="currentYear"></span>
+                    AI Cooking Assistant. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================== -->
+    <button
+        class="back-to-top"
+        id="backToTop"
+        aria-label="Back to top"
+        type="button"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+    <!-- =========================================================
+         STATES PAGE SCRIPT
+    ========================================================== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const searchInput = document.getElementById("stateSearchInput");
+            const searchButton = document.getElementById("stateSearchButton");
+            const stateCards = Array.from(
+                document.querySelectorAll(".state-explorer-card")
+            );
+            const emptyState = document.getElementById("statesEmpty");
+            const countText = document.querySelector("#statesCount span");
+
+            function filterStates() {
+
+                const searchValue = searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+                let visibleCount = 0;
+
+                stateCards.forEach(function (card) {
+
+                    const stateName =
+                        (card.dataset.state || "").toLowerCase();
+
+                    const searchableText =
+                        (card.dataset.search || "").toLowerCase();
+
+                    const matches =
+                        searchValue === "" ||
+                        stateName.includes(searchValue) ||
+                        searchableText.includes(searchValue);
+
+                    if (matches) {
+
+                        card.style.display = "";
+
+                        visibleCount++;
+
+                        setTimeout(function () {
+                            card.classList.add("active");
+                        }, 10);
+
+                    } else {
+
+                        card.style.display = "none";
+                        card.classList.remove("active");
+                    }
+
+                });
+
+
+                if (visibleCount === 0) {
+                    emptyState.classList.add("show");
+                } else {
+                    emptyState.classList.remove("show");
+                }
+
+
+                if (countText) {
+                    countText.textContent =
+                        visibleCount +
+                        (visibleCount === 1 ? " State" : " States");
+                }
+
+            }
+
+
+            searchButton.addEventListener(
+                "click",
+                filterStates
+            );
+
+
+            searchInput.addEventListener(
+                "input",
+                filterStates
+            );
+
+
+            searchInput.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (event.key === "Enter") {
+                        filterStates();
+                    }
+
+                }
+            );
+
+
+            /* Read search query from URL */
+
+            const params = new URLSearchParams(
+                window.location.search
+            );
+
+            const urlSearch =
+                params.get("search");
+
+            if (urlSearch) {
+
+                searchInput.value =
+                    decodeURIComponent(urlSearch);
+
+                filterStates();
+
+                setTimeout(function () {
+
+                    document
+                        .querySelector(".states-content")
+                        ?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                }, 500);
+
+            }
+
+
+            /* Initial count */
+
+            filterStates();
+
+        });
+    </script>
+
+
+    <!-- Main Website JavaScript -->
+    <script src="../app.js"></script>
+
+</body>
+</html>

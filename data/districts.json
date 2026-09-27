@@ -1,0 +1,154 @@
+{
+  "districts": [
+    {
+      "id": "khordha",
+      "name": "Khordha",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "cuttack",
+      "name": "Cuttack",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "puri",
+      "name": "Puri",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "ganjam",
+      "name": "Ganjam",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "nayagarh",
+      "name": "Nayagarh",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "bhadrak",
+      "name": "Bhadrak",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "balasore",
+      "name": "Balasore",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "sambalpur",
+      "name": "Sambalpur",
+      "state": "Odisha",
+      "stateId": "odisha"
+    },
+    {
+      "id": "patna",
+      "name": "Patna",
+      "state": "Bihar",
+      "stateId": "bihar"
+    },
+    {
+      "id": "gaya",
+      "name": "Gaya",
+      "state": "Bihar",
+      "stateId": "bihar"
+    },
+    {
+      "id": "muzaffarpur",
+      "name": "Muzaffarpur",
+      "state": "Bihar",
+      "stateId": "bihar"
+    },
+    {
+      "id": "mumbai",
+      "name": "Mumbai",
+      "state": "Maharashtra",
+      "stateId": "maharashtra"
+    },
+    {
+      "id": "pune",
+      "name": "Pune",
+      "state": "Maharashtra",
+      "stateId": "maharashtra"
+    },
+    {
+      "id": "nagpur",
+      "name": "Nagpur",
+      "state": "Maharashtra",
+      "stateId": "maharashtra"
+    },
+    {
+      "id": "hyderabad",
+      "name": "Hyderabad",
+      "state": "Telangana",
+      "stateId": "telangana"
+    },
+    {
+      "id": "amritsar",
+      "name": "Amritsar",
+      "state": "Punjab",
+      "stateId": "punjab"
+    },
+    {
+      "id": "lucknow",
+      "name": "Lucknow",
+      "state": "Uttar Pradesh",
+      "stateId": "uttar-pradesh"
+    },
+    {
+      "id": "varanasi",
+      "name": "Varanasi",
+      "state": "Uttar Pradesh",
+      "stateId": "uttar-pradesh"
+    },
+    {
+      "id": "jaipur",
+      "name": "Jaipur",
+      "state": "Rajasthan",
+      "stateId": "rajasthan"
+    },
+    {
+      "id": "kolkata",
+      "name": "Kolkata",
+      "state": "West Bengal",
+      "stateId": "west-bengal"
+    },
+    {
+      "id": "chennai",
+      "name": "Chennai",
+      "state": "Tamil Nadu",
+      "stateId": "tamil-nadu"
+    },
+    {
+      "id": "bengaluru",
+      "name": "Bengaluru",
+      "state": "Karnataka",
+      "stateId": "karnataka"
+    },
+    {
+      "id": "kochi",
+      "name": "Kochi",
+      "state": "Kerala",
+      "stateId": "kerala"
+    },
+    {
+      "id": "ahmedabad",
+      "name": "Ahmedabad",
+      "state": "Gujarat",
+      "stateId": "gujarat"
+    },
+    {
+      "id": "goa-north",
+      "name": "North Goa",
+      "state": "Goa",
+      "stateId": "goa"
+    }
+  ]
+}

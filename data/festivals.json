@@ -1,0 +1,112 @@
+{
+  "festivals": [
+    {
+      "id": "diwali",
+      "name": "Diwali",
+      "description": "Festival of Lights",
+      "recipes": [
+        "Gulab Jamun",
+        "Kaju Katli",
+        "Samosa",
+        "Paneer Tikka",
+        "Chakli"
+      ]
+    },
+    {
+      "id": "holi",
+      "name": "Holi",
+      "description": "Festival of Colors",
+      "recipes": [
+        "Gujiya",
+        "Dahi Vada",
+        "Thandai",
+        "Malpua"
+      ]
+    },
+    {
+      "id": "dussehra",
+      "name": "Dussehra",
+      "description": "Traditional festive food",
+      "recipes": [
+        "Poori",
+        "Halwa",
+        "Chole",
+        "Kheer"
+      ]
+    },
+    {
+      "id": "durga-puja",
+      "name": "Durga Puja",
+      "description": "Traditional festive dishes",
+      "recipes": [
+        "Khichuri",
+        "Luchi",
+        "Payesh",
+        "Sandesh"
+      ]
+    },
+    {
+      "id": "ganesh-chaturthi",
+      "name": "Ganesh Chaturthi",
+      "description": "Festival celebrating Lord Ganesha",
+      "recipes": [
+        "Modak",
+        "Puran Poli",
+        "Karanji"
+      ]
+    },
+    {
+      "id": "makar-sankranti",
+      "name": "Makar Sankranti",
+      "description": "Harvest festival",
+      "recipes": [
+        "Til Ladoo",
+        "Pongal",
+        "Khichdi",
+        "Pitha"
+      ]
+    },
+    {
+      "id": "raksha-bandhan",
+      "name": "Raksha Bandhan",
+      "description": "Festival celebrating sibling relationships",
+      "recipes": [
+        "Kheer",
+        "Gulab Jamun",
+        "Pulao"
+      ]
+    },
+    {
+      "id": "eid",
+      "name": "Eid",
+      "description": "Traditional Eid celebrations",
+      "recipes": [
+        "Biryani",
+        "Sheer Khurma",
+        "Kebab",
+        "Nihari"
+      ]
+    },
+    {
+      "id": "christmas",
+      "name": "Christmas",
+      "description": "Christmas festive recipes",
+      "recipes": [
+        "Fruit Cake",
+        "Cookies",
+        "Roast Chicken",
+        "Plum Cake"
+      ]
+    },
+    {
+      "id": "pongal",
+      "name": "Pongal",
+      "description": "Tamil harvest festival",
+      "recipes": [
+        "Ven Pongal",
+        "Sakkarai Pongal",
+        "Vadai"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Indian and international cuisines and their popular recipes.">
+    <title>World Cuisines | AI Cooking Assistant</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .cuisine-page { min-height: 100vh; padding: 130px 20px 70px; background: #fffaf7; }
+        .cuisine-page .container { max-width: 1180px; margin: 0 auto; }
+        .cuisine-heading { text-align: center; margin-bottom: 35px; }
+        .cuisine-heading h1 { margin: 12px 0; font-family: Poppins, sans-serif; font-size: clamp(30px, 5vw, 48px); }
+        .cuisine-heading p { color: #6b7280; max-width: 650px; margin: 0 auto; line-height: 1.7; }
+        .cuisine-filter { max-width: 420px; width: 100%; margin: 25px auto 35px; display: flex; align-items: center; gap: 10px; background: white; border: 1px solid #eadfd9; border-radius: 12px; padding: 12px 15px; }
+        .cuisine-filter i { color: #ff6b35; }
+        .cuisine-filter input { width: 100%; border: 0; outline: 0; font: inherit; background: transparent; }
+        .cuisine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .cuisine-card { display: block; padding: 24px; border-radius: 18px; background: white; border: 1px solid #eee2dc; box-shadow: 0 8px 25px rgba(79, 46, 32, .07); transition: transform .2s, border-color .2s; }
+        .cuisine-card:hover, .cuisine-card.selected { transform: translateY(-4px); border-color: #ff6b35; }
+        .cuisine-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #ff6b35, #ffb703); font-size: 21px; }
+        .cuisine-card h2 { margin: 17px 0 6px; font-size: 20px; color: #252525; }
+        .cuisine-card p { margin: 0; color: #737373; font-size: 14px; }
+        .recipe-panel { display: none; margin-top: 30px; padding: 25px; border-radius: 18px; background: #fff; border: 1px solid #eee2dc; }
+        .recipe-panel.active { display: block; }
+        .recipe-panel h2 { margin-bottom: 15px; }
+        .recipe-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+        .recipe-list li { padding: 9px 13px; border-radius: 999px; background: #fff1ea; color: #c64e20; font-size: 14px; }
+        .no-results { grid-column: 1 / -1; text-align: center; color: #777; padding: 30px; }
+        @media (max-width: 600px) { .cuisine-page { padding-top: 95px; } }
+    </style>
+</head>
+<body>
+    <header id="mainHeader" class="main-header">
+        <div class="container navbar">
+            <a href="../index.html" class="brand"><span class="brand-icon"><i class="fa-solid fa-utensils"></i></span><span class="brand-text"><strong>AI Cooking</strong><small>Assistant</small></span></a>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="ai-chat.html">AI Assistant</a>
+                <a href="states.html">India</a>
+                <a href="festivals.html">Festivals</a>
+                <a href="cuisines.html" class="active">Cuisines</a>
+                <a href="ingredient-finder.html">Ingredients</a>
+            </nav>
+            <button id="mobileMenuButton" class="mobile-menu-button" type="button" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="../index.html">Home</a><a href="ai-chat.html">AI Assistant</a><a href="states.html">India</a><a href="festivals.html">Festivals</a><a href="cuisines.html">Cuisines</a><a href="ingredient-finder.html">Ingredients</a>
+        </div>
+    </header>
+
+    <main class="cuisine-page">
+        <div class="container">
+            <div class="cuisine-heading">
+                <span class="section-tag"><i class="fa-solid fa-earth-americas"></i> WORLD CUISINES</span>
+                <h1>Explore Cuisines</h1>
+                <p>Discover popular dishes from India and around the world. Select a cuisine to see its featured recipes.</p>
+            </div>
+            <label class="cuisine-filter"><i class="fa-solid fa-magnifying-glass"></i><input id="cuisineSearch" type="search" placeholder="Search cuisines..." autocomplete="off"></label>
+            <section id="cuisineGrid" class="cuisine-grid" aria-live="polite"><p class="no-results">Loading cuisines...</p></section>
+            <section id="recipePanel" class="recipe-panel" aria-live="polite"></section>
+        </div>
+    </main>
+
+    <script src="../js/navigation.js"></script>
+    <script>
+        const grid = document.getElementById('cuisineGrid');
+        const panel = document.getElementById('recipePanel');
+        const search = document.getElementById('cuisineSearch');
+        let cuisines = [];
+        const iconByCuisine = { odia: 'fa-bowl-rice', chinese: 'fa-bowl-food', italian: 'fa-pizza-slice', mexican: 'fa-pepper-hot', thai: 'fa-leaf', japanese: 'fa-fish', american: 'fa-burger' };
+
+        function escapeHTML(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
+        }
+
+        function renderCuisines() {
+            const query = search.value.trim().toLowerCase();
+            const visible = cuisines.filter(cuisine => `${cuisine.name} ${cuisine.country} ${cuisine.region}`.toLowerCase().includes(query));
+            grid.innerHTML = visible.length ? visible.map(cuisine => `
+                <a href="#${encodeURIComponent(cuisine.id)}" class="cuisine-card" data-cuisine-id="${escapeHTML(cuisine.id)}">
+                    <span class="cuisine-icon"><i class="fa-solid ${iconByCuisine[cuisine.id] || 'fa-bowl-food'}"></i></span>
+                    <h2>${escapeHTML(cuisine.name)}</h2><p>${escapeHTML(cuisine.region || cuisine.country)}</p>
+                </a>`).join('') : '<p class="no-results">No cuisines found.</p>';
+            grid.querySelectorAll('[data-cuisine-id]').forEach(card => card.addEventListener('click', event => { event.preventDefault(); showRecipes(card.dataset.cuisineId); }));
+        }
+
+        function showRecipes(id) {
+            const cuisine = cuisines.find(item => item.id === id);
+            if (!cuisine) return;
+            grid.querySelectorAll('.cuisine-card').forEach(card => card.classList.toggle('selected', card.dataset.cuisineId === id));
+            panel.innerHTML = `<h2>${escapeHTML(cuisine.name)} Recipes</h2><ul class="recipe-list">${(cuisine.recipes || []).map(recipe => `<li>${escapeHTML(recipe)}</li>`).join('')}</ul>`;
+            panel.classList.add('active');
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            history.replaceState(null, '', `?cuisine=${encodeURIComponent(cuisine.id)}`);
+        }
+
+        search.addEventListener('input', renderCuisines);
+        fetch('../data/cuisnes.json').then(response => { if (!response.ok) throw new Error('Cuisine data unavailable'); return response.json(); }).then(data => { cuisines = data.cuisines || []; renderCuisines(); const requested = new URLSearchParams(location.search).get('cuisine'); const match = cuisines.find(item => item.id.toLowerCase() === (requested || '').toLowerCase() || item.name.toLowerCase() === (requested || '').toLowerCase()); if (match) showRecipes(match.id); }).catch(() => { grid.innerHTML = '<p class="no-results">Unable to load cuisines right now. Please try again.</p>'; });
+    </script>
+</body>
+</html>

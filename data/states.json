@@ -1,0 +1,172 @@
+{
+  "states": [
+    {
+      "id": "andhra-pradesh",
+      "name": "Andhra Pradesh",
+      "capital": "Amaravati",
+      "region": "South India"
+    },
+    {
+      "id": "arunachal-pradesh",
+      "name": "Arunachal Pradesh",
+      "capital": "Itanagar",
+      "region": "North East India"
+    },
+    {
+      "id": "assam",
+      "name": "Assam",
+      "capital": "Dispur",
+      "region": "North East India"
+    },
+    {
+      "id": "bihar",
+      "name": "Bihar",
+      "capital": "Patna",
+      "region": "East India"
+    },
+    {
+      "id": "chhattisgarh",
+      "name": "Chhattisgarh",
+      "capital": "Raipur",
+      "region": "Central India"
+    },
+    {
+      "id": "goa",
+      "name": "Goa",
+      "capital": "Panaji",
+      "region": "West India"
+    },
+    {
+      "id": "gujarat",
+      "name": "Gujarat",
+      "capital": "Gandhinagar",
+      "region": "West India"
+    },
+    {
+      "id": "haryana",
+      "name": "Haryana",
+      "capital": "Chandigarh",
+      "region": "North India"
+    },
+    {
+      "id": "himachal-pradesh",
+      "name": "Himachal Pradesh",
+      "capital": "Shimla",
+      "region": "North India"
+    },
+    {
+      "id": "jharkhand",
+      "name": "Jharkhand",
+      "capital": "Ranchi",
+      "region": "East India"
+    },
+    {
+      "id": "karnataka",
+      "name": "Karnataka",
+      "capital": "Bengaluru",
+      "region": "South India"
+    },
+    {
+      "id": "kerala",
+      "name": "Kerala",
+      "capital": "Thiruvananthapuram",
+      "region": "South India"
+    },
+    {
+      "id": "madhya-pradesh",
+      "name": "Madhya Pradesh",
+      "capital": "Bhopal",
+      "region": "Central India"
+    },
+    {
+      "id": "maharashtra",
+      "name": "Maharashtra",
+      "capital": "Mumbai",
+      "region": "West India"
+    },
+    {
+      "id": "manipur",
+      "name": "Manipur",
+      "capital": "Imphal",
+      "region": "North East India"
+    },
+    {
+      "id": "meghalaya",
+      "name": "Meghalaya",
+      "capital": "Shillong",
+      "region": "North East India"
+    },
+    {
+      "id": "mizoram",
+      "name": "Mizoram",
+      "capital": "Aizawl",
+      "region": "North East India"
+    },
+    {
+      "id": "nagaland",
+      "name": "Nagaland",
+      "capital": "Kohima",
+      "region": "North East India"
+    },
+    {
+      "id": "odisha",
+      "name": "Odisha",
+      "capital": "Bhubaneswar",
+      "region": "East India"
+    },
+    {
+      "id": "punjab",
+      "name": "Punjab",
+      "capital": "Chandigarh",
+      "region": "North India"
+    },
+    {
+      "id": "rajasthan",
+      "name": "Rajasthan",
+      "capital": "Jaipur",
+      "region": "North India"
+    },
+    {
+      "id": "sikkim",
+      "name": "Sikkim",
+      "capital": "Gangtok",
+      "region": "North East India"
+    },
+    {
+      "id": "tamil-nadu",
+      "name": "Tamil Nadu",
+      "capital": "Chennai",
+      "region": "South India"
+    },
+    {
+      "id": "telangana",
+      "name": "Telangana",
+      "capital": "Hyderabad",
+      "region": "South India"
+    },
+    {
+      "id": "tripura",
+      "name": "Tripura",
+      "capital": "Agartala",
+      "region": "North East India"
+    },
+    {
+      "id": "uttar-pradesh",
+      "name": "Uttar Pradesh",
+      "capital": "Lucknow",
+      "region": "North India"
+    },
+    {
+      "id": "uttarakhand",
+      "name": "Uttarakhand",
+      "capital": "Dehradun",
+      "region": "North India"
+    },
+    {
+      "id": "west-bengal",
+      "name": "West Bengal",
+      "capital": "Kolkata",
+      "region": "East India"
+    }
+  ]
+}

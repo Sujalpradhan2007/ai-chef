@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Cooking Assistant | AI Chat</title>
+
+    <meta
+        name="description"
+        content="Chat with AI Cooking Assistant for recipes, cooking tips, ingredient substitutions and meal ideas."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* =====================================================
+           AI CHAT PAGE
+        ===================================================== */
+
+        .ai-chat-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(108, 92, 231, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(0, 184, 148, 0.08),
+                    transparent 28%
+                ),
+                #f7f8fc;
+        }
+
+        /* Hero */
+
+        .chat-hero {
+            padding: 135px 20px 45px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #17142f,
+                    #30245e,
+                    #182d45
+                );
+            color: #fff;
+        }
+
+        .chat-hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .chat-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,0.65);
+            font-size: 13px;
+        }
+
+        .chat-breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .chat-hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .chat-hero-text {
+            max-width: 750px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.16);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .ai-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2ecc71;
+            box-shadow: 0 0 0 5px rgba(46,204,113,0.12);
+        }
+
+        .chat-hero h1 {
+            margin: 0 0 12px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.08;
+        }
+
+        .chat-hero h1 span {
+            color: #a99cff;
+        }
+
+        .chat-hero p {
+            margin: 0;
+            max-width: 680px;
+            color: rgba(255,255,255,0.78);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .ai-hero-icon {
+            width: 130px;
+            height: 130px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 35px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.20),
+                inset 0 0 30px rgba(255,255,255,0.04);
+        }
+
+        .ai-hero-icon i {
+            font-size: 58px;
+            color: #b7adff;
+        }
+
+        /* Main */
+
+        .chat-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 35px 20px 80px;
+        }
+
+        .chat-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 310px;
+            gap: 22px;
+            align-items: start;
+        }
+
+        /* Chat box */
+
+        .chat-card {
+            overflow: hidden;
+            border: 1px solid #e7e8ef;
+            border-radius: 22px;
+            background: #fff;
+            box-shadow: 0 15px 50px rgba(20,20,50,0.08);
+        }
+
+        .chat-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 17px 20px;
+            border-bottom: 1px solid #eeeef3;
+        }
+
+        .assistant-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .assistant-avatar {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: linear-gradient(
+                135deg,
+                #6c5ce7,
+                #8e7dff
+            );
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(108,92,231,0.22);
+        }
+
+        .assistant-profile h3 {
+            margin: 0 0 3px;
+            font-size: 15px;
+        }
+
+        .assistant-profile span {
+            color: #2eaf63;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .chat-header-actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .chat-icon-button {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #e7e7ee;
+            border-radius: 10px;
+            background: #fff;
+            color: #666;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .chat-icon-button:hover {
+            color: #6c5ce7;
+            border-color: #6c5ce7;
+            transform: translateY(-2px);
+        }
+
+        /* Messages */
+
+        .chat-messages {
+            height: 510px;
+            overflow-y: auto;
+            padding: 24px;
+            background:
+                linear-gradient(
+                    rgba(250,250,253,0.95),
+                    rgba(250,250,253,0.95)
+                );
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 18px;
+            animation: messageIn 0.25s ease;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 76%;
+        }
+
+        .message-bubble {
+            padding: 13px 16px;
+            border-radius: 17px;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .message.ai .message-bubble {
+            border: 1px solid #e8e8ef;
+            background: #fff;
+            color: #333;
+            border-top-left-radius: 5px;
+        }
+
+        .message.user .message-bubble {
+            background: #6c5ce7;
+            color: #fff;
+            border-top-right-radius: 5px;
+        }
+
+        .message-time {
+            display: block;
+            margin-top: 5px;
+            color: #aaa;
+            font-size: 10px;
+        }
+
+        .message.user .message-time {
+            text-align: right;
+        }
+
+        .suggestion-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 12px;
+        }
+
+        .suggestion-button {
+            padding: 8px 11px;
+            border: 1px solid #e1e1ea;
+            border-radius: 9px;
+            background: #fff;
+            color: #555;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 11px;
+            transition: 0.2s ease;
+        }
+
+        .suggestion-button:hover {
+            color: #6c5ce7;
+            border-color: #6c5ce7;
+            background: #f8f7ff;
+        }
+
+        /* Typing */
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            width: fit-content;
+            padding: 12px 15px;
+            border-radius: 15px;
+            background: #fff;
+            border: 1px solid #e8e8ef;
+            margin-bottom: 15px;
+        }
+
+        .typing-indicator.show {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #999;
+            animation: typing 1.1s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.30s;
+        }
+
+        /* Composer */
+
+        .chat-composer {
+            padding: 15px;
+            border-top: 1px solid #eeeef3;
+            background: #fff;
+        }
+
+        .composer-box {
+            display: flex;
+            align-items: flex-end;
+            gap: 9px;
+        }
+
+        .composer-input {
+            flex: 1;
+            min-height: 46px;
+            max-height: 120px;
+            resize: none;
+            padding: 13px 14px;
+            border: 1px solid #dddde7;
+            border-radius: 13px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .composer-input:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 0 4px rgba(108,92,231,0.08);
+        }
+
+        .composer-button {
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            border: 0;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .voice-button {
+            background: #f0effb;
+            color: #6c5ce7;
+        }
+
+        .send-button {
+            background: #6c5ce7;
+            color: #fff;
+        }
+
+        .composer-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .composer-note {
+            margin: 8px 3px 0;
+            color: #aaa;
+            font-size: 10px;
+        }
+
+        /* Sidebar */
+
+        .chat-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .sidebar-card {
+            padding: 20px;
+            border: 1px solid #e7e8ef;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 10px 35px rgba(20,20,50,0.06);
+        }
+
+        .sidebar-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 15px;
+            font-family: "Poppins", sans-serif;
+            font-size: 16px;
+        }
+
+        .sidebar-card h3 i {
+            color: #6c5ce7;
+        }
+
+        .quick-prompt {
+            width: 100%;
+            margin-bottom: 8px;
+            padding: 11px 12px;
+            border: 1px solid #e7e7ee;
+            border-radius: 10px;
+            background: #fff;
+            color: #555;
+            text-align: left;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            transition: 0.2s ease;
+        }
+
+        .quick-prompt:hover {
+            border-color: #6c5ce7;
+            color: #6c5ce7;
+            background: #f8f7ff;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 11px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .feature-item:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #f2f0ff;
+            color: #6c5ce7;
+            font-size: 13px;
+        }
+
+        .feature-item strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 12px;
+        }
+
+        .feature-item span {
+            color: #888;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        /* Voice state */
+
+        .voice-status {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 9px 11px;
+            border-radius: 9px;
+            background: #fff4f4;
+            color: #d63031;
+            font-size: 11px;
+        }
+
+        .voice-status.show {
+            display: flex;
+        }
+
+        .voice-status i {
+            animation: pulse 1s infinite;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 900px) {
+            .chat-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-sidebar {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .chat-hero {
+                padding: 115px 16px 35px;
+            }
+
+            .chat-main {
+                padding: 20px 12px 60px;
+            }
+
+            .chat-hero-content {
+                align-items: flex-start;
+            }
+
+            .ai-hero-icon {
+                display: none;
+            }
+
+            .chat-messages {
+                height: 450px;
+                padding: 17px;
+            }
+
+            .message-content {
+                max-width: 88%;
+            }
+
+            .chat-sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .chat-card-header {
+                padding: 13px;
+            }
+
+            .chat-header-actions .chat-icon-button:first-child {
+                display: none;
+            }
+
+            .composer-button {
+                width: 43px;
+                height: 43px;
+            }
+
+            .composer-input {
+                min-height: 43px;
+            }
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(7px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.45;
+            }
+
+            30% {
+                transform: translateY(-4px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="ai-chat-page">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header id="mainHeader">
+        <div class="container">
+
+            <nav class="navbar">
+
+                <a href="../index.html" class="brand">
+                    <span class="brand-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </span>
+
+                    <span>
+                        <strong>AI Cooking</strong>
+                        <small>Assistant</small>
+                    </span>
+                </a>
+
+                <div class="nav-links">
+
+                    <a href="../index.html">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+
+                    <a href="ai-chat.html" class="active">
+                        <i class="fa-solid fa-robot"></i>
+                        AI Assistant
+                    </a>
+
+                    <a href="states.html">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        India
+                    </a>
+
+                    <a href="festivals.html">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Festivals
+                    </a>
+
+                    <a href="cuisines.html">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        <i class="fa-solid fa-carrot"></i>
+                        Ingredients
+                    </a>
+
+                    <a href="login.html" class="nav-login">
+                        Login
+                    </a>
+
+                    <a href="signup.html" class="nav-signup">
+                        Sign Up
+                    </a>
+
+                </div>
+
+                <button
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    type="button"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </nav>
+
+            <div class="mobile-menu" id="mobileMenu">
+
+                <a href="../index.html">Home</a>
+                <a href="ai-chat.html">AI Assistant</a>
+                <a href="states.html">India</a>
+                <a href="festivals.html">Festivals</a>
+                <a href="cuisines.html">Cuisines</a>
+                <a href="ingredient-finder.html">Ingredients</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="chat-hero">
+
+        <div class="chat-hero-container">
+
+            <div class="chat-breadcrumb">
+
+                <a href="../index.html">Home</a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span>AI Assistant</span>
+
+            </div>
+
+
+            <div class="chat-hero-content">
+
+                <div class="chat-hero-text">
+
+                    <div class="ai-badge">
+
+                        <span class="ai-status-dot"></span>
+
+                        AI Cooking Assistant Online
+
+                    </div>
+
+                    <h1>
+                        Your Personal
+                        <span>AI Chef</span>
+                    </h1>
+
+                    <p>
+                        Ask me about recipes, ingredients, cooking methods,
+                        substitutions, meal ideas and more. Tell me what
+                        you have in your kitchen and I will help you decide
+                        what you can cook.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-hero-icon">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN CHAT
+    ====================================================== -->
+
+    <main class="chat-main">
+
+        <div class="chat-layout">
+
+
+            <!-- =================================================
+                 CHAT CARD
+            ================================================== -->
+
+            <section class="chat-card">
+
+                <div class="chat-card-header">
+
+                    <div class="assistant-profile">
+
+                        <div class="assistant-avatar">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+
+                        <div>
+                            <h3>AI Cooking Assistant</h3>
+
+                            <span>
+                                <i class="fa-solid fa-circle"></i>
+                                Ready to help
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-header-actions">
+
+                        <button
+                            class="chat-icon-button"
+                            id="clearChatButton"
+                            type="button"
+                            title="Clear chat"
+                            aria-label="Clear chat"
+                        >
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+
+                        <button
+                            class="chat-icon-button"
+                            id="newChatButton"
+                            type="button"
+                            title="New chat"
+                            aria-label="New chat"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Messages -->
+
+                <div
+                    class="chat-messages"
+                    id="chatMessages"
+                    aria-live="polite"
+                >
+
+                    <div class="message ai">
+
+                        <div class="message-content">
+
+                            <div class="message-bubble">
+
+                                👋 Hello! I'm your AI Cooking Assistant.
+
+                                <br><br>
+
+                                Tell me what ingredients you have,
+                                what cuisine you want, or simply ask me
+                                what you should cook today.
+
+                                <div class="suggestion-list">
+
+                                    <button
+                                        class="suggestion-button"
+                                        type="button"
+                                        data-prompt="What can I cook with potatoes and onions?"
+                                    >
+                                        🥔 Potato + Onion
+                                    </button>
+
+                                    <button
+                                        class="suggestion-button"
+                                        type="button"
+                                        data-prompt="Give me an easy Indian dinner recipe."
+                                    >
+                                        🍛 Easy Dinner
+                                    </button>
+
+                                    <button
+                                        class="suggestion-button"
+                                        type="button"
+                                        data-prompt="Give me a quick Chinese recipe."
+                                    >
+                                        🥡 Chinese Recipe
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <span class="message-time">
+                                AI Assistant
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Typing -->
+
+                    <div
+                        class="typing-indicator"
+                        id="typingIndicator"
+                    >
+
+                        <span class="typing-dot"></span>
+                        <span class="typing-dot"></span>
+                        <span class="typing-dot"></span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Composer -->
+
+                <div class="chat-composer">
+
+                    <div class="composer-box">
+
+                        <button
+                            class="composer-button voice-button"
+                            id="voiceButton"
+                            type="button"
+                            title="Voice input"
+                            aria-label="Voice input"
+                        >
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+
+
+                        <textarea
+                            class="composer-input"
+                            id="messageInput"
+                            rows="1"
+                            placeholder="Ask me what to cook..."
+                            aria-label="Message"
+                        ></textarea>
+
+
+                        <button
+                            class="composer-button send-button"
+                            id="sendButton"
+                            type="button"
+                            title="Send message"
+                            aria-label="Send message"
+                        >
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="voice-status"
+                        id="voiceStatus"
+                    >
+                        <i class="fa-solid fa-microphone"></i>
+                        <span>Listening for your question...</span>
+                    </div>
+
+
+                    <p class="composer-note">
+                        AI suggestions are for cooking assistance.
+                        Always verify food allergies and safety requirements.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SIDEBAR
+            ================================================== -->
+
+            <aside class="chat-sidebar">
+
+
+                <!-- Quick Prompts -->
+
+                <div class="sidebar-card">
+
+                    <h3>
+                        <i class="fa-solid fa-bolt"></i>
+                        Quick Prompts
+                    </h3>
+
+
+                    <button
+                        class="quick-prompt"
+                        type="button"
+                        data-prompt="What can I cook with rice, onion and tomato?"
+                    >
+                        🍚 I have rice, onion and tomato
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        type="button"
+                        data-prompt="Give me a healthy breakfast recipe."
+                    >
+                        🥗 Give me a healthy breakfast
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        type="button"
+                        data-prompt="Give me a recipe that takes less than 20 minutes."
+                    >
+                        ⏱️ Recipe under 20 minutes
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        type="button"
+                        data-prompt="Suggest an easy vegetarian dinner."
+                    >
+                        🥦 Easy vegetarian dinner
+                    </button>
+
+
+                    <button
+                        class="quick-prompt"
+                        type="button"
+                        data-prompt="What can I substitute for paneer?"
+                    >
+                        🔄 Ingredient substitution
+                    </button>
+
+                </div>
+
+
+                <!-- Features -->
+
+                <div class="sidebar-card">
+
+                    <h3>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        AI Features
+                    </h3>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-kitchen-set"></i>
+                        </div>
+
+                        <div>
+                            <strong>Recipe Ideas</strong>
+                            <span>
+                                Get recipes from ingredients you already have.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-repeat"></i>
+                        </div>
+
+                        <div>
+                            <strong>Smart Substitution</strong>
+                            <span>
+                                Find alternatives when an ingredient is missing.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <div>
+                            <strong>Time-Based Cooking</strong>
+                            <span>
+                                Find meals based on your available time.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+
+                        <div>
+                            <strong>Voice Assistant</strong>
+                            <span>
+                                Speak your cooking question when supported.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Ingredient Finder -->
+
+                <div class="sidebar-card">
+
+                    <h3>
+                        <i class="fa-solid fa-carrot"></i>
+                        Have Ingredients?
+                    </h3>
+
+                    <p
+                        style="
+                            margin:0;
+                            color:#777;
+                            font-size:12px;
+                            line-height:1.7;
+                        "
+                    >
+                        Enter your ingredients and find recipe ideas
+                        automatically.
+                    </p>
+
+                    <a
+                        href="ingredient-finder.html"
+                        style="
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            gap:8px;
+                            margin-top:15px;
+                            padding:11px;
+                            border-radius:10px;
+                            background:#6c5ce7;
+                            color:#fff;
+                            text-decoration:none;
+                            font-size:12px;
+                            font-weight:700;
+                        "
+                    >
+                        Open Ingredient Finder
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="brand">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            <strong>AI Cooking</strong>
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Your smart cooking companion for recipes,
+                        ingredients and AI-powered cooking help.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy;
+                    <span id="currentYear"></span>
+                    AI Cooking Assistant. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- BACK TO TOP -->
+
+    <button
+        id="backToTop"
+        type="button"
+        aria-label="Back to top"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+</div>
+
+
+<script src="../app.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const messageInput =
+            document.getElementById("messageInput");
+
+        const sendButton =
+            document.getElementById("sendButton");
+
+        const voiceButton =
+            document.getElementById("voiceButton");
+
+        const voiceStatus =
+            document.getElementById("voiceStatus");
+
+        const chatMessages =
+            document.getElementById("chatMessages");
+
+        const typingIndicator =
+            document.getElementById("typingIndicator");
+
+        const clearChatButton =
+            document.getElementById("clearChatButton");
+
+        const newChatButton =
+            document.getElementById("newChatButton");
+
+        const suggestionButtons =
+            document.querySelectorAll(
+                ".suggestion-button, .quick-prompt"
+            );
+
+
+        /* =====================================================
+           HELPERS
+        ===================================================== */
+
+        function escapeHTML(text) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent = text;
+
+            return div.innerHTML;
+
+        }
+
+
+        function getTime() {
+
+            return new Date().toLocaleTimeString(
+                [],
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+        function scrollToBottom() {
+
+            chatMessages.scrollTop =
+                chatMessages.scrollHeight;
+
+        }
+
+
+        function addUserMessage(text) {
+
+            const message =
+                document.createElement("div");
+
+            message.className = "message user";
+
+            message.innerHTML = `
+                <div class="message-content">
+
+                    <div class="message-bubble">
+                        ${escapeHTML(text)}
+                    </div>
+
+                    <span class="message-time">
+                        ${getTime()}
+                    </span>
+
+                </div>
+            `;
+
+            chatMessages.insertBefore(
+                message,
+                typingIndicator
+            );
+
+            scrollToBottom();
+
+        }
+
+
+        function addAIMessage(text) {
+
+            const message =
+                document.createElement("div");
+
+            message.className = "message ai";
+
+            message.innerHTML = `
+                <div class="message-content">
+
+                    <div class="message-bubble">
+                        ${text}
+                    </div>
+
+                    <span class="message-time">
+                        AI Assistant · ${getTime()}
+                    </span>
+
+                </div>
+            `;
+
+            chatMessages.insertBefore(
+                message,
+                typingIndicator
+            );
+
+            scrollToBottom();
+
+        }
+
+
+        /* =====================================================
+           DEMO AI RESPONSE
+           
+           Real AI API will be connected later through backend.
+        ===================================================== */
+
+        function createDemoResponse(question) {
+
+            const text =
+                question.toLowerCase();
+
+
+            if (
+                text.includes("potato") &&
+                text.includes("onion")
+            ) {
+
+                return `
+                    You can make a simple <strong>Potato &amp; Onion
+                    Masala</strong> 🍳
+
+                    <br><br>
+
+                    <strong>Ingredients:</strong><br>
+                    • 2 potatoes<br>
+                    • 1 onion<br>
+                    • 1 tomato<br>
+                    • 1–2 tsp oil<br>
+                    • Salt and basic spices
+
+                    <br><br>
+
+                    <strong>Method:</strong><br>
+                    Sauté the onion, add tomato and spices,
+                    then add cooked potato pieces and cook
+                    for a few minutes.
+
+                    <br><br>
+
+                    If you want, I can give you the complete
+                    recipe with exact quantities and steps.
+                `;
+
+            }
+
+
+            if (
+                text.includes("chinese") ||
+                text.includes("noodle")
+            ) {
+
+                return `
+                    🍜 For a quick Chinese-style meal, try
+                    <strong>Vegetable Hakka Noodles</strong>.
+
+                    <br><br>
+
+                    You can use noodles, cabbage, carrot,
+                    capsicum, onion, garlic and soy sauce.
+
+                    <br><br>
+
+                    I can also prepare a complete recipe based
+                    on the vegetables you have at home.
+                `;
+
+            }
+
+
+            if (
+                text.includes("breakfast")
+            ) {
+
+                return `
+                    For an easy breakfast, here are a few ideas:
+
+                    <br><br>
+
+                    • Vegetable Poha<br>
+                    • Masala Omelette<br>
+                    • Upma<br>
+                    • Vegetable Sandwich<br>
+                    • Besan Chilla
+
+                    <br><br>
+
+                    Tell me which ingredients you have and
+                    I can narrow it down for you.
+                `;
+
+            }
+
+
+            if (
+                text.includes("substitute") ||
+                text.includes("substitution") ||
+                text.includes("alternative")
+            ) {
+
+                return `
+                    Sure! Tell me the ingredient you are missing
+                    and I can suggest suitable alternatives.
+
+                    <br><br>
+
+                    For example:
+                    <strong>paneer → tofu</strong> can work
+                    in many dishes, although the texture and
+                    taste will be different.
+                `;
+
+            }
+
+
+            if (
+                text.includes("20") ||
+                text.includes("quick") ||
+                text.includes("fast")
+            ) {
+
+                return `
+                    ⏱️ For a quick meal, try:
+
+                    <br><br>
+
+                    • Fried Rice<br>
+                    • Hakka Noodles<br>
+                    • Vegetable Sandwich<br>
+                    • Egg Bhurji<br>
+                    • Masala Maggi
+
+                    <br><br>
+
+                    Tell me your available ingredients and
+                    I can suggest a recipe that fits your time.
+                `;
+
+            }
+
+
+            return `
+                I'd be happy to help! 👨‍🍳
+
+                <br><br>
+
+                Tell me any of these:
+
+                <br><br>
+
+                • What ingredients you have<br>
+                • What dish you want to make<br>
+                • Your preferred cuisine<br>
+                • How much cooking time you have<br>
+                • Vegetarian or non-vegetarian preference
+
+                <br><br>
+
+                For example:
+                <strong>"I have rice, tomato, onion and paneer.
+                What can I cook?"</strong>
+            `;
+
+        }
+
+
+        /* =====================================================
+           SEND MESSAGE
+        ===================================================== */
+
+        function sendMessage(customText) {
+
+            const text =
+                (
+                    customText ||
+                    messageInput.value
+                ).trim();
+
+
+            if (!text) {
+                return;
+            }
+
+
+            addUserMessage(text);
+
+            messageInput.value = "";
+
+            messageInput.style.height = "auto";
+
+            typingIndicator.classList.add("show");
+
+            scrollToBottom();
+
+
+            setTimeout(function () {
+
+                typingIndicator.classList.remove("show");
+
+                const response =
+                    createDemoResponse(text);
+
+                addAIMessage(response);
+
+            }, 800);
+
+        }
+
+
+        sendButton.addEventListener(
+            "click",
+            function () {
+                sendMessage();
+            }
+        );
+
+
+        /* =====================================================
+           ENTER TO SEND
+        ===================================================== */
+
+        messageInput.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           AUTO TEXTAREA HEIGHT
+        ===================================================== */
+
+        messageInput.addEventListener(
+            "input",
+            function () {
+
+                this.style.height = "auto";
+
+                this.style.height =
+                    Math.min(
+                        this.scrollHeight,
+                        120
+                    ) + "px";
+
+            }
+        );
+
+
+        /* =====================================================
+           QUICK PROMPTS
+        ===================================================== */
+
+        suggestionButtons.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const prompt =
+                            this.dataset.prompt;
+
+                        if (prompt) {
+
+                            messageInput.value =
+                                prompt;
+
+                            messageInput.focus();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CLEAR CHAT
+        ===================================================== */
+
+        clearChatButton.addEventListener(
+            "click",
+            function () {
+
+                const messages =
+                    chatMessages.querySelectorAll(
+                        ".message"
+                    );
+
+                messages.forEach(
+                    function (message) {
+                        message.remove();
+                    }
+                );
+
+                addAIMessage(`
+                    Chat cleared. 👋
+
+                    <br><br>
+
+                    What would you like to cook today?
+                `);
+
+            }
+        );
+
+
+        /* =====================================================
+           NEW CHAT
+        ===================================================== */
+
+        newChatButton.addEventListener(
+            "click",
+            function () {
+
+                clearChatButton.click();
+
+                messageInput.focus();
+
+            }
+        );
+
+
+        /* =====================================================
+           VOICE INPUT
+           
+           Uses browser Speech Recognition when available.
+        ===================================================== */
+
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
+
+
+        let recognition = null;
+
+
+        if (SpeechRecognition) {
+
+            recognition =
+                new SpeechRecognition();
+
+            recognition.lang = "en-IN";
+
+            recognition.interimResults = false;
+
+            recognition.continuous = false;
+
+
+            recognition.onstart =
+                function () {
+
+                    voiceStatus.classList.add("show");
+
+                    voiceButton.innerHTML =
+                        '<i class="fa-solid fa-stop"></i>';
+
+                };
+
+
+            recognition.onresult =
+                function (event) {
+
+                    const transcript =
+                        event.results[0][0].transcript;
+
+                    messageInput.value =
+                        transcript;
+
+                    messageInput.dispatchEvent(
+                        new Event("input")
+                    );
+
+                    messageInput.focus();
+
+                };
+
+
+            recognition.onerror =
+                function () {
+
+                    voiceStatus.classList.remove(
+                        "show"
+                    );
+
+                    voiceButton.innerHTML =
+                        '<i class="fa-solid fa-microphone"></i>';
+
+                };
+
+
+            recognition.onend =
+                function () {
+
+                    voiceStatus.classList.remove(
+                        "show"
+                    );
+
+                    voiceButton.innerHTML =
+                        '<i class="fa-solid fa-microphone"></i>';
+
+                };
+
+
+            voiceButton.addEventListener(
+                "click",
+                function () {
+
+                    try {
+
+                        recognition.start();
+
+                    } catch (error) {
+
+                        recognition.stop();
+
+                    }
+
+                }
+            );
+
+        } else {
+
+            voiceButton.addEventListener(
+                "click",
+                function () {
+
+                    alert(
+                        "Voice input is not supported by this browser."
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           URL CUISINE
+        ===================================================== */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const cuisine =
+            params.get("cuisine");
+
+
+        if (cuisine) {
+
+            setTimeout(
+                function () {
+
+                    addAIMessage(
+                        `I can help you with <strong>${escapeHTML(cuisine)}</strong> cuisine. What would you like to cook? 🍳`
+                    );
+
+                },
+                500
+            );
+
+        }
+
+
+        /* =====================================================
+           YEAR
+        ===================================================== */
+
+        const currentYear =
+            document.getElementById("currentYear");
+
+        if (currentYear) {
+
+            currentYear.textContent =
+                new Date().getFullYear();
+
+        }
+
+    });
+</script>
+
+</body>
+</html>

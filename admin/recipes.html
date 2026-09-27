@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Manage Recipes - Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+
+            <div>
+                <h2>AI Cooking</h2>
+                <span>Admin Panel</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="recipes.html" class="nav-item active">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Recipes</span>
+            </a>
+
+            <a href="users.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+
+            <a href="submissions.html" class="nav-item">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <span>Submissions</span>
+            </a>
+
+            <a href="states.html" class="nav-item">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>States</span>
+            </a>
+
+            <a href="districts.html" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Districts</span>
+            </a>
+
+            <a href="festivals.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Festivals</span>
+            </a>
+
+            <a href="cuisines.html" class="nav-item">
+                <i class="fa-solid fa-bowl-food"></i>
+                <span>Cuisines</span>
+            </a>
+
+            <a href="analytics.html" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a
+                href="../index.html"
+                class="nav-item"
+            >
+                <i class="fa-solid fa-globe"></i>
+                <span>View Website</span>
+            </a>
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="admin-header">
+
+            <button
+                class="menu-button"
+                id="sidebarToggle"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="header-title">
+
+                <h1>Recipes</h1>
+
+                <p>
+                    Add, edit and manage recipes.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>Recipe Management</h2>
+
+                    <p>
+                        Manage all published recipes.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-button"
+                    id="openRecipeModal"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Add Recipe
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="search"
+                            id="recipeSearch"
+                            placeholder="Search recipes..."
+                        >
+
+                    </div>
+
+                    <select id="recipeFilter">
+
+                        <option value="all">
+                            All Recipes
+                        </option>
+
+                        <option value="famous">
+                            Famous Recipes
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="table-wrapper"
+                    id="recipesTableContainer"
+                >
+
+                    <div class="empty-state">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        <h3>Loading recipes...</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- Recipe Modal -->
+
+<div
+    class="modal-overlay"
+    id="recipeModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="recipeModalTitle">
+                    Add Recipe
+                </h2>
+
+            </div>
+
+            <button
+                class="modal-close"
+                id="closeRecipeModal"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="recipeForm">
+
+            <input
+                type="hidden"
+                id="recipeId"
+            >
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Recipe Name *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipeName"
+                        required
+                        placeholder="Example: Dalma"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipeState"
+                        placeholder="Example: Odisha"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        District
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipeDistrict"
+                        placeholder="Example: Puri"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Cuisine
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipeCuisine"
+                        placeholder="Example: Odia"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipeCategory"
+                        placeholder="Example: Main Course"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Difficulty
+                    </label>
+
+                    <select id="recipeDifficulty">
+
+                        <option value="Easy">
+                            Easy
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Hard">
+                            Hard
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Prep Time (minutes)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="prepTime"
+                        min="0"
+                        value="10"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Cook Time (minutes)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="cookTime"
+                        min="0"
+                        value="20"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Servings
+                    </label>
+
+                    <input
+                        type="number"
+                        id="servings"
+                        min="1"
+                        value="2"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Famous Recipe
+                    </label>
+
+                    <select id="isFamous">
+
+                        <option value="false">
+                            No
+                        </option>
+
+                        <option value="true">
+                            Yes
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="recipeDescription"
+                        placeholder="Recipe description..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Ingredients
+                    </label>
+
+                    <textarea
+                        id="recipeIngredients"
+                        placeholder="1 cup rice&#10;2 potatoes&#10;1 onion"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Cooking Steps
+                    </label>
+
+                    <textarea
+                        id="recipeSteps"
+                        placeholder="Wash rice&#10;Cook rice&#10;Add spices"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Photo URL
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipePhoto"
+                        placeholder="Image URL"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Video URL
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipeVideo"
+                        placeholder="Video URL"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelRecipe"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    <i class="fa-solid fa-save"></i>
+                    Save Recipe
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="admin.js"></script>
+
+
+<script>
+
+const recipeModal =
+    document.getElementById("recipeModal");
+
+const recipeForm =
+    document.getElementById("recipeForm");
+
+const recipeContainer =
+    document.getElementById(
+        "recipesTableContainer"
+    );
+
+const searchInput =
+    document.getElementById("recipeSearch");
+
+const recipeFilter =
+    document.getElementById("recipeFilter");
+
+let allRecipes = [];
+
+
+function openModal() {
+    recipeModal.classList.add("active");
+}
+
+
+function closeModal() {
+    recipeModal.classList.remove("active");
+    recipeForm.reset();
+
+    document.getElementById(
+        "recipeId"
+    ).value = "";
+
+    document.getElementById(
+        "recipeModalTitle"
+    ).textContent = "Add Recipe";
+}
+
+
+document
+    .getElementById("openRecipeModal")
+    .addEventListener(
+        "click",
+        openModal
+    );
+
+
+document
+    .getElementById("closeRecipeModal")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById("cancelRecipe")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+async function loadRecipes() {
+
+    try {
+
+        const data =
+            await AdminPanel.apiRequest(
+                "/recipes/"
+            );
+
+        allRecipes =
+            data.recipes || [];
+
+        renderRecipes();
+
+    } catch (error) {
+
+        recipeContainer.innerHTML = `
+            <div class="empty-state">
+
+                <i class="fa-solid fa-server"></i>
+
+                <h3>Backend not connected</h3>
+
+                <p>
+                    Start the Flask server
+                    to load recipes.
+                </p>
+
+            </div>
+        `;
+
+    }
+
+}
+
+
+function renderRecipes() {
+
+    let filtered =
+        [...allRecipes];
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+    const filter =
+        recipeFilter.value;
+
+
+    if (search) {
+
+        filtered =
+            filtered.filter(
+                recipe =>
+                    recipe.name
+                        .toLowerCase()
+                        .includes(search) ||
+                    recipe.state
+                        .toLowerCase()
+                        .includes(search) ||
+                    recipe.cuisine
+                        .toLowerCase()
+                        .includes(search)
+            );
+
+    }
+
+
+    if (filter === "famous") {
+
+        filtered =
+            filtered.filter(
+                recipe =>
+                    recipe.is_famous
+            );
+
+    }
+
+
+    if (!filtered.length) {
+
+        recipeContainer.innerHTML = `
+            <div class="empty-state">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <h3>No recipes found</h3>
+
+                <p>
+                    Add your first recipe.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    recipeContainer.innerHTML = `
+
+        <table class="admin-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Recipe</th>
+                    <th>State</th>
+                    <th>Cuisine</th>
+                    <th>Famous</th>
+                    <th>Views</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${filtered.map(recipe => `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(recipe.name)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHTML(recipe.state || "-")}
+                        </td>
+
+                        <td>
+                            ${escapeHTML(recipe.cuisine || "-")}
+                        </td>
+
+                        <td>
+
+                            ${
+                                recipe.is_famous
+                                    ? `<span class="badge badge-success">Yes</span>`
+                                    : `<span class="badge badge-info">No</span>`
+                            }
+
+                        </td>
+
+                        <td>
+                            ${recipe.views || 0}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="secondary-button"
+                                onclick="editRecipe('${recipe.id}')"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button
+                                class="danger-button"
+                                onclick="deleteRecipe('${recipe.id}')"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `).join("")}
+
+            </tbody>
+
+        </table>
+
+    `;
+
+}
+
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+window.editRecipe = function(id) {
+
+    const recipe =
+        allRecipes.find(
+            item => item.id === id
+        );
+
+    if (!recipe) {
+        return;
+    }
+
+
+    document.getElementById(
+        "recipeId"
+    ).value = recipe.id;
+
+
+    document.getElementById(
+        "recipeName"
+    ).value = recipe.name || "";
+
+
+    document.getElementById(
+        "recipeState"
+    ).value = recipe.state || "";
+
+
+    document.getElementById(
+        "recipeDistrict"
+    ).value = recipe.district || "";
+
+
+    document.getElementById(
+        "recipeCuisine"
+    ).value = recipe.cuisine || "";
+
+
+    document.getElementById(
+        "recipeCategory"
+    ).value = recipe.category || "";
+
+
+    document.getElementById(
+        "recipeDifficulty"
+    ).value =
+        recipe.difficulty || "Easy";
+
+
+    document.getElementById(
+        "prepTime"
+    ).value =
+        recipe.prep_time || 0;
+
+
+    document.getElementById(
+        "cookTime"
+    ).value =
+        recipe.cook_time || 0;
+
+
+    document.getElementById(
+        "servings"
+    ).value =
+        recipe.servings || 1;
+
+
+    document.getElementById(
+        "isFamous"
+    ).value =
+        recipe.is_famous
+            ? "true"
+            : "false";
+
+
+    document.getElementById(
+        "recipeDescription"
+    ).value =
+        recipe.description || "";
+
+
+    document.getElementById(
+        "recipeIngredients"
+    ).value =
+        (recipe.ingredients || [])
+            .map(
+                item =>
+                    `${item.name} - ${item.quantity}`
+            )
+            .join("\n");
+
+
+    document.getElementById(
+        "recipeSteps"
+    ).value =
+        (recipe.steps || [])
+            .join("\n");
+
+
+    document.getElementById(
+        "recipePhoto"
+    ).value =
+        recipe.photo || "";
+
+
+    document.getElementById(
+        "recipeVideo"
+    ).value =
+        recipe.video || "";
+
+
+    document.getElementById(
+        "recipeModalTitle"
+    ).textContent =
+        "Edit Recipe";
+
+
+    openModal();
+
+};
+
+
+window.deleteRecipe = async function(id) {
+
+    const confirmed =
+        window.confirm(
+            "Delete this recipe?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        await AdminPanel.apiRequest(
+            `/recipes/${id}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        AdminPanel.showToast(
+            "Recipe deleted successfully."
+        );
+
+        loadRecipes();
+
+    } catch (error) {
+
+        AdminPanel.showToast(
+            error.message,
+            "error"
+        );
+
+    }
+
+};
+
+
+recipeForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        const id =
+            document.getElementById(
+                "recipeId"
+            ).value;
+
+
+        const ingredientLines =
+            document.getElementById(
+                "recipeIngredients"
+            ).value
+                .split("\n")
+                .map(
+                    line =>
+                        line.trim()
+                )
+                .filter(Boolean);
+
+
+        const ingredients =
+            ingredientLines.map(
+                line => {
+
+                    const parts =
+                        line.split(" - ");
+
+                    return {
+                        name:
+                            parts[0] || line,
+                        quantity:
+                            parts[1] ||
+                            "As required"
+                    };
+
+                }
+            );
+
+
+        const steps =
+            document.getElementById(
+                "recipeSteps"
+            ).value
+                .split("\n")
+                .map(
+                    line =>
+                        line.trim()
+                )
+                .filter(Boolean);
+
+
+        const payload = {
+
+            name:
+                document.getElementById(
+                    "recipeName"
+                ).value,
+
+            state:
+                document.getElementById(
+                    "recipeState"
+                ).value,
+
+            district:
+                document.getElementById(
+                    "recipeDistrict"
+                ).value,
+
+            cuisine:
+                document.getElementById(
+                    "recipeCuisine"
+                ).value,
+
+            category:
+                document.getElementById(
+                    "recipeCategory"
+                ).value,
+
+            difficulty:
+                document.getElementById(
+                    "recipeDifficulty"
+                ).value,
+
+            prep_time:
+                Number(
+                    document.getElementById(
+                        "prepTime"
+                    ).value
+                ),
+
+            cook_time:
+                Number(
+                    document.getElementById(
+                        "cookTime"
+                    ).value
+                ),
+
+            servings:
+                Number(
+                    document.getElementById(
+                        "servings"
+                    ).value
+                ),
+
+            is_famous:
+                document.getElementById(
+                    "isFamous"
+                ).value === "true",
+
+            description:
+                document.getElementById(
+                    "recipeDescription"
+                ).value,
+
+            ingredients,
+
+            steps,
+
+            photo:
+                document.getElementById(
+                    "recipePhoto"
+                ).value,
+
+            video:
+                document.getElementById(
+                    "recipeVideo"
+                ).value,
+
+            is_approved: true
+
+        };
+
+
+        try {
+
+            if (id) {
+
+                await AdminPanel.apiRequest(
+                    `/recipes/${id}`,
+                    {
+                        method: "PUT",
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+                AdminPanel.showToast(
+                    "Recipe updated successfully."
+                );
+
+            } else {
+
+                await AdminPanel.apiRequest(
+                    "/recipes/",
+                    {
+                        method: "POST",
+                        body:
+                            JSON.stringify(
+                                payload
+                            )
+                    }
+                );
+
+                AdminPanel.showToast(
+                    "Recipe added successfully."
+                );
+
+            }
+
+
+            closeModal();
+
+            loadRecipes();
+
+        } catch (error) {
+
+            AdminPanel.showToast(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "input",
+    renderRecipes
+);
+
+
+recipeFilter.addEventListener(
+    "change",
+    renderRecipes
+);
+
+
+loadRecipes();
+
+</script>
+
+</body>
+</html>

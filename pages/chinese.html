@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chinese Cuisine | AI Cooking Assistant</title>
+
+    <meta
+        name="description"
+        content="Explore Chinese recipes, noodles, fried rice, dumplings, soups and more with AI Cooking Assistant."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        /* =========================================================
+           CHINESE CUISINE PAGE
+        ========================================================= */
+
+        .cuisine-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(255, 90, 90, 0.10), transparent 30%),
+                radial-gradient(circle at top right, rgba(255, 190, 70, 0.10), transparent 30%),
+                #fff;
+        }
+
+        /* Hero */
+
+        .cuisine-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 150px 20px 80px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(80, 10, 10, 0.96),
+                    rgba(160, 25, 25, 0.92),
+                    rgba(35, 35, 35, 0.96)
+                );
+            color: #fff;
+        }
+
+        .cuisine-hero::before,
+        .cuisine-hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2px);
+            pointer-events: none;
+        }
+
+        .cuisine-hero::before {
+            width: 350px;
+            height: 350px;
+            background: rgba(255, 190, 80, 0.12);
+            top: -150px;
+            right: -100px;
+        }
+
+        .cuisine-hero::after {
+            width: 280px;
+            height: 280px;
+            background: rgba(255, 70, 70, 0.10);
+            bottom: -150px;
+            left: -100px;
+        }
+
+        .cuisine-hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #ffd36a;
+        }
+
+        .breadcrumb i {
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        .cuisine-hero-content {
+            max-width: 850px;
+        }
+
+        .cuisine-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(10px);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .cuisine-hero h1 {
+            margin: 0 0 18px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 1.05;
+            font-weight: 800;
+        }
+
+        .cuisine-hero h1 span {
+            color: #ffd36a;
+        }
+
+        .cuisine-hero p {
+            max-width: 720px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .hero-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .hero-action.primary {
+            background: #fff;
+            color: #9d1c1c;
+        }
+
+        .hero-action.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-action.secondary {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .hero-action.secondary:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        /* Main */
+
+        .cuisine-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 20px 90px;
+        }
+
+        /* Info cards */
+
+        .cuisine-info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 65px;
+        }
+
+        .info-card {
+            padding: 25px 20px;
+            border: 1px solid #eee;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+            transition: 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.09);
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: #fff1e8;
+            color: #c0392b;
+            margin-bottom: 15px;
+            font-size: 19px;
+        }
+
+        .info-card h3 {
+            margin: 0 0 7px;
+            font-size: 17px;
+        }
+
+        .info-card p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Section heading */
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading .eyebrow {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: #c0392b;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 10px;
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(28px, 4vw, 40px);
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin: 0;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        /* Search */
+
+        .recipe-tools {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .recipe-search {
+            position: relative;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .recipe-search i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .recipe-search input {
+            width: 100%;
+            padding: 14px 18px 14px 45px;
+            border: 1px solid #e5e5e5;
+            border-radius: 13px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            background: #fff;
+            transition: 0.25s ease;
+            box-sizing: border-box;
+        }
+
+        .recipe-search input:focus {
+            border-color: #c0392b;
+            box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.08);
+        }
+
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-button {
+            border: 1px solid #e7e7e7;
+            background: #fff;
+            color: #555;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background: #c0392b;
+            border-color: #c0392b;
+            color: #fff;
+        }
+
+        /* Recipe cards */
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .recipe-card {
+            overflow: hidden;
+            border: 1px solid #eee;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            transition: 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.11);
+        }
+
+        .recipe-image {
+            position: relative;
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0e7,
+                    #ffe3d4
+                );
+        }
+
+        .recipe-image .food-icon {
+            font-size: 65px;
+            color: #c0392b;
+            opacity: 0.9;
+            transition: transform 0.35s ease;
+        }
+
+        .recipe-card:hover .food-icon {
+            transform: scale(1.12) rotate(-3deg);
+        }
+
+        .famous-label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #c0392b;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            color: #777;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .favorite-btn:hover,
+        .favorite-btn.active {
+            color: #d63031;
+            transform: scale(1.08);
+        }
+
+        .recipe-content {
+            padding: 20px;
+        }
+
+        .recipe-content h3 {
+            margin: 0 0 8px;
+            font-family: "Poppins", sans-serif;
+            font-size: 17px;
+        }
+
+        .recipe-content p {
+            margin: 0 0 15px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .recipe-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-bottom: 17px;
+        }
+
+        .recipe-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #777;
+            font-size: 11px;
+        }
+
+        .recipe-meta i {
+            color: #c0392b;
+        }
+
+        .view-recipe {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #c0392b;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .view-recipe i {
+            transition: 0.2s ease;
+        }
+
+        .view-recipe:hover i {
+            transform: translateX(4px);
+        }
+
+        /* AI Banner */
+
+        .ai-banner {
+            position: relative;
+            overflow: hidden;
+            margin-top: 75px;
+            padding: 40px;
+            border-radius: 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #5d1010,
+                    #a92929
+                );
+            color: #fff;
+        }
+
+        .ai-banner::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            right: -60px;
+            top: -80px;
+        }
+
+        .ai-banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+        }
+
+        .ai-banner h2 {
+            margin: 0 0 12px;
+            font-family: "Poppins", sans-serif;
+            font-size: 30px;
+        }
+
+        .ai-banner p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.7;
+        }
+
+        .ai-banner-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 22px;
+            padding: 13px 20px;
+            border-radius: 12px;
+            background: #fff;
+            color: #8e1e1e;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* Empty */
+
+        .empty-state {
+            display: none;
+            padding: 45px 20px;
+            text-align: center;
+            border: 1px dashed #ddd;
+            border-radius: 18px;
+            margin-top: 20px;
+        }
+
+        .empty-state i {
+            font-size: 40px;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 8px;
+        }
+
+        .empty-state p {
+            margin: 0;
+            color: #777;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 1050px) {
+            .cuisine-info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .recipe-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .cuisine-hero {
+                padding-top: 125px;
+            }
+
+            .recipe-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .recipe-tools {
+                align-items: stretch;
+            }
+
+            .recipe-search {
+                width: 100%;
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .cuisine-hero {
+                padding: 115px 16px 65px;
+            }
+
+            .cuisine-main {
+                padding: 55px 16px 70px;
+            }
+
+            .cuisine-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-banner {
+                padding: 30px 22px;
+            }
+
+            .ai-banner h2 {
+                font-size: 25px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-action {
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .recipe-card,
+            .info-card,
+            .food-icon,
+            .view-recipe i {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="cuisine-page">
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header id="mainHeader">
+        <div class="container">
+
+            <nav class="navbar">
+
+                <a href="../index.html" class="brand">
+                    <span class="brand-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </span>
+
+                    <span>
+                        <strong>AI Cooking</strong>
+                        <small>Assistant</small>
+                    </span>
+                </a>
+
+                <div class="nav-links">
+
+                    <a href="../index.html">
+                        <i class="fa-solid fa-house"></i>
+                        Home
+                    </a>
+
+                    <a href="ai-chat.html">
+                        <i class="fa-solid fa-robot"></i>
+                        AI Assistant
+                    </a>
+
+                    <a href="states.html">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        India
+                    </a>
+
+                    <a href="festivals.html">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Festivals
+                    </a>
+
+                    <a href="cuisines.html" class="active">
+                        <i class="fa-solid fa-bowl-food"></i>
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        <i class="fa-solid fa-carrot"></i>
+                        Ingredients
+                    </a>
+
+                    <a href="login.html" class="nav-login">
+                        Login
+                    </a>
+
+                    <a href="signup.html" class="nav-signup">
+                        Sign Up
+                    </a>
+
+                </div>
+
+                <button
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    aria-label="Open menu"
+                    type="button"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </nav>
+
+            <div class="mobile-menu" id="mobileMenu">
+
+                <a href="../index.html">Home</a>
+                <a href="ai-chat.html">AI Assistant</a>
+                <a href="states.html">India</a>
+                <a href="festivals.html">Festivals</a>
+                <a href="cuisines.html">Cuisines</a>
+                <a href="ingredient-finder.html">Ingredients</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="cuisine-hero">
+
+        <div class="cuisine-hero-container">
+
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <a href="cuisines.html">Cuisines</a>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <span>Chinese</span>
+            </div>
+
+            <div class="cuisine-hero-content">
+
+                <div class="cuisine-badge">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    International Cuisine
+                </div>
+
+                <h1>
+                    Chinese <span>Cuisine</span>
+                </h1>
+
+                <p>
+                    Explore delicious Chinese-inspired recipes including
+                    fried rice, noodles, dumplings, soups, Manchurian,
+                    stir-fried dishes and more. Find recipes based on your
+                    ingredients, time and cooking preferences.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="ai-chat.html?cuisine=Chinese"
+                        class="hero-action primary"
+                    >
+                        <i class="fa-solid fa-robot"></i>
+                        Ask AI to Cook
+                    </a>
+
+                    <a
+                        href="#recipes"
+                        class="hero-action secondary"
+                    >
+                        <i class="fa-solid fa-arrow-down"></i>
+                        Explore Recipes
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main class="cuisine-main">
+
+        <!-- INFO -->
+
+        <section class="cuisine-info-grid">
+
+            <article class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-bowl-rice"></i>
+                </div>
+
+                <h3>Fried Rice</h3>
+
+                <p>
+                    Quick rice-based dishes with vegetables,
+                    sauces and your choice of protein.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+
+                <h3>Noodles</h3>
+
+                <p>
+                    Explore delicious noodle recipes with
+                    vegetables, sauces and aromatic seasonings.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-cookie-bite"></i>
+                </div>
+
+                <h3>Dumplings</h3>
+
+                <p>
+                    Discover steamed, pan-fried and stuffed
+                    dumpling recipes.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="info-icon">
+                    <i class="fa-solid fa-fire-burner"></i>
+                </div>
+
+                <h3>Stir Fry</h3>
+
+                <p>
+                    Fast wok-style recipes prepared with fresh
+                    vegetables and flavorful sauces.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- RECIPES -->
+
+        <section id="recipes">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    Explore Chinese Food
+                </span>
+
+                <h2>Popular Chinese Recipes</h2>
+
+                <p>
+                    Start with popular favorites, then explore more
+                    Chinese-style recipes from our cooking collection.
+                </p>
+
+            </div>
+
+
+            <div class="recipe-tools">
+
+                <div class="recipe-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="search"
+                        id="recipeSearch"
+                        placeholder="Search Chinese recipes..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="category-filters">
+
+                    <button
+                        class="filter-button active"
+                        data-filter="all"
+                        type="button"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="rice"
+                        type="button"
+                    >
+                        Rice
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="noodles"
+                        type="button"
+                    >
+                        Noodles
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="starter"
+                        type="button"
+                    >
+                        Starters
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="soup"
+                        type="button"
+                    >
+                        Soups
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        data-filter="vegetarian"
+                        type="button"
+                    >
+                        Vegetarian
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="recipe-grid" id="recipeGrid">
+
+                <!-- 1 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="rice"
+                    data-name="chinese fried rice"
+                >
+
+                    <div class="recipe-image">
+
+                        <span class="famous-label">
+                            Popular
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Chinese Fried Rice to favorites"
+                            data-recipe-id="chinese-fried-rice"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-bowl-rice food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Chinese Fried Rice</h3>
+
+                        <p>
+                            Flavorful fried rice with vegetables,
+                            soy sauce and aromatic seasonings.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                25 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Easy
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=chinese-fried-rice"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 2 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="noodles"
+                    data-name="vegetable hakka noodles"
+                >
+
+                    <div class="recipe-image">
+
+                        <span class="famous-label">
+                            Popular
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Vegetable Hakka Noodles to favorites"
+                            data-recipe-id="vegetable-hakka-noodles"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-utensils food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Vegetable Hakka Noodles</h3>
+
+                        <p>
+                            Stir-fried noodles loaded with crunchy
+                            vegetables and savory sauces.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                25 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Easy
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=vegetable-hakka-noodles"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 3 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="starter"
+                    data-name="vegetable manchurian"
+                >
+
+                    <div class="recipe-image">
+
+                        <span class="famous-label">
+                            Favorite
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Vegetable Manchurian to favorites"
+                            data-recipe-id="vegetable-manchurian"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-circle food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Vegetable Manchurian</h3>
+
+                        <p>
+                            Crispy vegetable balls tossed in a
+                            flavorful Manchurian sauce.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                40 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Medium
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=vegetable-manchurian"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 4 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="starter"
+                    data-name="spring rolls"
+                >
+
+                    <div class="recipe-image">
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Spring Rolls to favorites"
+                            data-recipe-id="spring-rolls"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-burger food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Vegetable Spring Rolls</h3>
+
+                        <p>
+                            Crispy rolls filled with seasoned
+                            vegetables and served with dip.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                35 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Medium
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=spring-rolls"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 5 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="noodles"
+                    data-name="chilli garlic noodles"
+                >
+
+                    <div class="recipe-image">
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Chilli Garlic Noodles to favorites"
+                            data-recipe-id="chilli-garlic-noodles"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-bowl-food food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Chilli Garlic Noodles</h3>
+
+                        <p>
+                            Spicy noodles flavored with garlic,
+                            chili and savory sauces.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                20 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Easy
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=chilli-garlic-noodles"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 6 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="soup"
+                    data-name="hot and sour soup"
+                >
+
+                    <div class="recipe-image">
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Hot and Sour Soup to favorites"
+                            data-recipe-id="hot-and-sour-soup"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-mug-hot food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Hot &amp; Sour Soup</h3>
+
+                        <p>
+                            A warm, spicy and tangy soup packed
+                            with vegetables and aromatic flavors.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                30 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Medium
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=hot-and-sour-soup"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 7 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="vegetarian"
+                    data-name="chilli paneer"
+                >
+
+                    <div class="recipe-image">
+
+                        <span class="famous-label">
+                            Popular
+                        </span>
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Chilli Paneer to favorites"
+                            data-recipe-id="chilli-paneer"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-cheese food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Chilli Paneer</h3>
+
+                        <p>
+                            Soft paneer tossed with peppers,
+                            onions, chili and savory sauce.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                30 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Medium
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=chilli-paneer"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 8 -->
+
+                <article
+                    class="recipe-card"
+                    data-category="rice"
+                    data-name="schezwan fried rice"
+                >
+
+                    <div class="recipe-image">
+
+                        <button
+                            class="favorite-btn"
+                            type="button"
+                            aria-label="Add Schezwan Fried Rice to favorites"
+                            data-recipe-id="schezwan-fried-rice"
+                        >
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                        <i class="fa-solid fa-bowl-rice food-icon"></i>
+
+                    </div>
+
+                    <div class="recipe-content">
+
+                        <h3>Schezwan Fried Rice</h3>
+
+                        <p>
+                            Spicy fried rice prepared with Schezwan
+                            sauce and colorful vegetables.
+                        </p>
+
+                        <div class="recipe-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                30 min
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-signal"></i>
+                                Medium
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="recipe.html?recipe=schezwan-fried-rice"
+                            class="view-recipe"
+                        >
+                            View Recipe
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div class="empty-state" id="emptyState">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <h3>No recipes found</h3>
+
+                <p>
+                    Try another recipe name or choose a different category.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI BANNER -->
+
+        <section class="ai-banner">
+
+            <div class="ai-banner-content">
+
+                <h2>
+                    Don't know what to cook?
+                </h2>
+
+                <p>
+                    Tell our AI what ingredients you have at home,
+                    how much time you have, and your food preferences.
+                    The AI Cooking Assistant can help you find a suitable recipe.
+                </p>
+
+                <a
+                    href="ai-chat.html?cuisine=Chinese"
+                    class="ai-banner-button"
+                >
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Ask AI Assistant
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <a href="../index.html" class="brand">
+
+                        <span class="brand-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </span>
+
+                        <span>
+                            <strong>AI Cooking</strong>
+                            <small>Assistant</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Your smart cooking companion for recipes,
+                        ingredients and AI-powered cooking help.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy;
+                    <span id="currentYear"></span>
+                    AI Cooking Assistant. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- BACK TO TOP -->
+
+    <button
+        id="backToTop"
+        aria-label="Back to top"
+        type="button"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     PAGE SCRIPT
+========================================================== -->
+
+<script src="../app.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const searchInput = document.getElementById("recipeSearch");
+        const filterButtons = document.querySelectorAll(".filter-button");
+        const recipeCards = document.querySelectorAll(".recipe-card");
+        const emptyState = document.getElementById("emptyState");
+
+        let activeFilter = "all";
+
+
+        function filterRecipes() {
+
+            const searchTerm =
+                searchInput.value.trim().toLowerCase();
+
+            let visibleCount = 0;
+
+            recipeCards.forEach(function (card) {
+
+                const category =
+                    card.dataset.category || "";
+
+                const name =
+                    card.dataset.name || "";
+
+                const matchesFilter =
+                    activeFilter === "all" ||
+                    category === activeFilter;
+
+                const matchesSearch =
+                    name.includes(searchTerm);
+
+                if (matchesFilter && matchesSearch) {
+
+                    card.style.display = "";
+
+                    visibleCount++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            if (visibleCount === 0) {
+
+                emptyState.style.display = "block";
+
+            } else {
+
+                emptyState.style.display = "none";
+
+            }
+
+        }
+
+
+        /* Search */
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                filterRecipes
+            );
+
+        }
+
+
+        /* Filters */
+
+        filterButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                filterButtons.forEach(function (item) {
+                    item.classList.remove("active");
+                });
+
+                this.classList.add("active");
+
+                activeFilter =
+                    this.dataset.filter || "all";
+
+                filterRecipes();
+
+            });
+
+        });
+
+
+        /* Favorites */
+
+        const favoriteButtons =
+            document.querySelectorAll(".favorite-btn");
+
+        favoriteButtons.forEach(function (button) {
+
+            const recipeId =
+                button.dataset.recipeId;
+
+            const icon =
+                button.querySelector("i");
+
+            let favorites = [];
+
+            try {
+                favorites =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "aiCookingFavorites"
+                        )
+                    ) || [];
+            } catch (error) {
+                favorites = [];
+            }
+
+
+            if (favorites.includes(recipeId)) {
+
+                button.classList.add("active");
+
+                icon.classList.remove("fa-regular");
+
+                icon.classList.add("fa-solid");
+
+            }
+
+
+            button.addEventListener("click", function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                let currentFavorites = [];
+
+                try {
+
+                    currentFavorites =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "aiCookingFavorites"
+                            )
+                        ) || [];
+
+                } catch (error) {
+
+                    currentFavorites = [];
+
+                }
+
+
+                if (
+                    currentFavorites.includes(recipeId)
+                ) {
+
+                    currentFavorites =
+                        currentFavorites.filter(
+                            function (id) {
+                                return id !== recipeId;
+                            }
+                        );
+
+                    button.classList.remove("active");
+
+                    icon.classList.remove("fa-solid");
+
+                    icon.classList.add("fa-regular");
+
+                } else {
+
+                    currentFavorites.push(recipeId);
+
+                    button.classList.add("active");
+
+                    icon.classList.remove("fa-regular");
+
+                    icon.classList.add("fa-solid");
+
+                }
+
+
+                localStorage.setItem(
+                    "aiCookingFavorites",
+                    JSON.stringify(currentFavorites)
+                );
+
+            });
+
+        });
+
+
+        /* Current year */
+
+        const currentYear =
+            document.getElementById("currentYear");
+
+        if (currentYear) {
+
+            currentYear.textContent =
+                new Date().getFullYear();
+
+        }
+
+
+        /* Read search from URL */
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const urlSearch =
+            params.get("search");
+
+        if (urlSearch && searchInput) {
+
+            searchInput.value = urlSearch;
+
+            filterRecipes();
+
+        }
+
+    });
+</script>
+
+</body>
+</html>

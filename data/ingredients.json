@@ -1,0 +1,140 @@
+{
+  "ingredients": [
+    {
+      "id": "rice",
+      "name": "Rice",
+      "category": "Grains",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Pakhala Bhata",
+        "Biryani",
+        "Fried Rice",
+        "Pulao"
+      ]
+    },
+    {
+      "id": "potato",
+      "name": "Potato",
+      "category": "Vegetables",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Aloo Dum",
+        "Aloo Paratha",
+        "Vada Pav",
+        "Samosa"
+      ]
+    },
+    {
+      "id": "paneer",
+      "name": "Paneer",
+      "category": "Dairy",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Paneer Butter Masala",
+        "Chilli Paneer",
+        "Paneer Tikka",
+        "Palak Paneer"
+      ]
+    },
+    {
+      "id": "chicken",
+      "name": "Chicken",
+      "category": "Meat",
+      "vegetarian": false,
+      "commonRecipes": [
+        "Chicken Biryani",
+        "Chicken Curry",
+        "Chicken Tikka"
+      ]
+    },
+    {
+      "id": "egg",
+      "name": "Egg",
+      "category": "Egg",
+      "vegetarian": false,
+      "commonRecipes": [
+        "Egg Curry",
+        "Egg Fried Rice",
+        "Masala Omelette"
+      ]
+    },
+    {
+      "id": "tomato",
+      "name": "Tomato",
+      "category": "Vegetables",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Tomato Soup",
+        "Tomato Rice",
+        "Tomato Curry"
+      ]
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "category": "Vegetables",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Onion Pakora",
+        "Biryani",
+        "Curry"
+      ]
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "category": "Spices",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Garlic Naan",
+        "Garlic Fried Rice",
+        "Garlic Chutney"
+      ]
+    },
+    {
+      "id": "ginger",
+      "name": "Ginger",
+      "category": "Spices",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Ginger Tea",
+        "Curries",
+        "Soups"
+      ]
+    },
+    {
+      "id": "green-chili",
+      "name": "Green Chili",
+      "category": "Spices",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Chutney",
+        "Curry",
+        "Pakora"
+      ]
+    },
+    {
+      "id": "flour",
+      "name": "Wheat Flour",
+      "category": "Grains",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Roti",
+        "Paratha",
+        "Poori",
+        "Kulcha"
+      ]
+    },
+    {
+      "id": "gram-flour",
+      "name": "Gram Flour",
+      "category": "Flour",
+      "vegetarian": true,
+      "commonRecipes": [
+        "Pakora",
+        "Dhokla",
+        "Besan Chilla"
+      ]
+    }
+  ]
+}

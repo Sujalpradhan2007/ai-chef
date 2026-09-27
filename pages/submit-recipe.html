@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Submit your traditional, local or favorite recipe to AI Cooking Assistant.">
+
+    <meta name="theme-color"
+          content="#ff6b35">
+
+    <title>Submit Your Recipe | AI Cooking Assistant</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="../css/components.css">
+
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="../css/animations.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../css/responsive.css">
+
+
+    <style>
+
+        /* =====================================================
+           SUBMIT RECIPE PAGE
+           ===================================================== */
+
+        .submit-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(255, 107, 53, 0.08),
+                    transparent 35%
+                ),
+                #fff;
+        }
+
+
+        /* =====================================================
+           PAGE HERO
+           ===================================================== */
+
+        .submit-hero {
+            position: relative;
+            overflow: hidden;
+
+            padding: 145px 20px 75px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 107, 53, 0.10),
+                    rgba(255, 183, 3, 0.08)
+                );
+        }
+
+        .submit-hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            top: -150px;
+            right: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 107, 53, 0.10);
+
+            filter: blur(5px);
+        }
+
+        .submit-hero-content {
+            position: relative;
+
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+        .submit-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            margin-bottom: 18px;
+
+            border-radius: 999px;
+
+            background: #fff;
+            color: #c2410c;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .submit-hero h1 {
+            margin: 0 0 15px;
+
+            color: #111827;
+
+            font-family: "Poppins", sans-serif;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.1;
+        }
+
+        .submit-hero h1 span {
+            color: #ff6b35;
+        }
+
+        .submit-hero p {
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: #6b7280;
+
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           MAIN FORM AREA
+           ===================================================== */
+
+        .submit-main {
+            padding: 70px 20px 90px;
+        }
+
+        .submit-layout {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 320px;
+
+            gap: 30px;
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           FORM CARD
+           ===================================================== */
+
+        .recipe-form-card {
+            padding: 32px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 24px;
+
+            background: #fff;
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-section {
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .form-section:last-of-type {
+            padding-bottom: 0;
+            margin-bottom: 0;
+
+            border-bottom: none;
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+        .form-section-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            background: #fff7f2;
+            color: #ff6b35;
+
+            font-size: 17px;
+        }
+
+        .form-section-title h2 {
+            margin: 0;
+
+            color: #111827;
+
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .form-section-title p {
+            margin: 3px 0 0;
+
+            color: #6b7280;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           FORM GRID
+           ===================================================== */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+        .form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+
+        /* =====================================================
+           INPUTS
+           ===================================================== */
+
+        .recipe-form-card .form-group {
+            margin-bottom: 0;
+        }
+
+        .recipe-form-card .form-label {
+            margin-bottom: 7px;
+
+            color: #374151;
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        .recipe-form-card .form-input,
+        .recipe-form-card .form-select,
+        .recipe-form-card .form-textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 12px;
+
+            background: #fff;
+            color: #1f2937;
+
+            font-family: inherit;
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .recipe-form-card .form-input:focus,
+        .recipe-form-card .form-select:focus,
+        .recipe-form-card .form-textarea:focus {
+            border-color: #ff6b35;
+
+            box-shadow:
+                0 0 0 4px rgba(255, 107, 53, 0.10);
+        }
+
+        .recipe-form-card .form-textarea {
+            min-height: 130px;
+
+            resize: vertical;
+        }
+
+        .field-help {
+            display: block;
+
+            margin-top: 6px;
+
+            color: #9ca3af;
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           INGREDIENT ROWS
+           ===================================================== */
+
+        .ingredient-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+
+            margin-bottom: 14px;
+        }
+
+        .ingredient-row {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 140px 42px;
+
+            gap: 8px;
+
+            align-items: center;
+        }
+
+        .remove-ingredient {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #fecaca;
+
+            border-radius: 10px;
+
+            background: #fff1f2;
+            color: #ef4444;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .remove-ingredient:hover {
+            color: #fff;
+            background: #ef4444;
+        }
+
+        .add-ingredient-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 9px 14px;
+
+            border: 1px dashed #ff6b35;
+
+            border-radius: 10px;
+
+            background: #fff7f2;
+            color: #c2410c;
+
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .add-ingredient-btn:hover {
+            color: #fff;
+            background: #ff6b35;
+        }
+
+
+        /* =====================================================
+           STEPS
+           ===================================================== */
+
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .step-row {
+            display: grid;
+
+            grid-template-columns: 34px minmax(0, 1fr) 42px;
+
+            gap: 10px;
+
+            align-items: start;
+        }
+
+        .step-number {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 5px;
+
+            border-radius: 50%;
+
+            background: #ff6b35;
+            color: #fff;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .step-row textarea {
+            min-height: 85px;
+        }
+
+        .remove-step {
+            width: 42px;
+            height: 42px;
+
+            margin-top: 2px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #fecaca;
+
+            border-radius: 10px;
+
+            background: #fff1f2;
+            color: #ef4444;
+
+            cursor: pointer;
+        }
+
+        .add-step-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 14px;
+
+            padding: 9px 14px;
+
+            border: 1px dashed #ff6b35;
+
+            border-radius: 10px;
+
+            background: #fff7f2;
+            color: #c2410c;
+
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           FILE UPLOAD
+           ===================================================== */
+
+        .upload-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .upload-box {
+            position: relative;
+
+            min-height: 180px;
+
+            padding: 25px 15px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            border: 2px dashed #d1d5db;
+
+            border-radius: 16px;
+
+            background: #fafafa;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .upload-box:hover,
+        .upload-box.dragover {
+            border-color: #ff6b35;
+            background: #fff7f2;
+        }
+
+        .upload-box i {
+            margin-bottom: 12px;
+
+            color: #ff6b35;
+
+            font-size: 30px;
+        }
+
+        .upload-box strong {
+            margin-bottom: 5px;
+
+            color: #374151;
+
+            font-size: 14px;
+        }
+
+        .upload-box span {
+            color: #9ca3af;
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .upload-box input {
+            position: absolute;
+
+            width: 1px;
+            height: 1px;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        .preview-area {
+            width: 100%;
+
+            margin-top: 12px;
+        }
+
+        .image-preview {
+            width: 100%;
+            max-height: 190px;
+
+            object-fit: cover;
+
+            border-radius: 12px;
+
+            display: none;
+        }
+
+        .video-name {
+            display: none;
+
+            margin-top: 8px;
+
+            color: #374151;
+
+            font-size: 12px;
+            word-break: break-word;
+        }
+
+
+        /* =====================================================
+           CHECKBOX
+           ===================================================== */
+
+        .checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            margin-top: 18px;
+        }
+
+        .checkbox-row input {
+            width: 18px;
+            height: 18px;
+
+            flex-shrink: 0;
+
+            margin-top: 1px;
+
+            accent-color: #ff6b35;
+        }
+
+        .checkbox-row label {
+            color: #6b7280;
+
+            font-size: 12px;
+            line-height: 1.6;
+
+            cursor: pointer;
+        }
+
+        .checkbox-row a {
+            color: #ff6b35;
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           SUBMIT ACTIONS
+           ===================================================== */
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 30px;
+        }
+
+        .form-actions button {
+            min-height: 48px;
+
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            font-family: inherit;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .reset-btn {
+            border: 1px solid #d1d5db;
+
+            background: #fff;
+            color: #4b5563;
+        }
+
+        .reset-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            border: none;
+
+            background: #ff6b35;
+            color: #fff;
+
+            box-shadow:
+                0 8px 20px rgba(255, 107, 53, 0.22);
+        }
+
+        .submit-btn:hover {
+            background: #e85a28;
+
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+
+        /* =====================================================
+           SIDE INFORMATION
+           ===================================================== */
+
+        .submit-sidebar {
+            display: flex;
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .side-card {
+            padding: 22px;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 20px;
+
+            background: #fff;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .side-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            margin: 0 0 15px;
+
+            color: #111827;
+
+            font-size: 17px;
+        }
+
+        .side-card h3 i {
+            color: #ff6b35;
+        }
+
+        .side-card p {
+            margin: 0;
+
+            color: #6b7280;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .guideline-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 12px;
+
+            margin: 0;
+            padding: 0;
+
+            list-style: none;
+        }
+
+        .guideline-list li {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 9px;
+
+            color: #4b5563;
+
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .guideline-list li i {
+            margin-top: 3px;
+
+            color: #22c55e;
+        }
+
+
+        /* =====================================================
+           SUBMISSION PROCESS
+           ===================================================== */
+
+        .process-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        .process-item {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 12px;
+        }
+
+        .process-number {
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #fff7f2;
+            color: #ff6b35;
+
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .process-item strong {
+            display: block;
+
+            margin-bottom: 2px;
+
+            color: #374151;
+
+            font-size: 13px;
+        }
+
+        .process-item span {
+            color: #9ca3af;
+
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           SUCCESS MESSAGE
+           ===================================================== */
+
+        .success-box {
+            display: none;
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            border: 1px solid #bbf7d0;
+
+            border-radius: 18px;
+
+            background: #f0fdf4;
+        }
+
+        .success-box.active {
+            display: block;
+        }
+
+        .success-icon {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: #dcfce7;
+            color: #16a34a;
+
+            font-size: 28px;
+        }
+
+        .success-box h2 {
+            margin: 0 0 8px;
+
+            color: #166534;
+
+            font-size: 22px;
+        }
+
+        .success-box p {
+            max-width: 520px;
+
+            margin: 0 auto;
+
+            color: #4b5563;
+
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           LOGIN NOTICE
+           ===================================================== */
+
+        .login-notice {
+            display: none;
+
+            padding: 14px 16px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid #bfdbfe;
+
+            border-radius: 12px;
+
+            background: #eff6ff;
+
+            color: #1e40af;
+
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .login-notice.active {
+            display: block;
+        }
+
+        .login-notice a {
+            color: #2563eb;
+
+            font-weight: 700;
+
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        .submit-footer {
+            margin-top: 0;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .submit-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-sidebar {
+                display: grid;
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .submit-sidebar .side-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+
+            .submit-hero {
+                padding-top: 115px;
+                padding-bottom: 55px;
+            }
+
+            .submit-hero h1 {
+                font-size: 38px;
+            }
+
+            .submit-hero p {
+                font-size: 14px;
+            }
+
+            .submit-main {
+                padding: 50px 16px 65px;
+            }
+
+            .recipe-form-card {
+                padding: 22px 18px;
+
+                border-radius: 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid .full-width {
+                grid-column: auto;
+            }
+
+            .ingredient-row {
+                grid-template-columns: minmax(0, 1fr) 110px 38px;
+            }
+
+            .remove-ingredient {
+                width: 38px;
+                height: 38px;
+            }
+
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-sidebar .side-card:last-child {
+                grid-column: auto;
+            }
+        }
+
+
+        @media (max-width: 550px) {
+
+            .submit-hero h1 {
+                font-size: 32px;
+            }
+
+            .submit-hero-badge {
+                font-size: 11px;
+            }
+
+            .form-section-title h2 {
+                font-size: 17px;
+            }
+
+            .ingredient-row {
+                grid-template-columns: 1fr;
+            }
+
+            .ingredient-row .remove-ingredient {
+                width: 100%;
+                height: 38px;
+            }
+
+            .step-row {
+                grid-template-columns: 30px minmax(0, 1fr);
+            }
+
+            .step-number {
+                width: 30px;
+                height: 30px;
+            }
+
+            .remove-step {
+                width: 100%;
+                height: 36px;
+
+                grid-column: 2;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+
+            .form-actions button {
+                width: 100%;
+            }
+        }
+
+
+        @media (max-width: 380px) {
+
+            .submit-main {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .recipe-form-card {
+                padding: 18px 13px;
+            }
+
+            .submit-hero h1 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         PAGE WRAPPER
+         ===================================================== -->
+
+    <div class="submit-page">
+
+
+        <!-- =================================================
+             HEADER
+             ================================================= -->
+
+        <header class="main-header" id="mainHeader">
+
+            <div class="header-container">
+
+                <a href="../index.html"
+                   class="logo"
+                   aria-label="AI Cooking Assistant Home">
+
+                    <i class="fa-solid fa-utensils"></i>
+
+                    <span>AI Cooking Assistant</span>
+
+                </a>
+
+
+                <nav class="nav-links"
+                     aria-label="Main navigation">
+
+                    <a href="../index.html">
+                        Home
+                    </a>
+
+                    <a href="ai-chat.html">
+                        AI Assistant
+                    </a>
+
+                    <a href="states.html">
+                        India
+                    </a>
+
+                    <a href="festivals.html">
+                        Festivals
+                    </a>
+
+                    <a href="cuisines.html">
+                        Cuisines
+                    </a>
+
+                    <a href="ingredient-finder.html">
+                        Ingredients
+                    </a>
+
+                    <a href="login.html"
+                       class="nav-login">
+                        Login
+                    </a>
+
+                </nav>
+
+
+                <button class="mobile-menu-button"
+                        id="mobileMenuButton"
+                        aria-label="Open menu"
+                        aria-expanded="false">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- Mobile Menu -->
+
+            <div class="mobile-menu"
+                 id="mobileMenu">
+
+                <a href="../index.html">
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                </a>
+
+                <a href="ai-chat.html">
+                    <i class="fa-solid fa-robot"></i>
+                    AI Assistant
+                </a>
+
+                <a href="states.html">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    India
+                </a>
+
+                <a href="festivals.html">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    Festivals
+                </a>
+
+                <a href="cuisines.html">
+                    <i class="fa-solid fa-globe"></i>
+                    Cuisines
+                </a>
+
+                <a href="ingredient-finder.html">
+                    <i class="fa-solid fa-carrot"></i>
+                    Ingredients
+                </a>
+
+                <a href="login.html">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="submit-hero">
+
+            <div class="submit-hero-content">
+
+                <div class="submit-hero-badge">
+                    <i class="fa-solid fa-utensils"></i>
+                    Share Your Recipe
+                </div>
+
+                <h1>
+                    Share Your
+                    <span>Special Recipe</span>
+                </h1>
+
+                <p>
+                    Have a traditional family recipe, local specialty,
+                    or your own favorite dish? Share it with the
+                    AI Cooking Assistant community.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MAIN
+             ================================================= -->
+
+        <main class="submit-main">
+
+            <div class="submit-layout">
+
+
+                <!-- =============================================
+                     FORM
+                     ============================================= -->
+
+                <div>
+
+
+                    <!-- Login Notice -->
+
+                    <div class="login-notice"
+                         id="loginNotice">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        Please log in before submitting a recipe.
+                        <a href="login.html">
+                            Login here
+                        </a>
+
+                    </div>
+
+
+                    <!-- Form Card -->
+
+                    <div class="recipe-form-card">
+
+                        <form id="recipeSubmissionForm"
+                              novalidate>
+
+
+                            <!-- =================================
+                                 BASIC INFORMATION
+                                 ================================= -->
+
+                            <section class="form-section">
+
+                                <div class="form-section-title">
+
+                                    <div class="form-section-icon">
+                                        <i class="fa-solid fa-bowl-food"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h2>
+                                            Basic Recipe Information
+                                        </h2>
+
+                                        <p>
+                                            Tell us about your dish.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <!-- Dish Name -->
+
+                                    <div class="form-group full-width">
+
+                                        <label class="form-label"
+                                               for="dishName">
+
+                                            Dish Name
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="dishName"
+                                            class="form-input"
+                                            placeholder="Example: Dalma"
+                                            maxlength="100"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <!-- State -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="state">
+
+                                            State
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <select
+                                            id="state"
+                                            class="form-select"
+                                            required
+                                        >
+
+                                            <option value="">
+                                                Select State
+                                            </option>
+
+                                            <option>Andhra Pradesh</option>
+                                            <option>Arunachal Pradesh</option>
+                                            <option>Assam</option>
+                                            <option>Bihar</option>
+                                            <option>Chhattisgarh</option>
+                                            <option>Goa</option>
+                                            <option>Gujarat</option>
+                                            <option>Haryana</option>
+                                            <option>Himachal Pradesh</option>
+                                            <option>Jharkhand</option>
+                                            <option>Karnataka</option>
+                                            <option>Kerala</option>
+                                            <option>Madhya Pradesh</option>
+                                            <option>Maharashtra</option>
+                                            <option>Manipur</option>
+                                            <option>Meghalaya</option>
+                                            <option>Mizoram</option>
+                                            <option>Nagaland</option>
+                                            <option>Odisha</option>
+                                            <option>Punjab</option>
+                                            <option>Rajasthan</option>
+                                            <option>Sikkim</option>
+                                            <option>Tamil Nadu</option>
+                                            <option>Telangana</option>
+                                            <option>Tripura</option>
+                                            <option>Uttar Pradesh</option>
+                                            <option>Uttarakhand</option>
+                                            <option>West Bengal</option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- District -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="district">
+
+                                            District
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="district"
+                                            class="form-input"
+                                            placeholder="Example: Khordha"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <!-- Category -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="category">
+
+                                            Category
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <select
+                                            id="category"
+                                            class="form-select"
+                                            required
+                                        >
+
+                                            <option value="">
+                                                Select Category
+                                            </option>
+
+                                            <option value="main-course">
+                                                Main Course
+                                            </option>
+
+                                            <option value="breakfast">
+                                                Breakfast
+                                            </option>
+
+                                            <option value="snacks">
+                                                Snacks
+                                            </option>
+
+                                            <option value="sweet">
+                                                Sweets
+                                            </option>
+
+                                            <option value="beverage">
+                                                Beverage
+                                            </option>
+
+                                            <option value="vegetarian">
+                                                Vegetarian
+                                            </option>
+
+                                            <option value="non-vegetarian">
+                                                Non-Vegetarian
+                                            </option>
+
+                                            <option value="festival">
+                                                Festival Special
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- Cuisine -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="cuisine">
+
+                                            Cuisine
+
+                                        </label>
+
+                                        <select
+                                            id="cuisine"
+                                            class="form-select"
+                                        >
+
+                                            <option value="">
+                                                Select Cuisine
+                                            </option>
+
+                                            <option>Indian</option>
+                                            <option>Odia</option>
+                                            <option>North Indian</option>
+                                            <option>South Indian</option>
+                                            <option>Bengali</option>
+                                            <option>Chinese</option>
+                                            <option>Italian</option>
+                                            <option>Thai</option>
+                                            <option>Japanese</option>
+                                            <option>Mexican</option>
+                                            <option>American</option>
+                                            <option>Other</option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- Description -->
+
+                                    <div class="form-group full-width">
+
+                                        <label class="form-label"
+                                               for="description">
+
+                                            Recipe Description
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <textarea
+                                            id="description"
+                                            class="form-textarea"
+                                            placeholder="Tell us about the dish, its history, when it is usually prepared, or why it is special..."
+                                            maxlength="1000"
+                                            required
+                                        ></textarea>
+
+                                        <span class="field-help">
+                                            Maximum 1000 characters.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =================================
+                                 COOKING INFORMATION
+                                 ================================= -->
+
+                            <section class="form-section">
+
+                                <div class="form-section-title">
+
+                                    <div class="form-section-icon">
+                                        <i class="fa-solid fa-clock"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h2>
+                                            Cooking Information
+                                        </h2>
+
+                                        <p>
+                                            Add time, servings and difficulty.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <!-- Prep Time -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="prepTime">
+
+                                            Preparation Time
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="prepTime"
+                                            class="form-input"
+                                            placeholder="Example: 15 minutes"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <!-- Cook Time -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="cookTime">
+
+                                            Cooking Time
+                                            <span class="required">*</span>
+
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="cookTime"
+                                            class="form-input"
+                                            placeholder="Example: 30 minutes"
+                                            required
+                                        >
+
+                                    </div>
+
+
+                                    <!-- Servings -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="servings">
+
+                                            Servings
+
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="servings"
+                                            class="form-input"
+                                            min="1"
+                                            max="100"
+                                            placeholder="Example: 4"
+                                        >
+
+                                    </div>
+
+
+                                    <!-- Difficulty -->
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="difficulty">
+
+                                            Difficulty
+
+                                        </label>
+
+                                        <select
+                                            id="difficulty"
+                                            class="form-select"
+                                        >
+
+                                            <option value="">
+                                                Select Difficulty
+                                            </option>
+
+                                            <option>Easy</option>
+                                            <option>Medium</option>
+                                            <option>Hard</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =================================
+                                 INGREDIENTS
+                                 ================================= -->
+
+                            <section class="form-section">
+
+                                <div class="form-section-title">
+
+                                    <div class="form-section-icon">
+                                        <i class="fa-solid fa-carrot"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h2>
+                                            Ingredients
+                                        </h2>
+
+                                        <p>
+                                            Add ingredients and their quantities.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="ingredient-list"
+                                     id="ingredientList">
+
+
+                                    <div class="ingredient-row">
+
+                                        <input
+                                            type="text"
+                                            class="form-input ingredient-name"
+                                            placeholder="Ingredient"
+                                            required
+                                        >
+
+                                        <input
+                                            type="text"
+                                            class="form-input ingredient-quantity"
+                                            placeholder="Quantity"
+                                            required
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="remove-ingredient"
+                                            aria-label="Remove ingredient"
+                                        >
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+
+                                    <div class="ingredient-row">
+
+                                        <input
+                                            type="text"
+                                            class="form-input ingredient-name"
+                                            placeholder="Ingredient"
+                                        >
+
+                                        <input
+                                            type="text"
+                                            class="form-input ingredient-quantity"
+                                            placeholder="Quantity"
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="remove-ingredient"
+                                            aria-label="Remove ingredient"
+                                        >
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+
+                                    <div class="ingredient-row">
+
+                                        <input
+                                            type="text"
+                                            class="form-input ingredient-name"
+                                            placeholder="Ingredient"
+                                        >
+
+                                        <input
+                                            type="text"
+                                            class="form-input ingredient-quantity"
+                                            placeholder="Quantity"
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="remove-ingredient"
+                                            aria-label="Remove ingredient"
+                                        >
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="add-ingredient-btn"
+                                    id="addIngredientButton"
+                                >
+
+                                    <i class="fa-solid fa-plus"></i>
+
+                                    Add Ingredient
+
+                                </button>
+
+                            </section>
+
+
+                            <!-- =================================
+                                 COOKING STEPS
+                                 ================================= -->
+
+                            <section class="form-section">
+
+                                <div class="form-section-title">
+
+                                    <div class="form-section-icon">
+                                        <i class="fa-solid fa-list-ol"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h2>
+                                            Cooking Steps
+                                        </h2>
+
+                                        <p>
+                                            Explain how to prepare the recipe.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="steps-list"
+                                     id="stepsList">
+
+
+                                    <div class="step-row">
+
+                                        <div class="step-number">
+                                            1
+                                        </div>
+
+                                        <textarea
+                                            class="form-textarea cooking-step"
+                                            placeholder="Write the first cooking step..."
+                                            required
+                                        ></textarea>
+
+                                        <button
+                                            type="button"
+                                            class="remove-step"
+                                            aria-label="Remove step"
+                                        >
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+
+                                    <div class="step-row">
+
+                                        <div class="step-number">
+                                            2
+                                        </div>
+
+                                        <textarea
+                                            class="form-textarea cooking-step"
+                                            placeholder="Write the second cooking step..."
+                                        ></textarea>
+
+                                        <button
+                                            type="button"
+                                            class="remove-step"
+                                            aria-label="Remove step"
+                                        >
+
+                                            <i class="fa-solid fa-trash"></i>
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    class="add-step-btn"
+                                    id="addStepButton"
+                                >
+
+                                    <i class="fa-solid fa-plus"></i>
+
+                                    Add Cooking Step
+
+                                </button>
+
+                            </section>
+
+
+                            <!-- =================================
+                                 PHOTO / VIDEO
+                                 ================================= -->
+
+                            <section class="form-section">
+
+                                <div class="form-section-title">
+
+                                    <div class="form-section-icon">
+                                        <i class="fa-solid fa-photo-film"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h2>
+                                            Recipe Media
+                                        </h2>
+
+                                        <p>
+                                            Add a photo and optional video.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="upload-grid">
+
+
+                                    <!-- Photo -->
+
+                                    <label class="upload-box"
+                                           for="recipePhoto">
+
+                                        <i class="fa-solid fa-camera"></i>
+
+                                        <strong>
+                                            Upload Recipe Photo
+                                        </strong>
+
+                                        <span>
+                                            JPG, PNG or WEBP<br>
+                                            Maximum 5 MB
+                                        </span>
+
+                                        <input
+                                            type="file"
+                                            id="recipePhoto"
+                                            accept="image/jpeg,image/png,image/webp"
+                                        >
+
+                                        <div class="preview-area">
+
+                                            <img
+                                                id="photoPreview"
+                                                class="image-preview"
+                                                alt="Recipe preview"
+                                            >
+
+                                        </div>
+
+                                    </label>
+
+
+                                    <!-- Video -->
+
+                                    <label class="upload-box"
+                                           for="recipeVideo">
+
+                                        <i class="fa-solid fa-video"></i>
+
+                                        <strong>
+                                            Upload Recipe Video
+                                        </strong>
+
+                                        <span>
+                                            MP4, WEBM or MOV<br>
+                                            Maximum 50 MB
+                                        </span>
+
+                                        <input
+                                            type="file"
+                                            id="recipeVideo"
+                                            accept="video/mp4,video/webm,video/quicktime"
+                                        >
+
+                                        <div class="preview-area">
+
+                                            <span
+                                                id="videoName"
+                                                class="video-name"
+                                            ></span>
+
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =================================
+                                 FESTIVAL
+                                 ================================= -->
+
+                            <section class="form-section">
+
+                                <div class="form-section-title">
+
+                                    <div class="form-section-icon">
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <h2>
+                                            Festival Information
+                                        </h2>
+
+                                        <p>
+                                            Optional information about festivals.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-grid">
+
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="festival">
+
+                                            Festival
+
+                                        </label>
+
+                                        <select
+                                            id="festival"
+                                            class="form-select"
+                                        >
+
+                                            <option value="">
+                                                Not Festival Specific
+                                            </option>
+
+                                            <option>Diwali</option>
+                                            <option>Holi</option>
+                                            <option>Dussehra</option>
+                                            <option>Durga Puja</option>
+                                            <option>Ganesh Chaturthi</option>
+                                            <option>Makar Sankranti</option>
+                                            <option>Raksha Bandhan</option>
+                                            <option>Eid</option>
+                                            <option>Christmas</option>
+                                            <option>Onam</option>
+                                            <option>Pongal</option>
+                                            <option>Rath Yatra</option>
+                                            <option>Other</option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label class="form-label"
+                                               for="specialOccasion">
+
+                                            Special Occasion
+
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="specialOccasion"
+                                            class="form-input"
+                                            placeholder="Example: Wedding, Birthday..."
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =================================
+                                 AGREEMENT
+                                 ================================= -->
+
+                            <div class="checkbox-row">
+
+                                <input
+                                    type="checkbox"
+                                    id="recipeAgreement"
+                                    required
+                                >
+
+                                <label for="recipeAgreement">
+
+                                    I confirm that this recipe is accurate
+                                    to the best of my knowledge and that I
+                                    have the right to share the content,
+                                    photo and video submitted here.
+
+                                </label>
+
+                            </div>
+
+
+                            <!-- =================================
+                                 ACTIONS
+                                 ================================= -->
+
+                            <div class="form-actions">
+
+                                <button
+                                    type="reset"
+                                    class="reset-btn"
+                                    id="resetFormButton"
+                                >
+
+                                    <i class="fa-solid fa-rotate-left"></i>
+
+                                    Reset
+
+                                </button>
+
+
+                                <button
+                                    type="submit"
+                                    class="submit-btn"
+                                    id="submitRecipeButton"
+                                >
+
+                                    <i class="fa-solid fa-paper-plane"></i>
+
+                                    Submit Recipe
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+
+                        <!-- Success -->
+
+                        <div class="success-box"
+                             id="successBox">
+
+                            <div class="success-icon">
+
+                                <i class="fa-solid fa-check"></i>
+
+                            </div>
+
+                            <h2>
+                                Recipe Submitted!
+                            </h2>
+
+                            <p>
+                                Thank you for sharing your recipe.
+                                Your submission has been saved for
+                                review. Once approved by the admin,
+                                it can appear on the AI Cooking Assistant.
+                            </p>
+
+                            <br>
+
+                            <a href="../index.html"
+                               class="btn-component btn-primary">
+
+                                <i class="fa-solid fa-house"></i>
+
+                                Back to Home
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =============================================
+                     SIDEBAR
+                     ============================================= -->
+
+                <aside class="submit-sidebar">
+
+
+                    <!-- Guidelines -->
+
+                    <div class="side-card">
+
+                        <h3>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Submission Guidelines
+                        </h3>
+
+                        <ul class="guideline-list">
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Use a clear and correct recipe name.
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Add accurate ingredient quantities.
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Explain cooking steps clearly.
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Upload your own or authorized media.
+                            </li>
+
+                            <li>
+                                <i class="fa-solid fa-check"></i>
+                                Avoid harmful or unsafe instructions.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <!-- Process -->
+
+                    <div class="side-card">
+
+                        <h3>
+                            <i class="fa-solid fa-route"></i>
+                            What Happens Next?
+                        </h3>
+
+                        <div class="process-list">
+
+
+                            <div class="process-item">
+
+                                <div class="process-number">
+                                    1
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Submit
+                                    </strong>
+
+                                    <span>
+                                        Send your recipe to us.
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="process-item">
+
+                                <div class="process-number">
+                                    2
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        Admin Review
+                                    </strong>
+
+                                    <span>
+                                        Our admin checks the submission.
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="process-item">
+
+                                <div class="process-number">
+                                    3
+                                </div>
+
+              
